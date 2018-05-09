@@ -1,0 +1,95 @@
+<!--pages/binding/binging.wxml-->
+<view class="container">
+  <view class="binding-container content">
+    <!-- 用户微信信息 -->
+    <view class="binding-userInfo">
+      <button 
+        wx:if="{{!hasUserInfo && canIUse}}" 
+        open-type="getUserInfo" 
+        class="common-userInfo-get"
+        bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+      <block wx:else>
+        <image 
+          class="userinfo-avatar" 
+          src="{{userInfo.avatarUrl}}"  
+          background-size="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </block>
+    </view>
+    <!-- 表单信息输入 -->
+    <view class="binding-form">
+      <view class="binding-form-cell">
+        <view class="binding-form-cell-title {{1 == inputFlag.nickname ? 'input-flag-true' : ''}}">
+          昵称
+          <text class="binding-form-warn-info">{{nicknameWarnInfo}}</text>
+        </view>
+        <input
+          bindtap="bindInputTap"
+          bindinput="bindNicknameInput"
+          data-key="nickname"
+          maxlength="11"
+          confirm-type="next"
+          class="binding-input binding-input-nickname" 
+          type="text">
+          </input>
+      </view>
+      <view class="binding-form-cell">
+        <view class="binding-form-cell-title {{1 == inputFlag.sex ? 'input-flag-true' : ''}}">
+          性别 *
+          <text class="binding-form-warn-info">{{sexWarnInfo}}</text>
+        </view>
+        <radio-group class="radio-group" bindchange="sexRadioChange">
+          <label class="radio" wx:for="{{sexList}}" wx:key="item.value">
+            <radio 
+              color="#ED1C24"
+              value="{{item.value}}" 
+              checked="{{item.checked}}"/>{{item.name}}
+          </label>
+        </radio-group>
+      </view>
+      <!-- 手机号输入 -->
+      <view class="binding-form-cell">
+        <view class="binding-form-cell-title {{1 == inputFlag.phone ? 'input-flag-true' : ''}}">
+          手机号 *
+          <text class="binding-form-warn-info">{{phoneWarnInfo}}</text>
+        </view>
+        <input
+          bindtap="bindInputTap"
+          bindinput="bindPhoneInput"
+          data-key="phone"
+          maxlength="11"
+          confirm-type="next"
+          class="binding-input binding-input-phone {{-1 == inputFlag.phone ? 'rubberBand animated input-flag-false' : ''}}" 
+          type="number">
+          </input>
+      </view>
+      <!-- 验证码输入 -->
+      <view 
+        class="binding-form-cell">
+        <view class="binding-form-cell-title {{1 == inputFlag.verification ? 'input-flag-true' : ''}}">验证码</view>
+        <view class="binding-verification-container">
+          <input
+            maxlength="4"
+            bindtap="bindVerificationCodeInputTap"
+            disabled="{{verificationInputDisplayFlag}}"
+            focus="{{verificationInputFocusFlag}}"
+            bindinput="bindVerificationCodeInput"
+            value="{{verificationCodeInputValue}}"
+            class="binding-input binding-input-verification {{-1 == inputFlag.verification ? 'rubberBand animated input-flag-false' : ''}}" 
+            type="text">
+            <label 
+              wx:if="{{verificationRandomNumber}}"
+              class="binding-input-verification-code">
+              {{verificationRandomNumber}}</label>
+          </input>
+          <view 
+            bindtap="bindSendVerificationTap"
+            class="binding-verification-tag">{{verificationCodeTag}}</view>
+        </view>
+      </view>
+      <button
+        bindtap="bindBindingBtnTap" 
+        class="common-btn {{canSubmit ? '' : 'common-btn-disabled'}}">保存</button>
+    </view>
+  </view>
+</view>

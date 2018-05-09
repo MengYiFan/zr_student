@@ -1,0 +1,74 @@
+/* pages/templates/evaluate/evaluate.wxss */
+.tpl-evaluate {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}
+
+.tpl-evaluate-mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: .4;
+  z-index: -1;
+}
+
+.tpl-evaluate-container {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: 660rpx;
+  height: 560rpx;
+  margin-top: -280rpx;
+  margin-left: -330rpx;
+  padding: 36rpx 20rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 12rpx;
+}
+
+.tpl-evaluate-title {
+  font-size: 26rpx;
+}
+
+.tpl-evaluate-starts {
+  margin-top: 45rpx;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 600rpx;
+}
+
+.tpl-evaluate-start-image {
+  flex: 1;
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 60rpx;
+}
+
+.tpl-evaluate-btn {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 26rpx;
+  font-weight: 300;
+  color: #b4b4b4;
+  border-top: 1rpx dashed #b4b4b4;
+}
+
+.tpl-evaluate-btn-ok {
+  background-color: #ed1c24;
+  color: white;
+  border-top-color: #fff;
+}

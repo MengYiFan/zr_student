@@ -1,0 +1,4 @@
+<!--pages/course/webview/webview.wxml-->
+<web-view 
+  class="web-view"
+  src="{{webViewUrl}}"></web-view>

@@ -1,0 +1,2 @@
+/* pages/self/wallet/wallet.wxss */
+@import "../../templates/building/building.wxss";

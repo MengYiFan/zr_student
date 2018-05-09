@@ -1,0 +1,6 @@
+<template name="empty">
+  <view class="tpl-empty">
+    <image class="tpl-empty-image" src="../../../images/other/empty.png"></image>
+    <text>暂无</text>
+  </view>
+</template>

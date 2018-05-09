@@ -1,0 +1,71 @@
+/* pages/self/bill/bill.wxss */
+@import "../../templates/empty/empty.wxss";
+@import "../../templates/pay/pay.wxss";
+
+.bill-item {
+  padding: 20rpx;
+  height: 140rpx;
+  box-sizing: border-box;
+  display: flex;
+  font-size: 28rpx;
+  font-weight: bold;
+  background-color: #fff;
+  margin-top: 20rpx;
+}
+
+.bill-item:first-child {
+  margin-top: 0;
+}
+
+.bill-item-left,
+.bill-item-right {
+  position: relative;
+}
+
+.bill-item-left {
+  color: #383838;
+  flex: 1;
+  font-weight: 500;
+}
+
+.bill-item-right {
+  color: #ee3333;
+}
+
+.bill-item-left-type {
+  color: #666;
+  font-weight: 300;
+}
+
+.bill-item-time,
+.bill-item-money {
+  position: absolute;
+  top: 40rpx;
+  font-weight: 200;
+}
+
+.bill-item-time {
+  left: 0;
+}
+
+.bill-item-money {
+  right: 0;
+}
+
+.bill-state-ok .bill-item-right {
+  color: #59ba44;
+}
+
+.order-detail {
+  background-color: #f0f0f0;
+  color: #666;
+  font-size: 26rpx;
+}
+
+.order-detail-teacher-name {
+  padding: 20rpx;
+}
+
+.order-detail-desc {
+  padding: 0 20rpx 20rpx;
+}

@@ -1,0 +1,57 @@
+<!--pages/course/course.wxml-->
+<import src="../../templates/course/course.wxml"/>
+<import src="../../templates/video/video.wxml"/>
+<import src="../../templates/evaluate/evaluate.wxml"/>
+<import src="../../templates/empty/empty.wxml"/>
+
+<view class="container">
+  <!-- 我的课程 -->
+  <view class="content bg">
+    <view class="content-title">
+      <image
+        src="../../../images/other/course.png" 
+        class="content-title-image"></image>
+      <text class="content-title-text">我的课程</text>
+    </view>
+    <!-- 暂无 -->
+    <template wx:if="{{!courseList.data.length}}" is="empty"></template>
+    <template is="course" data="{{...courseList}}"/>
+  </view>
+  <!-- 我的预约 -->
+  <view class="content bg">
+    <view class="content-title">
+      <image
+        src="../../../images/other/reservation.png" 
+        class="content-title-image"></image>
+      <text class="content-title-text">我的预约</text>
+    </view>
+    <template wx:if="{{!subscribeList.data.length}}" is="empty"></template>
+    <template is="course" data="{{...subscribeList}}"/>
+  </view>
+  <!-- 我的订阅 -->
+  <view class="content bg">
+    <view class="content-title">
+      <image
+        src="../../../images/other/subscribe.png" 
+        class="content-title-image"></image>
+      <text class="content-title-text">我的订阅</text>
+    </view>
+    <!-- 暂无 -->
+    <template wx:if="{{!contentList.data.length}}" is="empty"></template>
+    <template is="course" data="{{...contentList}}"/>
+  </view>
+  <!-- 我的视频 -->
+  <view class="content bg">
+    <view class="content-title">
+      <image
+        src="../../../images/other/video.png" 
+        class="content-title-image"></image>
+      <text class="content-title-text">我的视频{{videoList.length}}</text>
+    </view>
+    <!-- 暂无 -->
+    <template wx:if="{{!videoList.data.length}}" is="empty"></template>
+    <template is="video" data="{{...videoList}}"/>
+  </view>
+  <!-- tpl评价 -->
+  <template is="evaluate" data="{{...evaluate}}"></template>
+</view>

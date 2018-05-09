@@ -1,0 +1,25 @@
+<!--pages/teacher/history/history.wxml-->
+<view class="container teacher-history">
+  <view class="header">
+    <image class="header-image"></image>
+    <text class="text-overflow header-name">蒋老师</text>
+    <text class="text-overflow header-account">账号: 123123</text>
+  </view>
+  <view class="teacher-history-title">
+    <image
+      src="../../../images/other/phone.png" 
+      class="teacher-history-title-icon"></image>
+    最近接诊记录
+  </view>
+  <view class="teacher-history-list">
+    <block wx:for="{{3}}" wx:key="{{index}}">
+      <view class="teacher-history-item">
+        <view class="teacher-history-left text-overflow">
+          陈老师
+          <text class="teacher-history-time">2018-11-11 11:11 时长: 25分</text>
+        </view>
+        <image class="teacher-history-right"></image>
+      </view>
+    </block>
+  </view>
+</view>

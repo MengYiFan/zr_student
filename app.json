@@ -1,0 +1,59 @@
+{
+  "pages": [
+    "pages/index/index/index",
+    "pages/course/index/course",
+    "pages/help/index/help",
+    "pages/self/index/self",
+    "pages/video/play/play",
+    "pages/teacher/detail/detail",
+    "pages/course/letter/letter",
+    "pages/course/list/list",
+    "pages/self/attention/attention",
+    "pages/self/wallet/wallet",
+    "pages/self/integral/integral",
+    "pages/self/bill/bill",
+    "pages/teacher/history/history",
+    "pages/help/call/call",
+    "pages/video/live/live",
+    "pages/course/webview/webview",
+    "pages/help/cameraview/cameraview",
+    "pages/binding/index/binding"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ED1C24",
+    "navigationBarTitleText": "展润育城",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#B4B4B4",
+    "selectedColor": "#444",
+    "backgroundColor": "#FFF",
+    "list": [
+      {
+        "pagePath": "pages/index/index/index",
+        "text": "首页",
+        "iconPath": "images/icons/home.png",
+        "selectedIconPath": "images/icons/home-select.png"
+      },
+      {
+        "pagePath": "pages/course/index/course",
+        "text": "课程",
+        "iconPath": "images/icons/course.png",
+        "selectedIconPath": "images/icons/course-select.png"
+      },
+      {
+        "pagePath": "pages/help/index/help",
+        "text": "求助",
+        "iconPath": "images/icons/help.png",
+        "selectedIconPath": "images/icons/help-select.png"
+      },
+      {
+        "pagePath": "pages/self/index/self",
+        "text": "我的",
+        "iconPath": "images/icons/self.png",
+        "selectedIconPath": "images/icons/self-select.png"
+      }
+    ]
+  }
+}

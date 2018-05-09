@@ -1,0 +1,67 @@
+/* pages/self/integral/integral.wxss */
+@import "../../templates/empty/empty.wxss";
+
+.integral-header {
+  width: 100%;
+  height: 382rpx;
+  background: -webkit-linear-gradient(bottom, #ED1C24 , #ff874b);
+  background: linear-gradient(to bottom, #ED1C24 , #ff874b);
+  text-align: center;
+  color: #fff;
+}
+
+.integral-header-pig {
+  width: 240rpx;
+  height: 240rpx;
+  position: relative;
+  top: 66rpx;
+  margin-top: -60rpx;
+}
+
+.integral-header-title {
+  font-size: 26rpx;
+}
+
+.integral-header-number {
+  font-size: 72rpx;
+}
+
+.integral-detail-list {
+  height: calc(100vh - 382rpx);
+  margin-top: 30rpx;
+}
+
+.integral-detail-item {
+  height: 126rpx;
+  margin: 0 20rpx;
+  padding: 20rpx 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: flex-start;
+  font-size: 28rpx;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.integral-detail-item:first-child {
+  border-top: none;
+}
+
+.integral-detail-item-left {
+  position: relative;
+  color: #383838;
+  flex: 1;
+}
+
+.integral-detail-item-time {
+  position: absolute;
+  left: 0;
+  bottom: -42rpx;
+  color: #b4b4b4;
+  font-size: 20rpx;
+}
+
+.integral-detail-item-right {
+  color: #59ba44;
+}

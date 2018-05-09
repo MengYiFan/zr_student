@@ -1,0 +1,86 @@
+<!--pages/teacher/detail/detail.wxml-->
+<import src="../../templates/course/course.wxml"/>
+<import src="../../templates/video/video.wxml"/>
+<import src="../../templates/empty/empty.wxml"/>
+
+<view class="container teacher-detail-container">
+  <!-- 老师信息 -->
+  <view class="content bg">
+    <view class="teacher-info">
+      <view class="teacher-info-left">  
+        <image
+          src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=260872131,1933723430&fm=27&gp=0.jpg" 
+          class="teacher-cover"></image>
+        <view class="teacher-intro">
+          <text class="teacher-name text-overflow">{{teacherData.userRealname || '展润老师'}}</text>
+          <view class="teacher-other">
+            <block wx:if="{{teacherData.userGender == 'M'}}">
+              <image class="teacher-sex" src="../../../images/other/man.png"></image>
+            </block>
+            <block wx:else>
+              <image class="teacher-sex" src="../../../images/other/girl.png"></image>
+            </block>
+            <text class="teacher-age">{{teacherData.age || '18'}}岁</text>
+          </view>
+        </view>
+      </view>
+      <view class="teacher-info-right">
+        <!-- <image
+          bindtap="bindTeacherHistoryTap" 
+          class="teacher-chat-icon" src="../../../images/other/reserved.png"></image> -->
+          <block wx:if="{{online}}">
+            <image
+              bindtap="bindAssignTeacherTap" 
+              class="teacher-chat-icon" 
+              src="../../../images/other/tel.png"></image>
+          </block>
+          <block wx:else>
+            <image 
+              class="teacher-chat-icon" 
+              src="../../../images/other/tel2.png"></image>
+          </block>
+      </view>
+    </view>
+    <view class="common-title">标签</view>
+    <view class="common-tags">
+      <block 
+        wx:key="{{index}}"
+        wx:for="{{teacherData.subjectList}}">
+        <view class="common-tag">{{item.subjectName}}</view>
+      </block>
+    </view>
+  </view>
+  <!-- 老师简介 -->
+  <view class="content bg">
+    <view class="common-title">个人简介</view>
+    <!-- 暂无 -->
+    <template wx:if="{{!teacherData.userIntroduction}}" is="empty"></template>
+    <text wx:else class="teacher-intro-content" space="emsp">{{teacherData.userIntroduction || '无'}}</text>
+  </view>
+  <!-- 老师专栏 -->
+  <view class="content bg">
+    <view class="content-title">
+      <image 
+      src="../../../images/other/recommended.png" 
+      class="content-title-image"></image>
+      <text class="content-title-text">个人专栏</text>
+    </view>
+    <!-- 暂无 -->
+    <template wx:if="{{!columnList.data.length}}" is="empty"></template>
+    <!-- 左图右字 -->
+    <template is="course" data="{{...columnList}}"/>
+  </view>
+  <!-- 老师视频 -->
+  <view class="content bg">
+    <view class="content-title">
+      <image 
+      src="../../../images/other/video.png" 
+      class="content-title-image"></image>
+      <text class="content-title-text">老师视频</text>
+    </view>
+    <!-- 暂无 -->
+    <template wx:if="{{!videoList.data.length}}" is="empty"></template>
+    <!-- 左图右字 -->
+    <template is="video" data="{{...videoList}}"/>
+  </view>
+</view>

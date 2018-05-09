@@ -1,0 +1,52 @@
+<!--pages/help/call/call.wxml-->
+<view class="container">
+  <view class="call-container">
+    <view class="call-live">
+      <!-- 收  playerStatechange -->
+      <live-player 
+        class="call-live-player"
+        src="{{teachLive}}" 
+        mode="RTC" autoplay 
+        bindstatechange="playerStatechange" 
+        binderror="playerError" />
+      <!-- 发 pusherStatechange -->
+       <live-pusher 
+        id="rtcpusher"
+        url="{{userPusher}}" 
+        mode="RTC" autopush
+        enable-camera="{{controler.enableCamera}}"
+        muted="{{controler.muted}}"
+        bindstatechange="pusherStatechange"
+        binderror="playerError" /> 
+    </view>
+    <view class="call-list">
+      <view class="call-teacher-info">
+        <image 
+          class="call-teacher-avatar"
+          src="{{callTeacherCover || 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1304590186,481150814&fm=27&gp=0.jpg'}}"></image>
+         <text 
+          class="call-teacher-status {{nick ? '' : 'call-teacher-status-connection'}}">{{callTeacherName || '正在连接...'}}</text> 
+      </view>
+      <view class="cell-func-list">
+        <view
+          bindtap="bindCellMutedTap"
+          class="cell-func-item {{controler.muted ? 'cell-func-item-true' : ''}}">
+          <image 
+            class="cell-func-image"
+            style="display: {{controler.muted ? 'none' : 'inline-block'}}"
+            src="../../../images/other/muted.png"></image>
+          <image
+            style="display: {{controler.muted ? 'inline-block' : 'none'}}"
+            class="cell-func-image" 
+            src="../../../images/other/muted2.png"></image>
+        </view>
+        <view class="cell-func-item cell-func-hangup">
+          <image
+            bindtap="bindCallHangupTap"
+            class="cell-func-image" 
+            src="../../../images/other/hangup.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

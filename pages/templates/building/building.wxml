@@ -1,0 +1,7 @@
+<template name="building">
+  <view class="tpl-building">
+    <image 
+    class="tpl-building-image" src="../../../images/other/building.png"></image>
+    <view>建设中...</view>
+  </view>
+</template>

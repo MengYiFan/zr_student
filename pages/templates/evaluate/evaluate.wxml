@@ -1,0 +1,29 @@
+<!--pages/templates/evaluate/evaluate.wxml-->
+<template name="evaluate">
+  <view 
+    wx:if="{{switch}}"
+    class="tpl-evaluate">
+    <view
+      bindtap="bindEvaluateClose" 
+      class="tpl-evaluate-mask"></view> 
+    <view class="tpl-evaluate-container">
+      <view class="tpl-evaluate-title">您的评分</view>
+      <view class="tpl-evaluate-starts">
+        <view
+          bindtap="bindStartScoreTap"
+          data-index="{{index}}" 
+          class="tpl-evaluate-start" wx:for="{{5}}" wx:key="{{index}}">
+          <image wx:if="{{index < score}}"
+          class="tpl-evaluate-start-image" 
+          src="../../../images/other/start2.png"></image>
+          <image wx:else
+          class="tpl-evaluate-start-image"  
+          src="../../../images/other/start.png"></image>
+        </view>
+      </view>
+      <view
+        bindtap="bindSubmitScoreTap" 
+        class="tpl-evaluate-btn {{score > 0 ? 'tpl-evaluate-btn-ok' : ''}}">提交</view>
+    </view>
+  </view>
+</template>

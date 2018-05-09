@@ -1,0 +1,58 @@
+<template name="video">
+  <view class="video-list weui-flex">
+      <block wx:for="{{data}}" wx:key="{{index}}">
+          <view
+            data-target="{{target}}"
+            data-money="{{item.vedioPrice}}" 
+            data-vedioId="{{item.vedioId}}"
+            data-vedioCoverUrl="{{item.vedioCoverUrl}}"
+            data-vedioDes="{{item.vedioDescription}}"
+            data-subjectIds="{{item.subjectIds}}"
+            data-teacherNickname="{{item.teacherNickname}}"
+            data-vedioname="{{item.vedioName}}"
+            data-vedioMediaUrl="{{item.vedioMediaUrl}}"
+            bindtap="bindVideoItemTap" class="video-item">
+            <view class="video-item-play video-mask">
+              <image
+                src="../../../images/other/play.png" 
+                class="video-item-btn"></image>
+              <image 
+              src="{{item.vedioCoverUrl || 'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'}}" 
+              class="video-item-cover" mode="scaleToFill" ></image>
+            </view>
+            <!-- 没有价格显示的就显示评价 -->
+            <view 
+              wx:if="{{!flag}}"
+              class="video-item-grade"
+              data-target="{{target}}"
+              data-money="{{item.vedioPrice}}" 
+              data-vedioId="{{item.vedioId}}"
+              data-vedioCoverUrl="{{item.vedioCoverUrl}}"
+              data-vedioDes="{{item.vedioDescription}}"
+              data-subjectIds="{{item.subjectIds}}"
+              data-teacherNickname="{{item.teacherNickname}}"
+              data-vedioname="{{item.vedioName}}"
+              data-vedioMediaUrl="{{item.vedioMediaUrl}}"
+              data-type="vedio"
+              data-grade="{{!item.userGrade}}"
+              catchtap="catchCourseEvaluateTap">
+              <text
+                class="video-item-grade-val" 
+                wx:if="{{item.userGrade}}">{{item.userGrade}}星</text>
+              <text 
+                wx:else>待评价</text>
+            </view>
+            <text class="video-item-title text-overflow">{{item.vedioName || 'xxx'}}</text>
+            <view 
+              wx-if="{{flag}}"
+              class="video-item-other content-detail-icon">
+              <image
+                src="../../../images/other/times.png"  
+                class="content-detail-icon-image"></image>
+              <label class="video-item-times">{{item.vedioViewCount + '次' || '最新发布'}}</label>
+              <label class="video-item-money">{{item.vedioPrice ? '¥' + item.vedioPrice : '免费'}}</label>
+            </view>
+          </view>
+      </block>
+    </view>
+</template>

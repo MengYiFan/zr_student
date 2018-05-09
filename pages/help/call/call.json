@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "请求帮助",
+  "usingComponents": {
+    "cameraview": "/pages/help/cameraview/cameraview"
+  }
+}

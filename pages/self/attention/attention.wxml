@@ -1,0 +1,25 @@
+<!--pages/self/attention/attention.wxml-->
+<view class="container">
+  <view class="content bg">
+    <view class="common-title">标签</view>
+    <view class="common-tags">
+      <block 
+        wx:key="{{index}}"
+        wx:for="{{qusArr}}">
+        <view
+          data-index="{{index}}"
+          data-flag="{{item.flag || false}}"
+          data-key="{{item.key}}"
+          bindtap="bindTagTap"
+          class="common-tag {{item.flag ? 'common-tag-checked' : ''}}">{{item.val}}</view>
+      </block>
+    </view>
+  </view>
+  <!-- 自定义标签 -->
+  <!-- <view class="content bg">
+    <view class="common-title">自定义标签</view>
+    <view class="common-tags">
+      <view class="common-tag">+</view>
+    </view>
+  </view> -->
+</view>

@@ -1,0 +1,46 @@
+<!--pages/help/help.wxml-->
+<view class="container">
+  <view class="help-container">
+    <!-- 问题类别 -->
+    <view class="select-cell">
+      <text class="select-cell-title">问题类别</text>
+      <picker 
+        class="select-cell-picker"
+        bindchange="bindQusPickerChange" value="{{qusIndex}}" range="{{qusArr}}">
+        <view class="picker">
+          {{qusArr[qusIndex]}}
+        </view>
+      </picker>
+    </view>
+    <!-- 小孩年龄 -->
+    <view class="select-cell">
+      <text class="select-cell-title">小孩年龄</text>
+      <picker 
+        class="select-cell-picker"
+        bindchange="bindAgePickerChange" value="{{ageIndex}}" range="{{ageArr}}">
+        <view class="picker">
+          {{ageArr[ageIndex]}}
+        </view>
+      </picker>
+    </view>
+    <view class="select-cell">
+      <text class="select-cell-title">性别</text>
+      <radio-group class="radio-group" bindchange="radioChange">
+        <view class="radio-cell" wx:for="{{sexList}}" wx:key="{{index}}">
+          <radio 
+          id="{{'radio-' + index}}" class="radio-el" 
+          value="{{index}}" checked="{{sexIndex === index}}"/>
+          <label class="redio-label" for="{{'radio-' + index}}">
+            <image 
+              class="redio-image" 
+              src="{{sexIndex == index ? item.iconCheckedSrc : item.iconSrc}}">
+              </image>
+          </label>
+        </view>
+    </radio-group>
+    </view>
+    <button
+      bindtap="bindHelpSubmitTap" 
+      class="help-btn">马上连线育商师</button>
+  </view>
+</view>

@@ -1,0 +1,58 @@
+<!--pages/videoPlay/videoPlay.wxml-->
+<import src="../../templates/video/video.wxml"/>
+<import src="../../templates/pay/pay.wxml"/>
+<import src="../../templates/empty/empty.wxml"/>
+
+<view class="container">
+  <!-- 支付 -->
+  <template is="pay" data="{{...pay}}"></template>
+  <!-- 视频播放 -->
+  <view class="video-play-header">
+    <view class="video-play">
+    <!--video.src  -->
+      <video 
+        wx:if="{{!pay.switch}}"
+        id="video" class="video-play-cover" 
+        src="{{options.vediomediaurl}}" 
+        direction="90" controls="{{video.controls}}" 
+        show-center-play-btn="{{video.centerPlayBtn}}" 
+        objectFit="fill" 
+        initial-time="{{video.initialTime}}"
+        bindtimeupdate="bindVideoTimeUpdate"
+        bindended="bindVideoEnded"
+        binderror="bindVideoError"
+        bindplay="bindVideoPlay" bindpause="bindVideoPause" 
+        poster="{{options.vediocoverurl || 'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'}}">
+        <cover-view 
+          wx:if="{{!playState}}"
+          style="display: {{playState ? 'none' : 'block'}}"
+          class="video-cover-mask"></cover-view>
+        <cover-image
+          wx:if="{{!playState}}"
+          style="display: {{playState ? 'none' : 'block'}}"
+          bindtap="bindPlayVideoTap"
+          src="../../../images/other/play.png" 
+          class="video-play-btn video-item-btn"></cover-image>
+      </video>
+      <image 
+        class="video-cover-mask"
+        src="http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg" 
+        wx:if="{{pay.switch}}"></image>
+    </view>
+    <view class="video-play-info text-overflow">
+      <label class="video-play-tag">{{options.subjectids || '默认类'}}</label>
+      <text class="video-play-title">{{options.vedioname || '视频名'}}</text>
+    </view>
+  </view>
+  <!-- 猜你喜欢 -->
+  <view class="content bg">
+    <view class="content-title">
+      <image
+        src="../../../images/other/guest.png" 
+        class="content-title-image"></image>
+      <text class="content-title-text">猜你喜欢</text>
+    </view>
+    <template wx:if="{{!videoList.data.length}}" is="empty"></template>
+    <template is="video" data="{{...videoList}}"/>
+  </view>
+</view>

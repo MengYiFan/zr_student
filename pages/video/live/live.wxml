@@ -1,0 +1,70 @@
+<!--pages/video/live/live.wxml-->
+<view class="container live-container">
+  <view class="video-live">
+    <live-player
+      class="video-live-player" 
+      src="{{vedioSrc}}"
+      mode="RTC" autoplay 
+      fillCrop="horizontal"
+      muted="{{muted}}"
+      bindstatechange="playerStatechange" 
+      binderror="error">
+      </live-player>
+      <cover-view 
+        wx:if="{{!vedioSrc}}"
+        class="video-live-404">
+        <cover-image 
+          class="video-live-404-image" 
+          src="../../../images/other/404.png"></cover-image>
+          <cover-view class="video-live-404-txt">主播还在路上</cover-view>
+        </cover-view>
+  </view>
+  <!-- 评论 -->
+  <scroll-view
+    scroll-y="true"
+    class="comment" 
+    style="display: {{commentshow ? 'block' : 'none'}}"
+    catchtap="closeKeyBord" >      
+    <view class="comment-detail" wx:for="{{comments}}" wx:key="{{index}}">
+      <view class="comment-detail-content">
+        <label>{{item.name}}:</label>  {{item.content}}
+      </view>
+    </view>
+  </scroll-view>
+  <view class="reward">
+    <view class="reward-list {{showRewardListFlag ? 'show-reward' : 'hidden-reward'}}">
+        <block wx:for="{{rewardList}}" wx:key="{{index}}">
+          <image 
+            bindtap="bindRewardTapHandle"
+            data-price="{{item.orderItemPrice}}"
+            data-desc="{{item.orderItemDesc}}"
+            data-id="{{index+1}}"
+            class="reward-item" 
+            src="{{item.iconUrl}}"></image>
+        </block>
+    </view>
+    <image bindtap="showRewardListSwitchHandle" 
+           class="reward-btn" src="../../../images/reward/reward.png"></image>
+  </view>
+  <view class="video-live-bottom">
+    <input
+      placeholder="点击输入评论..."
+      value="{{inputValue}}"
+      confirm-type="send"
+      bindconfirm="bindCommentConfirm"
+      bindinput="bindCommentInput"
+      class="video-live-input"></input>
+    <view class="video-live-btn">
+      <image
+        bindtap="bindMutedTap"
+        class="video-live-btn-image"
+        style="display: {{muted ? 'none' : 'inline-block'}}"
+        src="../../../images/other/voice.png"></image>
+      <image
+        bindtap="bindMutedTap"
+        style="display: {{muted ? 'inline-block' : 'none'}}"
+        class="video-live-btn-image" 
+        src="../../../images/other/muted2.png"></image>
+    </view>
+  </view>
+</view>

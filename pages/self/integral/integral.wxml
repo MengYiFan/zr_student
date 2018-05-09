@@ -1,0 +1,25 @@
+<!--pages/self/integral/integral.wxml-->
+<import src="../../templates/empty/empty.wxml"/>
+
+<view class="container">
+  <view class="integral-header">
+    <image class="integral-header-pig" src="../../../images/other/Dashboard.png"></image>
+    <view class="integral-header-title">我的积分</view>
+    <view class="integral-header-number">{{data.loyaltyPointBalance}}</view>
+  </view>
+  <scroll-view
+    scroll-y="true" 
+    class="integral-detail-list bg">
+    <!-- 暂无 -->
+    <template wx:if="{{!loyaltyRecordList.length}}" is="empty"></template>
+    <block wx:for="{{loyaltyRecordList}}" wx:key="{{index}}">
+      <view class="integral-detail-item">
+        <view class="integral-detail-item-left">
+          {{conf[item.loyaltyTraceType] || item.loyaltyTraceType}}
+          <label class="integral-detail-item-time">{{item.date}}</label>
+        </view>
+        <view class="integral-detail-item-right">+{{item.loyaltyPoint}}</view>
+      </view>
+    </block>
+  </scroll-view>
+</view>

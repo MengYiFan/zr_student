@@ -1,0 +1,15 @@
+.tpl-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #d6d6d6;
+  padding: 30rpx;
+  font-weight: lighter;
+  flex: 1 1 auto;
+}
+
+.tpl-empty-image {
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 20rpx;
+}

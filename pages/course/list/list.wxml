@@ -1,0 +1,53 @@
+<!--pages/course/list/list.wxml-->
+<import src="../../templates/course/course.wxml"/>
+<import src="../../templates/video/video.wxml"/>
+<import src="../../templates/empty/empty.wxml"/>
+
+<view class="container">
+  <view class="list">
+    <!-- 顶部搜索栏 -->
+    <view class="list-header">
+      <view class="list-search">
+        <icon class="list-search-icon" type="search" size="16"></icon>
+        <input class="list-search-input"
+          confirm-type="search" 
+          bindinput="bindSearchInput"
+          value="{{searchValue}}" focus="{{inputFocusFlag}}"
+          bindconfirm="bindSerachTap" 
+          placeholder="请输入..." type="text"></input>
+        <icon
+          wx:if="{{searchClearFlag}}"
+          bindtap="searchClearTag" 
+          class="list-search-icon-clear" type="clear" size="16"></icon>
+      </view>
+      <view
+        bindtap="bindSerachTap" 
+        class="list-search-btn">搜索</view>
+    </view>
+    <!-- 搜索结果 -->
+    <view class="search-result">
+      <view class="search-result-course">
+        <view class="content-title">
+          <image
+            src="../../../images/other/course.png" 
+            class="content-title-image"></image>
+          <text class="content-title-text">文章</text>
+        </view>
+        <!-- 暂无 -->
+        <template wx:if="{{!searchResult.data.length}}" is="empty"></template>
+        <template is="course" data="{{...searchResult}}"/>
+      </view>
+      <view class="search-result-video">
+        <view class="content-title">
+          <image
+            src="../../../images/other/video.png" 
+            class="content-title-image"></image>
+          <text class="content-title-text">视频</text>
+        </view>
+          <!-- 暂无 -->
+          <template wx:if="{{!videoList.data.length}}" is="empty"></template>
+          <template is="video" data="{{...videoList}}"/>
+      </view>
+    </view>
+  </view>
+</view>

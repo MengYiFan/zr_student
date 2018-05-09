@@ -1,0 +1,179 @@
+/**app.wxss**/
+@import "./weui.wxss";
+
+.container {
+  min-height: 100%;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #F6F7F8;
+  overflow-x: hidden;
+  overflow-y: scroll;
+} 
+
+.bg {
+  background-color: #fff;
+}
+
+.text-overflow {
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+
+body, page {
+  height: 100%;
+}
+
+//
+.content {
+  margin-top: 20rpx;
+  padding: 30rpx 20rpx; 
+}
+
+.content:first-child {
+  margin-top: 0;
+}
+
+.content-title {
+  height: 48rpx;
+  margin-bottom: 34rpx;
+}
+
+.content-title-image {
+  display: inline-block;
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.content-title-text {
+  margin-left: 20rpx;
+  font-size: 26rpx;
+  color: #1e1e1e;
+  vertical-align: super;
+}
+
+.common-title {
+  font-size: 24rpx;
+  margin-top: 12rpx;
+}
+
+.common-tags {
+  margin-top: 28rpx;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.common-tag {
+  display: inline-block;
+  padding: 0 13rpx;
+  height: 42rpx;
+  line-height: 42rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #888;
+  font-weight: 300;
+  background-color: #F2F3F4;
+  margin: 0 20rpx 20rpx 0;
+  border-radius: 10rpx;
+  flex: 0 0 auto;
+}
+
+.common-userInfo-get {
+  width: 200rpx;
+  font-size: 24rpx;
+  margin: 30rpx auto;
+}
+
+.common-tag-checked {
+  background-color: #ED1C24;
+  color: #fff;
+}
+
+page {
+  font-size: 16px;
+  background-color: #FFF;
+}
+
+.weui-cells__title {
+  margin-top: 15px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.weui-label, .weui-input {
+  font-size: 17px;
+}
+
+.weui-cell_active {
+  background-color: #ececec;
+}
+
+.disabled-text {
+  color: #B2B2B2;
+}
+
+.weui-btn-area {
+  padding-bottom: 30px;
+}
+
+.weui-cells__title {
+  margin-top: 20px;
+}
+
+.weui-panel__hd:after {
+  display: none;
+}
+
+.weui-panel__bd {
+  position: relative;
+}
+
+.weui-media-box {
+  padding-top: 0;
+}
+
+.weui-panel__bd:after {
+  content: " ";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  border-bottom: 1rpx solid #e5e5e5;
+  color: #e5e5e5;
+  left: 15px;
+}
+
+.weui-uploader__input-box {
+  margin-bottom: 4px;
+}
+
+.weui-placeholder {
+    color: #B2B2B2;
+}
+
+.common-userInfo-get {
+  width: 100%;
+  font-size: 18rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 8rpx;
+}
+
+.common-btn {
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-top: 82rpx;
+  background-color: #EB1C25;
+  font-size: 30rpx;
+  color: #fff;
+}
+
+.common-btn:active {
+  opacity: .8;
+}
+
+.common-btn-disabled {
+  background-color: #ffd6d8;
+}

@@ -1,0 +1,68 @@
+/* pages/course/list/list.wxss */
+@import "../../templates/course/course.wxss";
+@import "../../templates/video/video.wxss";
+@import "../../templates/empty/empty.wxss";
+
+.list {
+  margin: 20rpx;
+}
+
+.list-header {
+  position: fixed;
+  top: 0;
+  left:0;
+  width: 100%;
+  padding: 12rpx 20rpx;
+  box-sizing: border-box;
+  display: flex;
+  height: 80rpx;
+  background-color: #F6F7F8;
+  z-index: 999;
+}
+
+.list-search {
+  border-radius: 12rpx;
+  background-color: #E7EBEC;
+}
+
+.list-search-icon {
+  /* margin: -34rpx 20rpx 0 20rpx;  */
+  position: absolute;
+  left: 13rpx;
+  top: 13rpx;
+}
+
+.list-search-input {
+  display: inline-block;
+  width: 100%;
+  padding: 0 60rpx;
+  box-sizing: border-box;
+  color: #091c1f;
+  font-size: 28rpx;
+}
+
+.list-search {
+  flex: 1 1 auto;
+  position: relative;
+}
+
+.list-search-btn {
+  color: #ed1c24;
+  font-size: 34rpx;
+  margin-left: 20rpx;
+  width: 70rpx;
+}
+
+.list-search-icon-clear {
+  position: absolute;
+  right: 13rpx;
+  top: 13rpx;
+}
+
+.search-result {
+  margin: 108rpx 0 40rpx;
+}
+
+.search-result-video {
+  margin-top: 60rpx;
+}

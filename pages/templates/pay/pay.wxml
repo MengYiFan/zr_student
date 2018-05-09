@@ -1,0 +1,57 @@
+<template name="pay">
+  <view wx:if="{{switch}}" class="tpl-pay">
+    <view bindtap="bindPayClose" class="tpl-pay-mask"></view>
+    <view class="tpl-pay-container">
+      <view class="tpl-pay-name">{{orderName}}</view>
+      <!-- <view class="tpl-pay-info">{{orderInfo}}</view> -->
+      <view class="tpl-pay-title">付款金额</view>
+      <view class="tpl-pay-money">{{money}}</view>
+      <view 
+        class="tpl-pay-discounts {{discounts.switch ? 'tpl-pay-discounts-open': ''}}">
+        <!-- <view
+          bindtap="bindDiscountsSwitch" 
+          class="tpl-pay-discounts-result">
+          优惠券
+          <label
+            wx:if="{{discounts.total}}" 
+            class="tpl-pay-discounts-total">已选{{discounts.total}}张</label>
+          <label
+            wx:if="{{discounts.sum}}" 
+            class="tpl-pay-discounts-sum">-¥{{discounts.sum}}</label>
+        </view> -->
+        <checkbox-group 
+          wx:if="{{discounts.switch}}"
+          bindchange="bindDiscountsChange" 
+          class="tpl-pay-discounts-list">
+          <scroll-view 
+            scroll-y="true" class="tpl-pay-discounts-list">
+            <block wx:for="{{discounts.list}}" wx:key="{{index}}">
+              <checkbox 
+              class="tpl-pay-discounts-checkbox" 
+              id="{{'tpl-pay-discounts-' + index}}" value="{{index}}" 
+              checked="{{item.checked}}"/>
+              <label 
+              class="tpl-pay-discounts-label" 
+              for="{{'tpl-pay-discounts-' + index}}">
+                {{item.name}}
+                <icon
+                  size="10"
+                  color="#888" 
+                  class="tpl-pay-discounts-checked" 
+                  wx:if="{{item.checked}}" 
+                  type="success_no_circle"></icon>
+              </label>
+            </block>
+          </scroll-view>
+        </checkbox-group>
+      </view>
+      <!-- 实付 -->
+      <view class="tpl-pay-result">
+        <text class="tpl-pay-result-text">实际支付{{money - discounts.sum}}元</text>
+        <button
+          bindtap="bindPaySubmitTap" 
+          class="tpl-pay-result-submit">付款</button>
+      </view>
+    </view>
+  </view>
+</template>

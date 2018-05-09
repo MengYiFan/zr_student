@@ -1,0 +1,124 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "1.9.0",
+	"appid": "wxd2d8df3fd6a36407",
+	"projectname": "%E5%B1%95%E6%B6%A6%E5%B0%8F%E7%A8%8B%E5%BA%8F(%E5%AD%A6%E7%94%9F%E7%AB%AF)",
+	"svr": "",
+	"client": "",
+	"qcloudRoot": "",
+	"miniprogramRoot": "",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "self",
+					"pathName": "pages/self/index/self",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "course",
+					"pathName": "pages/course/index/course",
+					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "help",
+					"pathName": "pages/help/index/help",
+					"query": ""
+				},
+				{
+					"id": 3,
+					"name": "videoPlay",
+					"pathName": "pages/video/play/play",
+					"query": "money=66&subjectids=性格养成|习惯培养&teachernickname=张老师&vediocoverurl=http://1253378092.vod2.myqcloud.com/2be99927vodgzp1253378092/0f5fb4ee7447398155072740295/7447398155072740296.jpg&vediodes=培养小孩收益一生的习惯&vedioid=36&vediomediaurl=http://1253378092.vod2.myqcloud.com/e0113bcfvodtransgzp1253378092/891199327447398155077418760/v.f20.mp4?t=5AC78D67&exper=10&us=1192933273&sign=d0925167899a400c7f37f7b32e885da1&vedioname=习惯养成培养课程"
+				},
+				{
+					"id": 4,
+					"name": "teacherDetail",
+					"pathName": "pages/teacher/detail/detail",
+					"query": "teacherId=2423&userId=2387"
+				},
+				{
+					"id": 5,
+					"name": "letter",
+					"pathName": "pages/course/letter/letter",
+					"query": "courseid=1"
+				},
+				{
+					"id": 6,
+					"name": "list",
+					"pathName": "pages/course/list/list",
+					"query": "subjectid=10&subjectname=亲子关系"
+				},
+				{
+					"id": -1,
+					"name": "attention",
+					"pathName": "pages/self/attention/attention",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "integral",
+					"pathName": "pages/self/integral/integral",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "bill",
+					"pathName": "pages/self/bill/bill",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "history",
+					"pathName": "pages/teacher/history/history",
+					"query": ""
+				},
+				{
+					"id": 11,
+					"name": "help call",
+					"pathName": "pages/help/call/call",
+					"query": "userId=2387&subjectIds=17&caseTargetAge=1&caseTargetGender=M&callObject=all"
+				},
+				{
+					"id": 12,
+					"name": "video LIVE",
+					"pathName": "pages/video/live/live",
+					"query": "courseofferid=63&courseExpectedFunction=升学新政讲座&courseName=升学新政讲座&coursePurpose=升学新政讲座&subjectIds=升学辅导&teacherName=米&teacherUserId=2392"
+				},
+				{
+					"id": 13,
+					"name": "binding",
+					"pathName": "pages/binding/index/binding",
+					"query": "type=page&redirect=pages/help/index/help&&params={teacherUserId:123}"
+				}
+			]
+		}
+	}
+}

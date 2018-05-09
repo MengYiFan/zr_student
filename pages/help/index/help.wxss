@@ -1,0 +1,66 @@
+/* pages/help/help.wxss */
+.help-container {
+  padding: 40rpx 60rpx;
+  background-color: #fff;
+  margin: 20rpx;
+  border-radius: 16rpx;
+}
+
+.select-cell {
+  position: relative;
+}
+
+.select-cell-title {
+  font-size: 26rpx;
+  color: #000;
+  font-weight: bold;
+}
+
+.select-cell-picker {
+  color: #383838;
+  font-size: 26rpx;
+  background-color: #EEF2F5;
+  padding: 20rpx;
+  margin-top: 24rpx;
+  margin-bottom: 60rpx;
+}
+
+.radio-group {
+  margin-top: 30rpx;
+}
+
+.radio-el {
+  position: absolute;
+  top: -9999rpx;
+}
+
+.radio-cell {
+  display: inline-block;
+}
+
+.redio-image {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.radio-cell {
+  margin-left: 118rpx;
+}
+
+.radio-cell:first-child {
+  margin-left: 0;
+}
+
+.help-btn {
+  width: 596rpx;
+  height: 76rpx;
+  line-height: 76rpx;
+  margin-top: 60rpx;
+  margin-bottom: 144rpx;
+  background-color: #ED1C24;
+  color: #fff;
+}
+
+.help-btn:active {
+  opacity: .75;
+}

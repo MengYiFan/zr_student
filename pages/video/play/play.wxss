@@ -1,0 +1,62 @@
+/* pages/videoPlay/videoPlay.wxss */
+@import "../../templates/video/video.wxss";
+@import "../../templates/pay/pay.wxss";
+@import "../../templates/empty/empty.wxss";
+
+.video-play-header {
+  background-color: #fff;
+}
+
+.video-play {
+  position: relative;
+  width: 100vw;
+  height: 448rpx;
+}
+
+.video-play-cover {
+  width: 100%;
+  height: 100%;
+  background-color: #ccc;
+}
+
+.video-play-info {
+  height: 100rpx;
+  line-height: 100rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+
+.video-play-tag {
+  width: auto;
+  height: 42rpx;
+  padding: 0 20rpx;
+  background-color: #ED1C24;
+  display: inline-block;
+  line-height: 42rpx;
+  text-align: center;
+  border-radius: 20rpx;
+  font-size: 26rpx;
+  color: #fff;
+  margin-right: 30rpx;
+}
+
+.video-play-title {
+  font-size: 26rpx;
+  color: #1e1e1e;
+  font-weight: bold;
+}
+
+#video {
+  z-index: 99;
+}
+
+.video-cover-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  z-index: 999;
+  opacity: .6;
+}

@@ -1,0 +1,5 @@
+/* pages/course/course.wxss */
+@import "../../templates/course/course.wxss";
+@import "../../templates/video/video.wxss";
+@import "../../templates/evaluate/evaluate.wxss";
+@import "../../templates/empty/empty.wxss";

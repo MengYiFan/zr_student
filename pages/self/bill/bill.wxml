@@ -1,0 +1,45 @@
+<!--pages/self/bill/bill.wxml-->
+<import src="../../templates/empty/empty.wxml"/>
+<import src="../../templates/pay/pay.wxml"/>
+
+<view class="container">
+  <!-- 支付 -->
+  <template is="pay" data="{{...pay}}"></template>
+  <view class="bill-list">
+    <!-- 暂无 -->
+    <template wx:if="{{!billList.length}}" is="empty"></template>
+    <block wx:for="{{billList}}" wx:key="{{index}}">
+      <view
+        bindtap="bindBillTap" 
+        data-money="{{item.orderAmount}}"
+        data-orderNumber="{{item.orderSerialNumber}}"
+        data-orderName="{{item.orderName}}"
+        data-orderId="{{item.orderId}}"
+        data-orderState="{{item.orderPaymentState}}"
+        data-orderTypeCode="{{item.orderTypeCode}}"
+        class="bill-item {{item.orderPaymentState == '1' ? 'bill-state-ok' : ''}}">
+        <view class="bill-item-left">
+          <label class="bill-item-left-type">
+            【{{orderTypeCodeDict[item.orderTypeCode]}}】
+          </label>
+          {{item.orderName || '其他'}}
+          <label class="bill-item-time">{{item.orderCreateTime}}</label>
+        </view>
+        <view class="bill-item-right">
+          {{item.orderPaymentState == '1' ? '已支付' : '购买'}}
+          <label class="bill-item-money">¥{{item.orderAmount}}</label>
+        </view>
+      </view>
+      <view 
+      wx:if="{{orderDetail[item.orderId] && showOrderDetail[item.orderId]}}" 
+      class="order-detail">
+        <view class="order-detail-teacher-name">
+          课程老师：{{orderDetail[item.orderId].orderItemList[0].teacherName}}
+        </view>
+        <view class="order-detail-desc">
+          账单介绍：{{orderDetail[item.orderId].orderItemList[0].orderItemDesc}}
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

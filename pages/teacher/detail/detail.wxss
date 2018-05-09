@@ -1,0 +1,77 @@
+/* pages/teacher/detail/detail.wxss */
+@import "../../templates/course/course.wxss";
+@import "../../templates/video/video.wxss";
+@import "../../templates/empty/empty.wxss";
+
+.teacher-info {
+  padding: 20rpx 0 50rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #dcdcdc;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30rpx;
+}
+
+.teacher-info-left,
+.teacher-info-right {
+  display: inline-flex;
+  vertical-align: middle;
+  justify-content: flex-start;
+}
+
+.teacher-info-left {
+  width: 500rpx;
+  flex: 0 0;
+}
+
+.teacher-info-right {
+  align-self: center;
+}
+
+.teacher-cover {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  background-color: #f8f8f9;
+  margin-right: 56rpx;
+}
+
+.teacher-intro {
+  align-self: center;
+  width: 300rpx;
+}
+
+.teacher-name {
+  font-size: 36rpx;
+  color: #383838;
+  display: block;
+}
+
+.teacher-sex {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 20rpx;
+  vertical-align: middle;
+}
+
+.teacher-age {
+  color: #dcdcdc;
+  font-size: 24rpx;
+}
+
+.teacher-chat-icon {
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.teacher-chat-icon:first-child {
+  margin-right: 66rpx;
+}
+
+.teacher-intro-content {
+  color: #b4b4b4;
+  font-size: 26rpx;
+  margin-top: 20rpx;
+  display: block;
+}
+

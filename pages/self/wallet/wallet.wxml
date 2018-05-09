@@ -1,0 +1,6 @@
+<!--pages/self/wallet/wallet.wxml-->
+<import src="../../templates/building/building.wxml"/>
+
+<view class="container">
+  <template is="building"></template>
+</view>

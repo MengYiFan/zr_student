@@ -1,0 +1,95 @@
+<!--index.wxml-->
+<import src="../../templates/course/course.wxml"/>
+<import src="../../templates/video/video.wxml"/>
+<import src="../../templates/empty/empty.wxml"/>
+
+<!-- <import src="../../templates/pay/pay.wxml"/> -->
+
+<view class="container pages-index">
+  <!-- 支付 -->
+  <!-- <template is="pay" data="{{...pay}}"></template> -->
+  <swiper class="swiper-list" indicator-dots="{{swiper.indicatorDots}}"
+    autoplay="{{swiper.autoplay}}" interval="{{swiper.interval}}"
+    duration="{{swiper.duration}}" current="{{swiper.current}}"
+    circular="{{swiper.circular}}" previous-margin="38rpx" next-margin="38rpx">
+    <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+      <swiper-item class="swiper-item">
+        <image src="{{item}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper> 
+  <!-- 功能区 -->
+   <view class="function-list bg">
+    <view 
+    wx:for="{{ funcList }}"
+    wx:for-index="rowIdx"
+    wx:for-item="rowItem"
+    wx:key="{{rowIdx}}"
+    class="function-list-row weui-flex">
+      <view 
+        bindtap="bindFuncItemTap"
+        class="function-item"
+        data-subjectId="{{item.subjectId}}"
+        data-subjectName="{{item.subjectName}}"
+        wx:for="{{rowItem}}"
+        wx:for-index="index"
+        wx:key="{{index}}">
+        <!-- src="{{item.iconUrl}}" -->
+        <image
+           src="{{funcList2[rowIdx][index].iconUrl}}"
+          class="function-item-icon"></image>
+        <view class="function-item-title">
+          {{item.subjectName}}
+        </view>
+      </view>
+    </view>
+  </view> 
+  <!-- 公益课 -->
+  <view class="content bg">
+    <view class="content-title">
+      <image 
+      src="../../../images/other/public.png" 
+      class="content-title-image"></image>
+      <text class="content-title-text">公益课堂</text>
+    </view>
+    <!-- 左图右字 -->
+    <!-- <block wx:for="{{publicCourseList}}" wx:key="{{index}}"> -->
+    <template wx:if="{{!publicCourseList.data.length}}" is="empty"></template>
+    <template is="course" data="{{...publicCourseList}}"/>
+    <!-- </block> -->
+  </view>
+  <!-- 推荐老师 -->
+   <view class="content bg">
+    <view class="content-title">
+      <image
+        src="../../../images/other/recommended.png" 
+        class="content-title-image"></image>
+      <text class="content-title-text">推荐老师</text>
+    </view>
+    <view class="weui-flex teacher-list">
+      <template wx:if="{{!teacherList.length}}" is="empty"></template>
+      <block wx:for="{{teacherList}}" wx:for-index="idx" wx:key="{{index}}">
+        <view 
+          data-teacherid="{{item.userId}}"
+          class="teacher-item"
+          bindtap="bindTeacherDetailTap">
+          <image
+            src="{{item.userPortraitUrl || tempImg[8 - idx]}}" 
+            class="teacher-item-image"></image>
+          <view class="teacher-item-name text-overflow">{{item.userNickname}}</view>
+        </view>
+      </block>
+    </view>
+  </view> 
+  <!-- 名师视频 -->
+  <view class="content bg">
+    <view class="content-title">
+      <image
+        src="../../../images/other/video.png" 
+        class="content-title-image"></image>
+      <text class="content-title-text">名师视频</text>
+    </view>
+    <template wx:if="{{!videoList.data.length}}" is="empty"></template>
+    <template is="video" data="{{...videoList}}"/>
+  </view>
+</view>

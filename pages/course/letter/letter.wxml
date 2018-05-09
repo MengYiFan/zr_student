@@ -1,0 +1,27 @@
+<!--pages/course/letter/letter.wxml-->
+<view class="container">
+  <scroll-view 
+    scroll-y
+    class="letter-container">
+    <label class="letter-subtitle">展润育城诚至您</label>
+    <view class="letter-header">
+      <image 
+      class="letter-header-icon" src="../../../images/other/letter.png"></image>
+      {{info.courseName || '给家长的一封信'}}
+      <text class="letter-header-text">{{info.teacherName}} ({{info.subjectIds}})</text>
+    </view>
+    <view class="letter-content">
+      <image 
+        src="{{letter.cover}}" 
+        mode="scaleToFill" class="letter-content-cover"></image>
+      <text class="letter-content-detail" space="emsp">{{info.coursePurpose}}\n{{info.courseExpectedFunction}}</text>
+    </view>
+    <view class="letter-btn">
+      <!-- <button class="letter-btn-apply">报名</button> -->
+      <button
+        bindtap="bindEnterLiveTap" 
+        class="letter-btn-enter">进入直播间</button>
+      <button class="letter-btn-share" open-type="share">分享</button>
+    </view>
+  </scroll-view>
+</view>

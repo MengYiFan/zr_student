@@ -1,0 +1,102 @@
+/* pages/help/call/call.wxss */
+.call-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: #fff;
+  opacity: 0;
+  padding: 40rpx;
+  background-color: #3c3c3c;
+  box-sizing: border-box;
+  animation: show 0.8s linear 0s 1 forwards;
+}
+
+@keyframes show {
+  100% {
+    opacity: 1;
+  }
+}
+
+.call-live {
+  position: absolute;
+}
+
+.call-live-player {
+  width: 0;
+  height: 0;
+}
+
+.call-teacher-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 120rpx;
+}
+
+.call-teacher-avatar {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  background-color: #d6d6d6;
+}
+
+.call-teacher-status {
+  margin-top: 30rpx;
+  text-align: center;
+  font-size: 32rpx;
+  width: 150rpx;
+  white-space: nowrap;
+  overflow-x: hidden;
+}
+
+.call-teacher-status-connection {
+  animation: connection 1.8s ease-in 0s infinite alternate;
+}
+
+@keyframes connection {
+  0%, 100% {
+    width: 150rpx;
+  }
+  50% {
+    width: 130rpx;
+  }
+}
+
+.cell-func-list {
+  margin-top: 260rpx;
+  display: flex;
+  justify-content: space-around;
+}
+
+.cell-func-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 160rpx;
+  height: 160rpx;
+  border: 2rpx solid #fff;
+  border-radius: 50%;
+}
+
+.cell-func-image {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+ .cell-func-item-true {
+   background-color: #fff;
+ }
+
+.cell-func-hangup {
+  border-color: #FD3C2F;
+  background-color: #FD3C2F;
+}
+
+live-pusher {
+  width: 100px;
+  height: 100px;
+}

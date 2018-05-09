@@ -1,0 +1,135 @@
+<template name="course">
+  <!-- 左右 -->
+  <block wx:if="{{direction == 'row'}}">
+    <view
+      wx:for="{{data}}"
+      wx:key="{{index}}"
+      bindtap="bindCourseTap" 
+      wx:for-index="index"
+      data-courseOfferId="{{item.courseOfferId}}"
+      data-courseId="{{item.courseId}}"
+      data-columnId="{{item.columnId}}"
+      data-columncontenturl="{{item.columnContentUrl}}"
+      data-teacherId="{{item.teacherId}}"
+      data-courseId="{{item.courseId}}"
+      data-type="row"
+      class="content-detail weui-flex">
+      <image
+        src="../../../images/temp/{{index+1}}.jpeg" 
+        class="content-detail-image"></image>
+      <view class="content-detail-info">
+        <view class="content-datail-state">
+          <block wx:if="{{subscribeState}}">
+            <span
+              wx:if="{{!item.columnSubscribeTime}}"
+              catchtap="catchCourseSubscribeTap" 
+              data-type="subscribe"
+              data-index="{{index}}"
+              data-columnId="{{item.columnId}}">
+              订阅
+            </span>
+            <span
+              wx:else
+              data-type="subscribe"
+              data-index="{{index}}"
+              data-columnId="{{item.columnId}}">
+              已订阅
+            </span>
+          </block>
+          <block wx:if="{{rankState}}">
+            <span
+              wx:if="{{item.userGrade}}">
+              {{item.userGrade}}星
+            </span>
+            <span 
+              catchtap="catchCourseEvaluateTap" 
+              data-type="content"
+              data-columnId="{{item.columnId}}"
+              wx:else>
+              待评价
+            </span>
+          </block>
+        </view>
+        <view class="content-detail-title text-overflow">
+          {{item.courseName || item.columnContentTitle || item.columnName || '标题'}}</view>
+        <view class="content-detail-name text-overflow">
+          <block wx:if="{{item.columnIntroduction}}">{{item.columnIntroduction}}</block>
+          <block wx:else>{{item.teacherName || item.teacherNickname || '老师名称'}}</block> 
+        </view>
+        <view class="content-detail-other">
+          <view class="content-detail-icon">
+            <image
+              src="../../../images/other/times.png" 
+              class="content-detail-icon-image"></image>
+            <block wx:if="{{item.columnSetupTime}}">{{item.columnSetupTime}}</block>
+            <block wx:else> {{item.startTime || item.contentViewTime || item.columnSetupTime || '暂无'}}</block> 
+          </view>
+          <view class="content-detail-icon">
+            <image 
+              src="../../../images/other/tag.png" 
+              class="content-detail-icon-image"></image>
+            <block wx:if="{{item.columnSubjectArea}}">{{item.columnSubjectArea}}</block>
+            <block wx:else>{{item.subjectIds || item.columnName || '标签'}}</block>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <!-- 上下 -->
+  <block wx:else>
+    <view
+      wx:for="{{data}}"
+      wx:key="{{index}}"
+      data-courseId="{{item.courseId}}"
+      bindtap="bindCourseTap"  
+      data-courseOfferId="{{item.courseOfferId}}"
+      data-courseId="{{item.courseId}}"
+      data-columnId="{{item.columnId}}"
+      data-columnContentUrl="{{item.columnContentUrl}}"
+      data-teacherId="{{item.teacherId}}"
+      data-mish="mishssdad"
+      data-courseId="{{item.courseId}}"
+      class="content-detail weui-flex">
+      <image 
+        class="content-detail-image"
+        src="../../../images/temp/{{20 - index}}.jpeg"></image>
+      <view class="content-detail-info">
+        <block wx:if="{{rankState}}">
+          <view class="content-datail-state">
+            <span 
+              wx:if="{{item.courseSigninState != 1 && !item.courseOfferCustomerGrade}}">
+              未上课
+            </span>
+            <span
+              catchtap="catchCourseEvaluateTap" 
+              data-type="course"
+              data-courseId="{{item.courseId}}"
+              wx:if="{{item.courseSigninState == 1 && !item.courseOfferCustomerGrade}}">
+              待评价
+            </span>
+            <span 
+              wx:if="{{item.courseOfferCustomerGrade}}">
+              {{item.courseOfferCustomerGrade}}星
+            </span>
+          </view>
+        </block>
+        <view class="content-detail-title text-overflow">{{item.courseName || '标题名字'}}</view>
+        <view class="content-detail-name text-overflow">{{item.teacherName || '老师名字'}}</view>
+        <view class="content-detail-icon">
+          <image 
+            src="../../../images/other/tag.png" mode="widthFix"  
+            class="content-detail-icon-image"></image>
+          {{item.subjectIds || item.columnName || '标签'}}
+        </view>
+        <view class="content-detail-other">
+          <view class="content-detail-icon">
+            <image
+              src="../../../images/other/times.png" 
+              class="content-detail-icon-image"></image>
+            {{item.courseReportTime || '2000-11-11 10:11'}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+</template>
