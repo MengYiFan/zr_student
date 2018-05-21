@@ -8,6 +8,7 @@
   background: linear-gradient(to bottom, #ED1C24 , #ff874b);
   text-align: center;
   color: #fff;
+  margin-bottom: 20rpx;
 }
 
 .integral-header-pig {
@@ -27,8 +28,7 @@
 }
 
 .integral-detail-list {
-  height: calc(100vh - 382rpx);
-  margin-top: 30rpx;
+  height: calc(100vh - 402rpx);
 }
 
 .integral-detail-item {

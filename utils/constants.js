@@ -3,6 +3,7 @@
 export const API_URI = 'https://app.shangnarxue.com/stg'
 
 // INDEX
+export const BANNER = API_URI + '/none/banner'
 export const USER_LOGON = API_URI + '/user/nonlogin/login'
 export const RECOMMEND_TEACHER_LIST = API_URI + '/user/login/myTeacherList'
 export const CUBJECT_LIST = API_URI + '/main/subjectList'

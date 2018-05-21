@@ -13,9 +13,9 @@
     duration="{{swiper.duration}}" current="{{swiper.current}}"
     circular="{{swiper.circular}}" previous-margin="38rpx" next-margin="38rpx">
     <block wx:for="{{imgUrls}}" wx:key="{{index}}">
-      <swiper-item class="swiper-item">
-        <image src="{{item}}" class="slide-image" />
-      </swiper-item>
+       <swiper-item class="swiper-item">
+        <image src="{{item.val}}" class="slide-image" />
+      </swiper-item> 
     </block>
   </swiper> 
   <!-- 功能区 -->

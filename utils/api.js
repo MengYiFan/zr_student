@@ -73,6 +73,7 @@ export const userLogin = (params) => {
   console.log(params, '@@@@@@')
 }
 
+export const getBanner = (params) => wxRequest(params, C.BANNER)
 // 问题分类列表
 export const getCubjectList = (params) => wxRequest(params, C.CUBJECT_LIST)
 // 我的推荐老师recommend

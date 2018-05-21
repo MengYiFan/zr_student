@@ -3,7 +3,7 @@ import { chunkArr } from '../../../utils/common'
 import { bindVideoItemTap } from '../../templates/video/video'
 import { bindCourseTap } from '../../templates/course/course'
 import { payData, bindPayClose, bindDiscountsSwitch, bindDiscountsChange } from '../../templates/pay/pay'
-import { getCubjectList, getRecommendTeacherList, getPublicCourseList, getVideoList } from '../../../utils/api'
+import { getBanner, getCubjectList, getRecommendTeacherList, getPublicCourseList, getVideoList } from '../../../utils/api'
 
 var app = getApp()
 
@@ -99,6 +99,16 @@ Page({
     })
   },
   onShow: function() {
+    getBanner({
+      method: 'GET',
+      success: res => {
+        if (res.code == '1000') {
+          this.setData({
+            imgUrls: res.data
+          })
+        }
+      }
+    })
     // 获得首页的功能列表
     getCubjectList({
       success: (res) => {
