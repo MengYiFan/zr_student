@@ -93,10 +93,7 @@ Page({
     })
   },
   onLoad: function() {
-    // 设置 title
-    wx.setNavigationBarTitle({
-      title: '润教育城'
-    })
+
   },
   onShow: function() {
     getBanner({

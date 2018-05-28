@@ -17,7 +17,9 @@
     "pages/video/live/live",
     "pages/course/webview/webview",
     "pages/help/cameraview/cameraview",
-    "pages/binding/index/binding"
+    "pages/binding/index/binding",
+    "pages/wx/authorize/authorize",
+    "pages/templates/paytohelp/paytohelp"
   ],
   "window": {
     "backgroundTextStyle": "light",

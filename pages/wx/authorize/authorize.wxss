@@ -1,0 +1,10 @@
+/* pages/wx/userinfo/userinfo.wxss */
+.container {
+  padding: 30rpx;
+}
+
+.get-user-info-intro {
+  font-size: 24rpx;
+  color: #999;
+  margin: 30rpx 0;
+}

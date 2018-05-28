@@ -361,10 +361,6 @@ Page({
         this.params = null
       }
     }
-    
-    wx.setNavigationBarTitle({
-      title: '信息绑定',
-    })
   },
 
   /**

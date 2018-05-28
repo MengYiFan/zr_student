@@ -9,8 +9,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.9.0",
-	"appid": "wxd2d8df3fd6a36407",
-	"projectname": "%E5%B1%95%E6%B6%A6%E5%B0%8F%E7%A8%8B%E5%BA%8F(%E5%AD%A6%E7%94%9F%E7%AB%AF)",
+	"appid": "wx4457569bdefb422f",
+	"projectname": "%E5%B1%95%E6%B6%A6%E5%AE%B6%E9%95%BF%E7%AB%AF",
 	"svr": "",
 	"client": "",
 	"qcloudRoot": "",
@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 15,
 			"list": [
 				{
 					"id": 0,
@@ -117,6 +117,18 @@
 					"name": "binding",
 					"pathName": "pages/binding/index/binding",
 					"query": "type=page&redirect=pages/help/index/help&&params={teacherUserId:123}"
+				},
+				{
+					"id": 14,
+					"name": "wx userinfo",
+					"pathName": "pages/wx/authorize/authorize",
+					"query": "redirect=pages/index/index/index"
+				},
+				{
+					"id": -1,
+					"name": "wallet",
+					"pathName": "pages/self/wallet/wallet",
+					"query": ""
 				}
 			]
 		}

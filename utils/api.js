@@ -153,6 +153,8 @@ export const payQuery = (params) => wxRequest(params, C.PAY_QUERY)
 export const payResult = (params) => wxRequest(params, C.PAY_RESULT)
 export const payClose = (params) => wxRequest(params, C.PAY_CLOSE)
 
+export const walletPayInt = (params) => wxRequest(params, C.WALLET_PAY_INIT)
+
 export const payVedioInit = (params) => wxRequest(params, C.PAY_VEDIO_INIT)
 
 export const rewardMe = (params) => wxRequest(params, C.REWARD)

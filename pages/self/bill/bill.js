@@ -1,6 +1,6 @@
 // pages/self/bill/bill.js
 import { walletConf } from '../../../conf/index'
-import { getWalletLoyaltyInfo, getOrderList, getOrderDetail } from '../../../utils/api'
+import { getOrderList, getOrderDetail } from '../../../utils/api'
 import { payData, bindPayClose, bindDiscountsSwitch, bindDiscountsChange, bindPaySubmitTap } from '../../templates/pay/pay'
 
 var app = getApp()
@@ -103,10 +103,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.setNavigationBarTitle({
-      title: '我的账单信息'
-    })
-
     this.setData({
       conf: walletConf,
       pay: payData

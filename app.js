@@ -35,7 +35,7 @@ App({
       // 调用登录接口
       wx.login({
         success: function (res) {
-          console.log(res.code)
+          console.log(res)
           that.globalData.code = res.code || null
           wx.getUserInfo({
             success: function (res) {
@@ -44,7 +44,8 @@ App({
               typeof cb == "function" && cb()
             },
             // 如果用户拒绝授权
-            fail: function () {
+            fail: function (res) {
+              console.log(res)
               that.checkUserInfo()
             }
           })
@@ -104,16 +105,20 @@ App({
       content: '该小程序需要授权方能继续...',
       success: function (res) {
         // 打开授权设置页面
-        wx.openSetting({
-          success: (res) => {
-            let setting = res.authSetting
-              // && setting['scope.userLocation']
-            if (setting['scope.userInfo']) {
-              that.getUserInfo()
-            } else {
-              that.checkUserInfo()
-            }
-          }
+        // wx.openSetting({
+        //   success: (res) => {
+        //     let setting = res.authSetting
+        //       // && setting['scope.userLocation']
+        //     if (setting['scope.userInfo']) {
+        //       that.getUserInfo()
+        //     } else {
+        //       that.checkUserInfo()
+        //     }
+        //   }
+        // })
+        let redirectUrl = that.globalData.currentUri.split('?')[0]
+        wx.redirectTo({
+          url: `../../../pages/wx/authorize/authorize?redirect=${redirectUrl}`,
         })
       }
     })

@@ -13,6 +13,8 @@ export const payData = {
   orderName: '',
   orderInfo: '',
   orderId: null,
+  moneyList:  [],
+  payIndex: 0,
   orderTypeCode: null,
   discounts: {// 优惠券信息
     switch: false,// 展开优惠券
@@ -203,7 +205,68 @@ export const bindPaySubmitTap = (context, e, type) => {
         }
       }
     })
+  } else if (type == 'walletPay') {
+    let reqData = {
+      body: payData.orderName,
+      out_trade_no: payData.orderNumber,
+      total_fee: payData.money,
+      sub_openid: wx.getStorageSync('userId'),
+      attach: payData.orderTypeCode
+    }
+    // 发起正式的支付
+    payInit({
+      data: reqData,
+      success: res => {
+        if (res.code == '1000') {
+          let response = res.data
+          wx.requestPayment(
+            {
+              'timeStamp': response.timeStamp,
+              'nonceStr': response.nonceStr,
+              'package': response.package,
+              'signType': 'MD5',
+              'paySign': response.paySign,
+              'success': function (res) {
+                if (res.errMsg == 'requestPayment:ok') {
+                  context.setData({
+                    ['pay.switch']: false,
+                  })
+                  wx.showToast({
+                    icon: 'none',
+                    title: '支付成功..'
+                  })
+                  //
+                  context.setData({
+                    ['pay.switch']: false,
+                  })
+
+                  setTimeout(function () {
+                    wx.hideLoading()
+                  }, 2000)
+                }
+              },
+              'fail': function (res) {
+                context.setData({
+                  ['pay.switch']: false,
+                })
+                // 取消订单号
+                payCloseHandle(payData.orderNumber, 3)
+                wx.showToast({
+                  icon: 'none',
+                  title: '支付失败, 请稍后再试..'
+                })
+                setTimeout(function () {
+                  wx.hideLoading()
+                }, 2000)
+              },
+              'complete': function (res) {
+              }
+            })
+        }
+      }
+    })
   } else {
+    // TO DO 
     // /createVedioOrder
     payVedioInit({
       data: {

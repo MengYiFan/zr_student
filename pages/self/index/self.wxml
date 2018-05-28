@@ -15,6 +15,18 @@
   <view class="row-cells">
     <view
       bindtap="bindSkipTap" 
+      data-to="../attention/attention" 
+      class="row-cell">
+      <view class="row-cell-left">
+        <image 
+          src="../../../images/other/field.png"
+          class="row-cell-icon"></image>
+        <text class="row-cell-text">关注领域</text>
+      </view>
+      <view class="row-cell-arrow"></view>
+    </view>
+    <view
+      bindtap="bindSkipTap" 
       data-to="../bill/bill" 
       class="row-cell">
       <view class="row-cell-left">
@@ -27,6 +39,18 @@
     </view>
     <view
       bindtap="bindSkipTap" 
+      data-to="../wallet/wallet" 
+      class="row-cell">
+      <view class="row-cell-left">
+        <image 
+          src="../../../images/other/wallet.png"
+          class="row-cell-icon"></image>
+        <text class="row-cell-text">我的钱包</text>
+      </view>
+      <view class="row-cell-arrow"></view>
+    </view>
+        <view
+      bindtap="bindSkipTap" 
       data-to="../integral/integral"
       class="row-cell">
       <view class="row-cell-left">
@@ -36,32 +60,6 @@
         <text class="row-cell-text">我的积分</text>
       </view>
       <view class="row-cell-arrow"></view>
-    </view>
-    <view
-      bindtap="bindSkipTap" 
-      data-to="../attention/attention" 
-      class="row-cell">
-      <view class="row-cell-left">
-        <image 
-          src="../../../images/other/field.png"
-          class="row-cell-icon"></image>
-        <text class="row-cell-text">关注领域</text>
-      </view>
-      <view class="row-cell-arrow"></view>
-    </view>
-  </view>
-  <view class="row-cells">
-    <view
-      data-to="../wallet/wallet" 
-      class="row-cell">
-      <view class="row-cell-left">
-        <image 
-          src="../../../images/other/wallet.png"
-          class="row-cell-icon"></image>
-        <text class="row-cell-text">我的钱包</text>
-      </view>
-      ¥{{data.walletBalance || '0'}}
-       <!-- <view class="row-cell-arrow"></view>  -->
     </view>
   </view>
 </view>

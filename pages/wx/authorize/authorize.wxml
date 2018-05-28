@@ -1,0 +1,9 @@
+<!--pages/wx/userinfo/userinfo.wxml-->
+<view class="container">
+  <view class="get-user-info-intro">
+    <view>请点击下面的授权按钮</view>
+    <view>使得小程序能取得您的基本信息(如头像、昵称)</view>
+    <view>并同意获得位置信息，以精确服务</view>
+  </view>
+  <button open-type="getUserInfo" bindtap="getUserInfoHandle">请先授权</button>
+</view>

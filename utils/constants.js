@@ -1,4 +1,4 @@
-// export const API_URI = 'http://192.168.0.103:9100/stg'
+// export const API_URI = 'http://192.168.0.106:9100/stg'
 // export const API_URI = 'http://www.zredq.com:9100/stg'
 export const API_URI = 'https://app.shangnarxue.com/stg'
 
@@ -71,6 +71,8 @@ export const PAY_INIT = API_URI + '/payment/payInit'
 export const PAY_QUERY = API_URI + '/payment/payQuery'
 export const PAY_RESULT = API_URI + '/payment/payResult'
 export const PAY_CLOSE = API_URI + '/payment/tradeClose'
+
+export const WALLET_PAY_INIT = API_URI + '/user/createRechargeWalletOrder'
 
 export const REWARD = API_URI + '/course/parent/courseTips'
 //

@@ -155,3 +155,29 @@
 .tpl-pay-result-submit:active {
   opacity: .8;
 }
+
+.radio-group {
+  margin-top: 30rpx;
+}
+
+.radio-el {
+  position: absolute;
+  top: -9999rpx;
+}
+
+.radio-cell {
+  display: inline-block;
+}
+
+.redio-image {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.radio-cell {
+  margin-left: 118rpx;
+}
+
+.radio-cell:first-child {
+  margin-left: 0;
+}

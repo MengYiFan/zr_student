@@ -46,10 +46,6 @@ Page({
       courseId, courseofferid
     })
 
-    wx.setNavigationBarTitle({
-      title: '给家长的一封信'
-    })
-
     getCourseDetail({
       data: {
         courseId

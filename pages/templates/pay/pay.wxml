@@ -5,7 +5,21 @@
       <view class="tpl-pay-name">{{orderName}}</view>
       <!-- <view class="tpl-pay-info">{{orderInfo}}</view> -->
       <view class="tpl-pay-title">付款金额</view>
-      <view class="tpl-pay-money">{{money}}</view>
+      <block wx:if="{{money}}">
+        <view class="tpl-pay-money">{{money}}</view>
+      </block>
+      <block>
+        <radio-group class="radio-group" bindchange="radioChange">
+          <view class="radio-cell" wx:for="{{moneyList}}" wx:key="{{index}}">
+            <radio 
+            id="{{'radio-' + index}}" class="radio-el" 
+            value="{{index}}" checked="{{payIndex === index}}"/>
+            <label class="redio-label" for="{{'radio-' + index}}">
+              {{item}}
+            </label>
+          </view>
+        </radio-group>
+      </block>
       <view 
         class="tpl-pay-discounts {{discounts.switch ? 'tpl-pay-discounts-open': ''}}">
         <!-- <view
@@ -47,7 +61,7 @@
       </view>
       <!-- 实付 -->
       <view class="tpl-pay-result">
-        <text class="tpl-pay-result-text">实际支付{{money - discounts.sum}}元</text>
+        <text class="tpl-pay-result-text">实际支付{{money - (discounts.sum || 0)}}元</text>
         <button
           bindtap="bindPaySubmitTap" 
           class="tpl-pay-result-submit">付款</button>

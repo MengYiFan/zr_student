@@ -37,7 +37,7 @@
               </image>
           </label>
         </view>
-    </radio-group>
+      </radio-group>
     </view>
     <button
       bindtap="bindHelpSubmitTap" 
