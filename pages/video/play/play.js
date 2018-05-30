@@ -36,6 +36,9 @@ Page({
   options: null,
   // 视频试看完了
   bindVideoEnded(e) {
+    if (this.data.options.money == 0) {
+      this.data.payStatus = true
+    }
     // 已经支付就不在提示了
     if (this.data.payStatus) {
       return

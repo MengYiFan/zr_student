@@ -3,7 +3,7 @@
 
 <view class="container">
   <view class="integral-header">
-    <image class="integral-header-pig" src="../../../images/other/Dashboard.png"></image>
+    <image class="integral-header-pig" src="../../../images/other/dashboard.png"></image>
     <view class="integral-header-title">我的积分</view>
     <view class="integral-header-number">{{data.loyaltyPointBalance}}</view>
   </view>

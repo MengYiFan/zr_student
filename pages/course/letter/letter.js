@@ -107,7 +107,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '给家长的一封信',
+      title: '润育商平台，给家长的一封信',
       path: '/pages/course/letter/letter?courseid=' + this.data.courseId,
       success: function (res) {
         // 转发成功

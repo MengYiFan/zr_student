@@ -168,7 +168,7 @@ Page({
   },
   onShareAppMessage: function () {
     return {
-      title: '润教育城，您身边的教育好伴侣',
+      title: '润育商平台，您身边的教育好伴侣',
       path: '/pages/index/index/index'
     }
   }
