@@ -5,6 +5,7 @@
 <import src="../../templates/empty/empty.wxml"/>
 
 <view class="container">
+  <paytohelp></paytohelp>
   <!-- 我的课程 -->
   <view class="content bg">
     <view class="content-title">

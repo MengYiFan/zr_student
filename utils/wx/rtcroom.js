@@ -179,14 +179,14 @@ function loginIM(options) {
   var onGroupSystemNotifys = {
     // 群被解散(全员接收)
     "5": function (notify) {
-      console.warn('onGroupSystemNotifys@5@', notify)
+      console.warn('收到onGroupSystemNotifys 5信息: ', notify)
       roomInfo.isDestory = true;
       event.onRoomClose({});
     },
     "11": webimhandler.onRevokeGroupNotify, //群已被回收(全员接收)
     // 用户自定义通知(默认全员接收)
     "255": function (notify) {
-      console.warn('stu收到255展润的信息::', notify);
+      console.warn('收到onGroupSystemNotifys 255信息: ', notify);
 
       typeof options.cb255 == "function" && options.cb255(notify.UserDefinedField)
       mergePushers()
@@ -217,7 +217,7 @@ function loginIM(options) {
   var listeners = {
     "onConnNotify": webimhandler.onConnNotify, //选填
     "onBigGroupMsgNotify": function (msg) {
-      console.warn('onBigGroupMsgNotify@', msg)
+      console.warn('onBigGroupMsgNotify: ', msg)
       webimhandler.onBigGroupMsgNotify(msg, function (msgs) {
         receiveMsg(msgs);
       })

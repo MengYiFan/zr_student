@@ -1,6 +1,7 @@
 // pages/help/call/call.js
 import { getHelpCall, hangupHelpCall, assignTeacher, callAll, polling, enterRoom, enterRtcroom, exitRtcroom, heartbeat, getPusher, hangupApply, payCallAll } from '../../../utils/api'
 import { init, setListener, sendRoomTextMsg } from '../../../utils/wx/rtcroom'
+import { obj2uri } from '../../../utils/common'
 
 var app = getApp()
 var intervalId = null
@@ -452,11 +453,13 @@ Page({
               success: function (res) {
                 if (res.confirm) {
                   wx.redirectTo({
-                    url: '../../../pages/self/wallet/wallet?type=paycall'
+                    url: '../../../pages/self/wallet/wallet?type=paycall&' + obj2uri(options)
                   })
                 }
               }
             })
+          } else {
+            this.errorHandle(res.code, res.msg)
           }
         }
       })
@@ -468,6 +471,8 @@ Page({
             this.caseId = res.data.caseId
             this.startTime = +(new Date())
             this.roomId = res.data.roomId
+          } else {
+            this.errorHandle(res.code, res.msg)
           }
         }
       })
@@ -477,7 +482,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.warn('options:', options)
+    console.log('options:', options)
     this.options = options
     let that = this
     init({
@@ -521,7 +526,15 @@ Page({
       }
     })
   },
-
+  errorHandle(code, msg) {
+    let title = '服务器暂忙, 请稍后重试。'
+    if (code == '1200' && msg == '3') {
+      title = '暂无老师在线, 请稍后重试。'
+    }
+    wx.showToast({
+      icon: 'none', title
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

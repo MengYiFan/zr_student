@@ -77,6 +77,11 @@ body, page {
   margin: 0 20rpx 20rpx 0;
   border-radius: 10rpx;
   flex: 0 0 auto;
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .common-userInfo-get {

@@ -16,15 +16,15 @@ Page({
     conf: null,
     data: {},
     pay: {},
-    options: {},
     payNumberList: [0.01, 50, 100]
   },
+  options: {},
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.options = options
   },
 
   /**

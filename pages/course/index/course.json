@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "我的课程",
-  "usingComponents": {}
+  "usingComponents": {
+    "paytohelp": "/pages/templates/paytohelp/paytohelp"
+  }
 }

@@ -68,7 +68,9 @@ Page({
               wx.setStorageSync('userData', res.data)
               wx.setStorageSync('userMobile', res.data.userMobile
                 || res.data.userAttribute && res.data.userAttribute.userMobile)
-              console.log(that.redirectUrl)
+              app.globalData.userAttribute = res.data.userAttribute
+              wx.setStorageSync('userAttribute', res.data.userAttribute)
+
               clearTimeout(this.timeout)
               wx.reLaunch({
                 url: '../../../' + that.redirectUrl

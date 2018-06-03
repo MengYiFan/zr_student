@@ -44,7 +44,6 @@ Page({
     getPayToHelpQus({
       method: 'get',
       success: (res) => {
-        console.log(res)
         if (res.code == '1000') {
           let category = res.data.category
           let data = category.map((item, idx) => {

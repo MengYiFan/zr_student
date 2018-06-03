@@ -14,7 +14,7 @@
   </view>
   <view class="pay-help-intro">
     <icon type="info" size="12" color="#ED1C24"/>
-    {{duration}}天内同一个问题类别收费{{amount}}
+    {{duration}}天内同一个问题类别收费{{amount}}元
   </view>
   <button bindtap="bindHelpSubmitTap" class="pay-help-btn">付费求助</button>
 </view>

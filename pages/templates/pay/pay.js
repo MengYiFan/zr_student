@@ -1,6 +1,8 @@
 import {
   payVedio, payInit, payQuery, payResult, payClose, payVedioInit, getVedioLive
 } from '../../../utils/api'
+import { obj2uri } from '../../../utils/common'
+
 
 var app = getApp()
 /*
@@ -161,8 +163,7 @@ export const bindPaySubmitTap = (context, e, type) => {
       success: res => {
         if (res.code == '1000') {
           let response = res.data
-          wx.requestPayment(
-            {
+          wx.requestPayment({
               'timeStamp': response.timeStamp,
               'nonceStr': response.nonceStr,
               'package': response.package,
@@ -219,8 +220,7 @@ export const bindPaySubmitTap = (context, e, type) => {
       success: res => {
         if (res.code == '1000') {
           let response = res.data
-          wx.requestPayment(
-            {
+          wx.requestPayment({
               'timeStamp': response.timeStamp,
               'nonceStr': response.nonceStr,
               'package': response.package,
@@ -233,7 +233,8 @@ export const bindPaySubmitTap = (context, e, type) => {
                   })
                   wx.showToast({
                     icon: 'none',
-                    title: '支付成功..'
+                    title: '支付成功...',
+                    duration: 2000
                   })
                   //
                   context.setData({
@@ -242,6 +243,11 @@ export const bindPaySubmitTap = (context, e, type) => {
 
                   setTimeout(function () {
                     wx.hideLoading()
+                    if (context.options.type == 'paycall') {
+                      wx.redirectTo({
+                        url: '../../../pages/help/call/call?' + obj2uri(context.options)
+                      })
+                    }
                   }, 2000)
                 }
               },

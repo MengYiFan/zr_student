@@ -9,9 +9,8 @@
   font-weight: 300;
   background-color: #F2F3F4;
   margin: 0 20rpx 20rpx 0;
+  padding: 0 30rpx;
   border-radius: 10rpx;
-  flex: 0 0 auto;
-  width: 188rpx;
 }
 
 .common-tag-checked {

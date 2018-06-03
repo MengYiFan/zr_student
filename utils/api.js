@@ -42,12 +42,19 @@ const wxRequest = (params, url) => {
       }
       wx.hideNavigationBarLoading()
       console.log('URL: ', url)
-      console.log('参数:', params.data)
+      console.log('参数:', params.data || '无')
       console.log('结果:', res.data)
     },
     fail: (res) => {
-      console.log(res)
-      params.fail && params.fail(res)
+      console.log('Api fail@', res)
+      wx.showToast({
+        icon: 'none',
+        title: '网络服务暂忙, 请稍后再试。',
+        duration: 3000,
+        complete() {
+          params.fail && params.fail(res)
+        }
+      })
     },
     complete: (res) => {
       if (!params.showLoading) {
@@ -70,7 +77,6 @@ export let _obj2uri = (obj) => {
 // 登录/打开小程序
 export const userLogin = (params) => {
   wxRequest(params, C.USER_LOGON)
-  console.log(params, '@@@@@@')
 }
 
 export const getBanner = (params) => wxRequest(params, C.BANNER)
