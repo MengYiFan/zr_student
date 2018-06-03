@@ -1,0 +1,53 @@
+/* pages/help/pay/pay.wxss */
+.pay-help-container {
+  padding: 40rpx 60rpx;
+  background-color: #fff;
+  margin: 20rpx;
+  border-radius: 16rpx;
+}
+
+.pay-help-icon {
+  width: 160rpx;
+  height: 160rpx;
+  display: block;
+  margin: 20rpx auto 80rpx;
+}
+
+.select-cell {
+  position: relative;
+}
+
+.select-cell-title {
+  font-size: 26rpx;
+  color: #000;
+  font-weight: bold;
+}
+
+.select-cell-picker {
+  color: #383838;
+  font-size: 26rpx;
+  background-color: #EEF2F5;
+  padding: 20rpx;
+  margin-top: 24rpx;
+  margin-bottom: 60rpx;
+}
+
+.pay-help-btn {
+  width: 596rpx;
+  height: 76rpx;
+  line-height: 76rpx;
+  margin-top: 60rpx;
+  margin-bottom: 144rpx;
+  background-color: #ED1C24;
+  color: #fff;
+}
+
+.pay-help-intro {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.pay-help-intro icon {
+  vertical-align: baseline;
+  margin-right: 12rpx;
+}

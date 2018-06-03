@@ -1,1 +1,12 @@
 /* pages/templates/paytohelp/paytohelp.wxss */
+.pay-to-help {
+  position: fixed;
+  right: 40rpx;
+  bottom: 60rpx;
+  z-index: 9999;
+}
+
+.pay-to-help-btn {
+  width: 60rpx;
+  height: 60rpx;
+}

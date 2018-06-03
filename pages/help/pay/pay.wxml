@@ -1,0 +1,20 @@
+<!--pages/help/pay/pay.wxml-->
+<view class="pay-help-container">
+  <image class="pay-help-icon" 
+         src="../../../images/other/vip.png"></image>
+  <view class="select-cell">
+    <text class="select-cell-title">问题类别</text>
+    <picker 
+      class="select-cell-picker"
+      bindchange="bindQusPickerChange" value="{{qusIndex}}" range="{{qusArr}}">
+      <view class="picker">
+        {{qusArr[qusIndex]}}
+      </view>
+    </picker>
+  </view>
+  <view class="pay-help-intro">
+    <icon type="info" size="12" color="#ED1C24"/>
+    {{duration}}天内同一个问题类别收费{{amount}}
+  </view>
+  <button bindtap="bindHelpSubmitTap" class="pay-help-btn">付费求助</button>
+</view>

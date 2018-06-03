@@ -1,6 +1,6 @@
-// export const API_URI = 'http://192.168.0.106:9100/stg'
+export const API_URI = 'http://192.168.0.103:9100/stg'
 // export const API_URI = 'http://www.zredq.com:9100/stg'
-export const API_URI = 'https://app.shangnarxue.com/stg'
+// export const API_URI = 'https://app.shangnarxue.com/stg'
 
 // INDEX
 export const BANNER = API_URI + '/none/banner'
@@ -25,6 +25,7 @@ export const TEACHER_COLUMN_SUBSCRIBE = API_URI + '/column/columnSubscribe'
 // help
 export const CATEGORY_AGE = API_URI + '/consult/category/age'
 export const CATEGORY_QUS = API_URI + '/consult/category/question'
+export const PAY_HELP_QUS = API_URI + '/consult/category-charge/question'
 
 export const HELP_CALL = API_URI + '/consult/call'
 export const HELP_CALL_HANGUP = API_URI + '/consult/hangup'
@@ -63,6 +64,8 @@ export const ENTER_ROOM = API_URI + '/rtcroom/pusher/enter'
 export const ENTER_RTCROOM = API_URI + '/rtcroom'
 export const EXIT_RTCROOM = API_URI + '/rtcroom/pusher/exit'
 export const HEARTBEAT = API_URI + '/rtcroom/heartbeat'
+// 付费求助
+export const PAY_CALL_ALL = API_URI + '/consult/call-all-charge'
 //
 export const GET_PUSHER = API_URI + '/consult/getpushurl'
 

@@ -19,7 +19,8 @@
     "pages/help/cameraview/cameraview",
     "pages/binding/index/binding",
     "pages/wx/authorize/authorize",
-    "pages/templates/paytohelp/paytohelp"
+    "pages/templates/paytohelp/paytohelp",
+    "pages/help/pay/pay"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -108,6 +108,7 @@ export const enterRoom = (params, rootId, userId) => wxRequest(params, C.ENTER_R
 export const enterRtcroom = (params, rootId) => wxRequest(params, C.ENTER_RTCROOM + '/' + rootId + '/pushers')
 export const exitRtcroom = (params, rootId, userId) => wxRequest(params, C.ENTER_RTCROOM + '/' + rootId + '/' + userId)
 export const heartbeat = (params, rootId, userId) => wxRequest(params, C.HEARTBEAT + '/' + rootId + '/' + userId)
+export const payCallAll = (params) => wxRequest(params, C.PAY_CALL_ALL)
 //
 export const getPusher = (params, userId) => wxRequest(params, C.GET_PUSHER + '/' + userId)
 
@@ -121,6 +122,8 @@ export const getCategoryQus = (params) => wxRequest(params, C.CATEGORY_QUS)
 export const getHelpCall = (params) => wxRequest(params, C.HELP_CALL)
 // 挂断call
 export const hangupHelpCall = (params) => wxRequest(params, C.HELP_CALL_HANGUP)
+// 获得付费问题
+export const getPayToHelpQus = (params) => wxRequest(params, C.PAY_HELP_QUS)
 
 // 用户关注问题领域（包括家长和育商师）
 export const getSubjectList = (params) => wxRequest(params, C.SUBJECT_LIST)

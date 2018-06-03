@@ -1,5 +1,5 @@
 // pages/help/call/call.js
-import { getHelpCall, hangupHelpCall, assignTeacher, callAll, polling, enterRoom, enterRtcroom, exitRtcroom, heartbeat, getPusher, hangupApply } from '../../../utils/api'
+import { getHelpCall, hangupHelpCall, assignTeacher, callAll, polling, enterRoom, enterRtcroom, exitRtcroom, heartbeat, getPusher, hangupApply, payCallAll } from '../../../utils/api'
 import { init, setListener, sendRoomTextMsg } from '../../../utils/wx/rtcroom'
 
 var app = getApp()
@@ -261,11 +261,11 @@ Page({
     }, this.caseId, this.options.userId)
   },
   // V3
+  // type @ call/one
   getPusherHandle(type) {
     getPusher({
       method: 'get',
       success: res => {
-        console.log('getPusherHandle:', res, '@type@', type)
         if (res.code == '1000') {
           this.setData({
             userPusher: res.msg
@@ -431,34 +431,47 @@ Page({
   },
   // 求助群发
   callAllHandle() {
-    let options = this.options
-    callAll({
-      data: Object.assign(options, {
-        pushUrl: this.data.userPusher
-      }),
-      success: res => {
-        console.log('callAll response: ', res)
-        if (res.code == '1000') {
-          this.caseId = res.data.caseId
-          this.startTime = +(new Date())
-          this.roomId = res.data.roomId
-          // V2
-          // this.pollingHandle()
+    let options = this.options,
+        params = Object.assign(options, {
+          pushUrl: this.data.userPusher
+        })
 
-          // V1
-          // var data = res.data
-          // let fa = data.userPusher.replace(/[\'\"]/g, '').split('|')[0].trim(),
-          //   shou = data.teachLive.replace(/[\'\"]/g, '').split('|')[1].split(',')[0].slice(6).replace('}', '').trim()
-
-          // this.setData({
-          //   subjectIds: this.caseId,
-          //   canHangupFlag: true,
-          //   teachLive: shou,
-          //   userPusher: fa
-          // })
+    if (options.isFree == 2) {// 付费
+      payCallAll({
+        data: params,
+        success: res => {
+          if (res.code == '1000') {
+            this.caseId = res.data.caseId
+            this.startTime = +(new Date())
+            this.roomId = res.data.roomId
+          } else if (options.isFree && res.code == '1200' && res.msg == '7') {
+            wx.showModal({
+              title: '提示',
+              content: '钱包余额不足，请您先充值。',
+              showCancel: false,
+              success: function (res) {
+                if (res.confirm) {
+                  wx.redirectTo({
+                    url: '../../../pages/self/wallet/wallet?type=paycall'
+                  })
+                }
+              }
+            })
+          }
         }
-      }
-    })
+      })
+    } else {
+      callAll({
+        data: params,
+        success: res => {
+          if (res.code == '1000') {
+            this.caseId = res.data.caseId
+            this.startTime = +(new Date())
+            this.roomId = res.data.roomId
+          }
+        }
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载
@@ -467,7 +480,6 @@ Page({
     console.warn('options:', options)
     this.options = options
     let that = this
-    time = USER_DATA.imInfo.time
     init({
       success: res => {
         if (options.callObject == 'all') {
@@ -476,41 +488,7 @@ Page({
 
           return
         }
-
         this.getPusherHandle('one')
-
-        // assignTeacher({
-        //   data: {
-        //     'userId': app.globalData.userId,
-        //     'teacherUserId': options.teacherUserId
-        //   },
-        //   success: res => {
-        //     if (res.code == '1000') {
-        //       var data = res.data,
-        //         reg = new RegExp('http:\/\/.+\.flv', 'gi'),
-        //         reg2 = new RegExp('http:\/\/.+\.flv', 'gi')
-
-        //       // this.setData({
-        //       //   subjectIds: this.caseId,
-        //       //   canHangupFlag: true,
-        //       //   teachLive: reg.exec(data.teachLive)[0],
-        //       //   userPusher: reg2.exec(data.userPusher)[0]
-        //       // })
-        //       // let fa = data.teachLive.replace(/[\'\"]/g, '').split('|')[0],
-        //       //   shou = data.userPusher.replace(/[\'\"]/g, '').split('|')[1].split(',')[0].slice(5).replace('}', '')
-
-        //       let fa = data.userPusher.replace(/[\'\"]/g, '').split('|')[0].trim(),
-        //         shou = data.teachLive.replace(/[\'\"]/g, '').split('|')[1].split(',')[0].slice(6).replace('}', '').trim()
-
-        //       this.setData({
-        //         subjectIds: data.caseId,
-        //         canHangupFlag: true,
-        //         teachLive: shou,
-        //         userPusher: fa
-        //       })
-        //     }
-        //   }
-        // })
       },
       data: USER_DATA.imInfo,
       cb255: msg => {

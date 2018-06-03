@@ -38,7 +38,8 @@ Page({
       subjectIds: data.qusKeys[data.qusIndex],
       caseTargetAge: data.ageKeys[data.ageIndex],
       caseTargetGender: data.sexConfArr[data.sexIndex],
-      callObject: 'all'
+      callObject: 'all',
+      isFree: 1,
     })
 
     wx.navigateTo({

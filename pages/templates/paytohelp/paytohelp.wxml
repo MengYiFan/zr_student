@@ -1,2 +1,6 @@
 <!--pages/templates/paytohelp/paytohelp.wxml-->
-<text>pages/templates/paytohelp/paytohelp.wxml</text>
+<view class="pay-to-help">
+  <image class="pay-to-help-btn"
+         src="../../../images/other/paytohelp.png"
+         bindtap="bindPayToHelpHandle"></image>
+</view>
