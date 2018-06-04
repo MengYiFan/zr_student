@@ -3,11 +3,14 @@ import { getHelpCall, hangupHelpCall, assignTeacher, callAll, polling, enterRoom
 import { init, setListener, sendRoomTextMsg } from '../../../utils/wx/rtcroom'
 import { obj2uri } from '../../../utils/common'
 
-var app = getApp()
-var intervalId = null
-var USER_DATA
-var time
-var CYCLE
+// TODO
+// should modify
+var app = getApp(),
+    intervalId = null,
+    USER_DATA,
+    time,
+    CYCLE
+
 try {
   USER_DATA = wx.getStorageSync('userData')
   time = (USER_DATA.imInfo && USER_DATA.imInfo.time) || 20
@@ -17,8 +20,6 @@ try {
   CYCLE = 5
 }
 
-//DEBUG
-//second 没有做记录
 Page({
 
   /**
@@ -73,6 +74,7 @@ Page({
     avatar: ''
   },
   caseId: null,
+  isSuccessCall: false,
   teacherUserId: null,
   roomId: null,
   startTime: 0,
@@ -104,6 +106,12 @@ Page({
               url: '../../../pages/help/index/help'
             })
           } else {
+            if (!this.isSuccessCall) {
+              wx.switchTab({
+                url: '../../../pages/help/index/help'
+              })
+              return
+            }
             wx.showToast({
               icon: 'none',
               title: '退出房间失败..'
@@ -277,7 +285,7 @@ Page({
             this.callOneHandle()
           }
         } else {
-
+          this.isSuccessCall = false
         }
       }
     }, app.globalData.userId || wx.getStorageSync('userId'))
@@ -426,6 +434,10 @@ Page({
             teachLive: data.teacherPlayer,
             roomId: data.roomId
           })
+
+          this.isSuccessCall = true
+        } else {
+          this.isSuccessCall = false
         }
       }
     })
@@ -445,7 +457,11 @@ Page({
             this.caseId = res.data.caseId
             this.startTime = +(new Date())
             this.roomId = res.data.roomId
+
+            this.isSuccessCall = true
           } else if (options.isFree && res.code == '1200' && res.msg == '7') {
+            this.isSuccessCall = false
+
             wx.showModal({
               title: '提示',
               content: '钱包余额不足，请您先充值。',
@@ -471,6 +487,8 @@ Page({
             this.caseId = res.data.caseId
             this.startTime = +(new Date())
             this.roomId = res.data.roomId
+
+            this.isSuccessCall = true
           } else {
             this.errorHandle(res.code, res.msg)
           }
@@ -511,7 +529,6 @@ Page({
         } else {
           this.roomId = msgArr[1]
           this.caseId = msgArr[2]
-          console.log('claose!!!!')
           this.bindCallHangupTap(null, this.caseId, 'passivity')
         }
       }
@@ -527,6 +544,7 @@ Page({
     })
   },
   errorHandle(code, msg) {
+    this.isSuccessCall = false
     let title = '服务器暂忙, 请稍后重试。'
     if (code == '1200' && msg == '3') {
       title = '暂无老师在线, 请稍后重试。'
