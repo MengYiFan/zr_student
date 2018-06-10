@@ -79,21 +79,27 @@ export const bindDiscountsChange = (context, e) => {
   })
 }
 
-const payCloseHandle = (orderNumber, times) => {
+const payCloseHandle = (orderNumber, times, type) => {
   payClose({
     data: {
       out_trade_no: orderNumber
     },
     success: res => {
       if (res.code == '1000') {
-        wx.redirectTo({
-          url: '../../../pages/self/bill/bill'
-        })
+        if (type == 'walletPay') {
+          wx.redirectTo({
+            url: '../../../pages/self/wallet/wallet'
+          })
+        } else {
+          wx.redirectTo({
+            url: '../../../pages/self/bill/bill'
+          })
+        }
       } else {
         if (times > 0) {
           --times
           setTimeout(function () {
-            payCloseHandle(orderNumber, times)
+            payCloseHandle(orderNumber, times, type)
           }, 1000)
         } else {
           wx.showToast({
@@ -150,7 +156,7 @@ const getTrueVedioUri = (context, e) => {
 export const bindPaySubmitTap = (context, e, type) => {
   let payData = context.data.pay
 
-  if (type == 'billPay') {
+  if (type == 'billPay') {// 账单充值
     let reqData = {
       body: payData.orderName,
       out_trade_no: payData.orderNumber,
@@ -192,7 +198,7 @@ export const bindPaySubmitTap = (context, e, type) => {
                   ['pay.switch']: false,
                 })
                 // 取消订单号
-                payCloseHandle(payData.orderNumber, 3)
+                payCloseHandle(payData.orderNumber, 3, 'billPay')
                 wx.showToast({
                   icon: 'none',
                   title: '支付失败, 请稍后再试..'
@@ -261,7 +267,7 @@ export const bindPaySubmitTap = (context, e, type) => {
                   ['pay.switch']: false,
                 })
                 // 取消订单号
-                payCloseHandle(payData.orderNumber, 3)
+                payCloseHandle(payData.orderNumber, 3, 'walletPay')
                 wx.showToast({
                   icon: 'none',
                   title: '支付失败, 请稍后再试..'
@@ -276,7 +282,7 @@ export const bindPaySubmitTap = (context, e, type) => {
         }
       }
     })
-  } else {
+  } else {// 视频支付
     // TO DO 
     // /createVedioOrder
     payVedioInit({

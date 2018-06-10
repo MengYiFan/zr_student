@@ -28,7 +28,6 @@ Page({
     }
   },
   bindBillTap(e) {
-    
     let that = this,
         dataset = e.currentTarget.dataset,
         money = dataset.money || 0,
@@ -40,6 +39,7 @@ Page({
 
     if (orderState == 1) {
       let showOrderDetail
+      // 获得该账单详情
       if (typeof that.data.showOrderDetail[orderId] == 'undefined') {
         showOrderDetail = Object.assign({}, that.data.showOrderDetail, {
           [orderId]: true
@@ -79,7 +79,7 @@ Page({
       return
     }
 
-    if (!money || !orderNumber) {
+    if (!money || money == 0 || !orderNumber) {
       return
     }
 
