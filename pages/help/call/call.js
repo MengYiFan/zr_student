@@ -92,7 +92,8 @@ Page({
           hangupType: 1,
           teacherUserId: this.teacherUserId || this.options.teacherUserId,
           seconds: parseInt(seconds),
-          roomId: this.roomId || this.data.roomId
+          roomId: this.roomId || this.data.roomId,
+          isFree: this.options.isFree
         }
 
       hangupApply({
@@ -131,7 +132,8 @@ Page({
           caseId: this.caseId,
           hangupType: 1,
           teacherUserId: this.teacherUserId,
-          seconds: parseInt(seconds)
+          seconds: parseInt(seconds),
+          isFree: this.options.isFree
         }
 
       hangupHelpCall({
@@ -160,10 +162,13 @@ Page({
                   } else {
                     wx.showToast({
                       icon: 'none',
-                      title: '退出房间失败..'
+                      title: '退出房间ERR..'
                     })
                     setTimeout(function () {
                       wx.hideLoading()
+                      wx.switchTab({
+                        url: '../../../pages/help/index/help'
+                      })
                     }, 2000)
                   }
                 }

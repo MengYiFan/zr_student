@@ -174,6 +174,7 @@ export const bindPaySubmitTap = (context, e, type) => {
                   context.setData({
                     ['pay.switch']: false,
                   })
+
                   wx.showToast({
                     icon: 'none',
                     title: '支付成功..'
@@ -206,7 +207,7 @@ export const bindPaySubmitTap = (context, e, type) => {
         }
       }
     })
-  } else if (type == 'walletPay') {
+  } else if (type == 'walletPay') {// 钱包充值
     let reqData = {
       body: payData.orderName,
       out_trade_no: payData.orderNumber,
@@ -246,6 +247,10 @@ export const bindPaySubmitTap = (context, e, type) => {
                     if (context.options.type == 'paycall') {
                       wx.redirectTo({
                         url: '../../../pages/help/call/call?' + obj2uri(context.options)
+                      })
+                    } else {
+                      wx.redirectTo({
+                        url: '../../../pages/sell/wallet/wallet'
                       })
                     }
                   }, 2000)
