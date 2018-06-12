@@ -173,7 +173,7 @@ export const bindPaySubmitTap = (context, e, type) => {
               'timeStamp': response.timeStamp,
               'nonceStr': response.nonceStr,
               'package': response.package,
-              'signType': 'MD5',
+              'signType': response.signType,
               'paySign': response.paySign,
               'success': function (res) {
                 if (res.errMsg == 'requestPayment:ok') {
@@ -231,7 +231,7 @@ export const bindPaySubmitTap = (context, e, type) => {
               'timeStamp': response.timeStamp,
               'nonceStr': response.nonceStr,
               'package': response.package,
-              'signType': 'MD5',
+              'signType': response.signType,
               'paySign': response.paySign,
               'success': function (res) {
                 if (res.errMsg == 'requestPayment:ok') {
@@ -313,7 +313,7 @@ export const bindPaySubmitTap = (context, e, type) => {
                     'timeStamp': response.timeStamp,
                     'nonceStr': response.nonceStr,
                     'package': response.package,
-                    'signType': 'MD5',
+                    'signType': response.signType,
                     'paySign': response.paySign,
                     'success': function (res) {
                       if (res.errMsg == 'requestPayment:ok') {
