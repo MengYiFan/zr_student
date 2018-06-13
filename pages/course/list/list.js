@@ -21,6 +21,7 @@ Page({
     },
     videoList: {
       flag: true,
+      hiddenBtn: true,
       data: []
     },
     options: null

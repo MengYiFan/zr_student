@@ -12,8 +12,10 @@
             data-vedioname="{{item.vedioName}}"
             data-vedioMediaUrl="{{item.vedioMediaUrl}}"
             bindtap="bindVideoItemTap" class="video-item">
-            <view class="video-item-play video-mask">
+            <!-- hiddenBtn是否显示蒙版和按钮 -->
+            <view class="video-item-play {{hiddenBtn ? '' : 'video-mask'}}">
               <image
+                wx:if="{{!hiddenBtn}}"
                 src="../../../images/other/play.png" 
                 class="video-item-btn"></image>
               <image 
