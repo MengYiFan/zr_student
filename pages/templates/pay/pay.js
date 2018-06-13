@@ -256,7 +256,7 @@ export const bindPaySubmitTap = (context, e, type) => {
                       })
                     } else {
                       wx.redirectTo({
-                        url: '../../../pages/sell/wallet/wallet'
+                        url: '../../../pages/self/wallet/wallet'
                       })
                     }
                   }, 2000)
