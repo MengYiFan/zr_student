@@ -30,21 +30,27 @@
       <view class="cell-func-list">
         <view
           bindtap="bindCellMutedTap"
-          class="cell-func-item {{controler.muted ? 'cell-func-item-true' : ''}}">
-          <image 
+          class="cell-func-item">
+          <view class="cell-func-item-btn {{controler.muted ? 'cell-func-item-true' : ''}}">
+            <image 
             class="cell-func-image"
             style="display: {{controler.muted ? 'none' : 'inline-block'}}"
             src="../../../images/other/muted.png"></image>
-          <image
-            style="display: {{controler.muted ? 'inline-block' : 'none'}}"
-            class="cell-func-image" 
-            src="../../../images/other/muted2.png"></image>
+            <image
+              style="display: {{controler.muted ? 'inline-block' : 'none'}}"
+              class="cell-func-image" 
+              src="../../../images/other/muted2.png"></image>
+          </view>
+          <view class="cell-func-item-title">静音</view>
         </view>
-        <view class="cell-func-item cell-func-hangup">
-          <image
+        <view class="cell-func-item">
+          <view class="cell-func-item-btn cell-func-hangup">
+            <image
             bindtap="bindCallHangupTap"
             class="cell-func-image" 
             src="../../../images/other/hangup.png"></image>
+          </view>
+          <view class="cell-func-item-title">挂断</view>
         </view>
       </view>
     </view>

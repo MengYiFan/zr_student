@@ -67,19 +67,28 @@
 }
 
 .cell-func-list {
-  margin-top: 260rpx;
+  margin-top: 250rpx;
   display: flex;
   justify-content: space-around;
 }
 
 .cell-func-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 160rpx;
+}
+
+.cell-func-item-btn {
   width: 160rpx;
   height: 160rpx;
   border: 2rpx solid #fff;
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cell-func-item-title {
+  margin-top: 20rpx;
+  text-align: center;
 }
 
 .cell-func-image {
