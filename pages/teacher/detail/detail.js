@@ -49,7 +49,7 @@ Page({
       this.setData({
         assignBtnFlag: false
       })
-      if (true || !wx.getStorageSync('userMobile')) {
+      if (!wx.getStorageSync('userMobile')) {
         let temp = {
           teacherUserId: this.data.teacherId
         }
