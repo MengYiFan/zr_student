@@ -5,20 +5,7 @@ import { obj2uri } from '../../../utils/common'
 
 // TODO
 // should modify
-var app = getApp(),
-    intervalId = null,
-    USER_DATA,
-    time,
-    CYCLE
-
-try {
-  USER_DATA = wx.getStorageSync('userData')
-  time = (USER_DATA.imInfo && USER_DATA.imInfo.time) || 20
-  CYCLE = (USER_DATA.imInfo && USER_DATA.imInfo.cycle) || 5
-} catch(e) {
-  time = 20
-  CYCLE = 5
-}
+var app = getApp()
 
 Page({
 
@@ -73,6 +60,9 @@ Page({
     nick: '',
     avatar: ''
   },
+  USER_DATA: {},
+  TIME: 20,
+  CYCLE: 5,
   caseId: null,
   isSuccessCall: false,
   teacherUserId: null,
@@ -201,7 +191,7 @@ Page({
           })
         }, 5000)
       }
-    } catch(e) {
+    } catch (e) {
       console.log('playerStatechange error', e)
     }
   },
@@ -223,7 +213,7 @@ Page({
           })
         }, 5000)
       }
-    } catch(e) {
+    } catch (e) {
       console.log('尝试推流pusher err', e)
     }
   },
@@ -246,8 +236,8 @@ Page({
         } else {
           // 还没人接通
           if (res.msg == '-3') {
-            console.log('polling:', time)
-            if (time <= 0) {
+            console.log('polling:', this.TIME)
+            if (this.TIME <= 0) {
               wx.showToast({
                 icon: 'none',
                 title: '没人接通，请稍后再试..'
@@ -258,8 +248,8 @@ Page({
             } else {
               setTimeout(() => {
                 this.pollingHandle()
-                time--
-              }, 1000 * CYCLE)
+                this.TIME--
+              }, 1000 * this.CYCLE)
             }
           } else {// 参数出意外
             wx.showToast({
@@ -320,14 +310,14 @@ Page({
                   userPusher: res.data[1].pushURL
                 })
               }
-              
+
               this.heartbeat()
             }
           }, this.roomId)
         } else {
           wx.showToast({
             icon: 'none',
-            title: '进入房间失败..'
+            title: '进入房间E..'
           })
           setTimeout(function () {
             wx.hideLoading()
@@ -346,7 +336,7 @@ Page({
           if (this.continueHeartBeat) {
             setTimeout(() => {
               this.heartbeat()
-            }, 1000 * CYCLE)
+            }, 1000 * this.CYCLE)
           }
         } else {
           this.setData({
@@ -450,9 +440,9 @@ Page({
   // 求助群发
   callAllHandle() {
     let options = this.options,
-        params = Object.assign(options, {
-          pushUrl: this.data.userPusher
-        })
+      params = Object.assign(options, {
+        pushUrl: this.data.userPusher
+      })
 
     if (options.isFree == 2) {// 付费
       payCallAll({
@@ -505,7 +495,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('options:', options)
+    this.USER_DATA = wx.getStorageSync('userData') || {}
+    this.TIME = (this.USER_DATA.imInfo && this.USER_DATA.imInfo.time) || 20
+    this.CYCLE = (this.USER_DATA.imInfo && this.USER_DATA.imInfo.cycle) || 5
+
     this.options = options
     let that = this
     init({
@@ -518,7 +511,7 @@ Page({
         }
         this.getPusherHandle('one')
       },
-      data: USER_DATA.imInfo,
+      data: this.USER_DATA.imInfo,
       cb255: msg => {
         console.warn('我收到信息啦啦啦:', msg)
         let msgArr = msg.split('||')
@@ -562,21 +555,21 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
@@ -585,7 +578,7 @@ Page({
   onUnload: function () {
     if (!this.isHangupFlag)
       this.bindCallHangupTap(null, null, 'initiative')
-    
+
     this.continueHeartBeat = false
   },
 
@@ -593,13 +586,13 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   }
 })

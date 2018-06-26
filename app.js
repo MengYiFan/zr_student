@@ -83,6 +83,7 @@ App({
           success: res => {
             if (res.code == '1000') {
               that.globalData.userId = res.data.userId
+              that.globalData.userData = res.data
               wx.setStorageSync('userId', res.data.userId)
               wx.setStorageSync('userData', res.data)
               wx.setStorageSync('userMobile', res.data.userMobile 
@@ -130,7 +131,9 @@ App({
       longitude: null
     },
     userId: null,
+    userData: {},
     code: null,
+    userMobile: '',
     callbackFnArr: [],
     currentUri: ''
   }

@@ -65,6 +65,7 @@ Page({
           success: res => {
             if (res.code == '1000') {
               app.globalData.userId = res.data.userId
+              app.globalData.userData = res.data
               wx.setStorageSync('userId', res.data.userId)
               wx.setStorageSync('userData', res.data)
               wx.setStorageSync('userMobile', res.data.userMobile

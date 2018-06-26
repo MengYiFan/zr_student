@@ -112,7 +112,7 @@ function init(options) {
   accountInfo.userAvatar = options.data.userAvatar || '';
 
 
-  console.info('options@', options)
+  console.info('Init im room options@', options)
   // 登录IM
   loginIM({
     success: options.success,
