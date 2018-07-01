@@ -9,6 +9,7 @@
       data-courseOfferId="{{item.courseOfferId}}"
       data-courseId="{{item.courseId}}"
       data-columnId="{{item.columnId}}"
+      data-columnContentId="{{item.columnContentId}}"
       data-columncontenturl="{{item.columnContentUrl}}"
       data-teacherId="{{item.teacherId}}"
       data-type="row"
@@ -44,6 +45,7 @@
               catchtap="catchCourseEvaluateTap" 
               data-type="content"
               data-columnId="{{item.columnId}}"
+              data-columnContentId="{{item.columnContentId}}"
               wx:else>
               待评价
             </span>

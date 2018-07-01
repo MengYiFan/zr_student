@@ -56,7 +56,7 @@ export const bindSubmitScoreTap = (context, data) => {
     case 'content': {
       params = {
         userId: data.userId,
-        columnContentId: dataset.columnid,
+        columnContentId: dataset.columncontentid,
         userGrade: context.data.evaluate.score
       }
       console.log('params: ', params)
