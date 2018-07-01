@@ -3,4 +3,5 @@
   <image class="pay-to-help-btn"
          src="../../../images/other/paytohelp.png"
          bindtap="bindPayToHelpHandle"></image>
+  <view class="pay-to-help-text">热点咨询</view>
 </view>

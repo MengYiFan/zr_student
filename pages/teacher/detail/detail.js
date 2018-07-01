@@ -25,6 +25,8 @@ Page({
     online: false,
     assignBtnFlag: true
   },
+  teacherTypeCode: null,
+  isFree: 1,
   // 视频点击函数
   bindVideoItemTap(e) {
     bindVideoItemTap(this, e)
@@ -60,7 +62,7 @@ Page({
         return
       }
       wx.navigateTo({
-        url: `../../../pages/help/call/call?teacherUserId=${this.data.teacherId}`,
+        url: `../../../pages/help/call/call?teacherUserId=${this.data.teacherId}&isFree=${this.isFree}`,
       })
       // assignTeacher({
       //   data: {
@@ -121,7 +123,6 @@ Page({
         'teacherId': teacherId
       },
       success: (res) => {
-        console.log('老师详情: ', res)
         if (res.code == '1000') {
           let data = res.data
           data.age = parseInt(((new Date().getTime()) - (new Date(data.userBirthDate).getTime())) / 1000 / 60 / 60 / 24 / 365)
@@ -131,6 +132,8 @@ Page({
             ['columnList.data']: data.columnList,
             ['videoList.data']: data.vedioInfoList
           })
+          this.teacherTypeCode = data.teacherTypeCode || 'N'
+          this.isFree = this.teacherTypeCode == 'N' ? 1 : 2
           wx.setNavigationBarTitle({
             title: `${data.userRealname} 详情`
           })

@@ -1,6 +1,7 @@
 /* pages/wx/userinfo/userinfo.wxss */
 .container {
   padding: 30rpx;
+  background-color: #fff;
 }
 
 .get-user-info-intro {

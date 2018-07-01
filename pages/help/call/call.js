@@ -84,7 +84,7 @@ Page({
           teacherUserId: this.teacherUserId || this.options.teacherUserId,
           seconds: parseInt(seconds),
           roomId: this.roomId || this.data.roomId,
-          isFree: this.options.isFree
+          isFree: this.options.isFree || 1
         }
 
       hangupApply({
@@ -124,7 +124,7 @@ Page({
           hangupType: 1,
           teacherUserId: this.teacherUserId,
           seconds: parseInt(seconds),
-          isFree: this.options.isFree
+          isFree: this.options.isFree || 1
         }
 
       hangupHelpCall({
@@ -492,6 +492,48 @@ Page({
       })
     }
   },
+  loginIMFailCb() {
+    if (MAX_TRY_LOGIN_IM) {
+      this.loginIM(this.USER_DATA.imInfo, this.loginIMFailCb)
+      MAX_TRY_LOGIN_IM--
+    } else {
+      console.error('IM 尝试登录三次均失败')
+    }
+  },
+  loginIM(data, failFn) {
+    let that = this
+    init({
+      success: res => {
+        if (this.options.callObject == 'all') {
+          // v3
+          this.getPusherHandle('all')
+
+          return
+        }
+        this.getPusherHandle('one')
+      },
+      data: data,
+      fail: failFn,
+      cb255: msg => {
+        console.warn('我收到信息啦啦啦:', msg)
+        let msgArr = msg.split('||')
+
+        if (msgArr[0] == '01') {
+          this.roomId = msgArr[1]
+          this.teacherUserId = msgArr[2]
+          that.setData({
+            teachLive: msgArr[4],
+            callTeacherName: msgArr[5],
+            callTeacherCover: msgArr[6]
+          })
+        } else {
+          this.roomId = msgArr[1]
+          this.caseId = msgArr[2]
+          this.bindCallHangupTap(null, this.caseId, 'passivity')
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -517,47 +559,6 @@ Page({
       icon: 'none', title
     })
   },
-  loginIM(data, fail) {
-    init({
-      success: res => {
-        if (this.options.callObject == 'all') {
-          // v3
-          this.getPusherHandle('all')
-
-          return
-        }
-        this.getPusherHandle('one')
-      },
-      fail: fail,
-      data: data,
-      cb255: msg => {
-        console.warn('我收到信息啦啦啦:', msg)
-        let msgArr = msg.split('||')
-
-        if (msgArr[0] == '01') {
-          this.roomId = msgArr[1]
-          this.teacherUserId = msgArr[2]
-          this.setData({
-            teachLive: msgArr[4],
-            callTeacherName: msgArr[5],
-            callTeacherCover: msgArr[6]
-          })
-        } else {
-          this.roomId = msgArr[1]
-          this.caseId = msgArr[2]
-          this.bindCallHangupTap(null, this.caseId, 'passivity')
-        }
-      }
-    })
-  },
-  loginIMFailCb() {
-    if (MAX_TRY_LOGIN_IM) {
-      this.loginIM(this.USER_DATA.imInfo, this.loginIMFailCb)
-      MAX_TRY_LOGIN_IM--
-    } else {
-      console.error('IM 尝试登录三次均失败')
-    }
-  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -572,7 +573,7 @@ Page({
     this.USER_DATA = wx.getStorageSync('userData') || {}
     this.TIME = (this.USER_DATA.imInfo && this.USER_DATA.imInfo.time) || 20
     this.CYCLE = (this.USER_DATA.imInfo && this.USER_DATA.imInfo.cycle) || 5
-    
+
     this.loginIM(this.USER_DATA.imInfo || {}, this.loginIMFailCb)
   },
 

@@ -1,1 +1,6 @@
-{}
+{
+  "navigationBarTitleText": "直播",
+  "navigationBarBackgroundColor": "#e7e6e6",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {}
+}

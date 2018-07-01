@@ -6,7 +6,6 @@
 <!-- <import src="../../templates/pay/pay.wxml"/> -->
 
 <view class="container pages-index">
-  <paytohelp></paytohelp>
   <!-- 支付 -->
   <!-- <template is="pay" data="{{...pay}}"></template> -->
   <swiper class="swiper-list" indicator-dots="{{swiper.indicatorDots}}"

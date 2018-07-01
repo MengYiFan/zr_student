@@ -28,8 +28,9 @@
           class="call-teacher-status {{nick ? '' : 'call-teacher-status-connection'}}">{{callTeacherName || '正在连接...'}}</text> 
       </view>
       <view class="cell-func-list">
-        <view class="cell-func-item"
-          bindtap="bindCellMutedTap">
+        <view
+          bindtap="bindCellMutedTap"
+          class="cell-func-item">
           <view class="cell-func-item-btn {{controler.muted ? 'cell-func-item-true' : ''}}">
             <image 
             class="cell-func-image"

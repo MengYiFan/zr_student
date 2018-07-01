@@ -1,4 +1,41 @@
 /* pages/help/help.wxss */
+.tabs { 
+  display: flex;
+  margin-bottom: 60rpx;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.tabs-item {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background-color: #fff;
+  margin-right: 50rpx;
+  padding: 20rpx 0;
+  cursor: pointer;
+  border-bottom: 5rpx solid transparent;
+  transform: all .5s ease-in-out;
+}
+
+.tabs-item image {
+  width: 70rpx;
+  height: 70rpx;
+  align-items: center;
+}
+
+.tabs-item text {
+  margin-left: 10rpx;
+  font-size: 26rpx;
+  color: #666;
+}
+
+.tabs-current {
+  border-bottom-color: #ED1C24;
+}
+
 .help-container {
   padding: 40rpx 60rpx;
   background-color: #fff;
@@ -29,6 +66,16 @@
   margin-top: 30rpx;
 }
 
+.redio-label {
+  display: flex;
+  align-items: center;
+}
+
+.redio-label-text {
+  margin-left: 20rpx;
+  color: #444;
+}
+
 .radio-el {
   position: absolute;
   top: -9999rpx;
@@ -56,11 +103,58 @@
   height: 76rpx;
   line-height: 76rpx;
   margin-top: 60rpx;
-  margin-bottom: 144rpx;
+  margin-bottom: 80rpx;
   background-color: #ED1C24;
   color: #fff;
 }
 
 .help-btn:active {
   opacity: .75;
+}
+
+/* vip */
+.pay-help-icon {
+  width: 160rpx;
+  height: 160rpx;
+  display: block;
+  margin: 20rpx auto 80rpx;
+}
+
+.select-cell {
+  position: relative;
+}
+
+.select-cell-title {
+  font-size: 26rpx;
+  color: #000;
+  font-weight: bold;
+}
+
+.select-cell-picker {
+  color: #383838;
+  font-size: 26rpx;
+  background-color: #EEF2F5;
+  padding: 20rpx;
+  margin-top: 24rpx;
+  margin-bottom: 60rpx;
+}
+
+.pay-help-btn {
+  width: 596rpx;
+  height: 76rpx;
+  line-height: 76rpx;
+  margin-top: 60rpx;
+  margin-bottom: 80rpx;
+  background-color: #ED1C24;
+  color: #fff;
+}
+
+.pay-help-intro {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.pay-help-intro icon {
+  vertical-align: baseline;
+  margin-right: 12rpx;
 }

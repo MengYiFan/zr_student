@@ -1,5 +1,5 @@
 // pages/help/help.js
-import { getCategoryAge, getCategoryQus } from '../../../utils/api'
+import { getCategoryAge, getCategoryQus, getPayToHelpQus } from '../../../utils/api'
 import { obj2uri } from '../../../utils/common' 
 
 var app = getApp()
@@ -18,14 +18,24 @@ Page({
     sexList: [
       {
         iconSrc: '../../../images/other/man.png',
-        iconCheckedSrc: '../../../images/other/man2.png'
+        iconCheckedSrc: '../../../images/other/man2.png',
+        name: '男孩',
       }, {
         iconSrc: '../../../images/other/girl.png',
-        iconCheckedSrc: '../../../images/other/girl2.png'
+        iconCheckedSrc: '../../../images/other/girl2.png',
+        name: '女孩',
       }
     ],
     sexIndex: 0,
-    sexConfArr: ['M', 'F']
+    sexConfArr: ['M', 'F'],
+    
+    currentTabName: 'general',
+
+    vipQusIndex: 0,
+    vipQusArr: [],
+    vipQusKeys: [],
+    duration: 30,
+    amount: 50,
   },
   // 连线
   bindHelpSubmitTap(e) {
@@ -62,6 +72,32 @@ Page({
       ageIndex: e.detail.value
     })
   },
+  binVipQusPickerChange(e) {
+    this.setData({
+      vipQusIndex: e.detail.value
+    })
+  },
+  bindVipHelpSubmitTap() {
+    let data = this.data
+    if (!data.vipQusArr.length)
+      return
+
+    let params = obj2uri({
+      userId: app.globalData.userId || wx.getStorageSync('userId'),
+      subjectIds: data.vipQusKeys[data.vipQusIndex],
+      isFree: 2,
+      callObject: 'all',
+    })
+
+    wx.navigateTo({
+      url: '../../../pages/help/call/call?' + params
+    })
+  },
+  tabsHandl(e) {
+    this.setData({
+      currentTabName: e.currentTarget.dataset.type
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -94,6 +130,26 @@ Page({
           console.log(data, this.data.qusKeys)
           this.setData({
             qusArr: data
+          })
+        }
+      }
+    })
+    
+    // 付费求助
+    getPayToHelpQus({
+      method: 'get',
+      success: (res) => {
+        if (res.code == '1000') {
+          let category = res.data.category
+          let data = category.map((item, idx) => {
+            this.data.vipQusKeys.push(item.key)
+            return item.val
+          })
+
+          this.setData({
+            vipQusArr: data,
+            duration: res.data.duration,
+            amount: res.data.amount,
           })
         }
       }

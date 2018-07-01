@@ -24,9 +24,9 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#ED1C24",
+    "navigationBarBackgroundColor": "#FFF",
     "navigationBarTitleText": "展润育城",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "color": "#B4B4B4",

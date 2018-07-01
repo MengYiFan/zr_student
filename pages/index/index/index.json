@@ -2,6 +2,6 @@
   "enablePullDownRefresh": false,
   "navigationBarTitleText": "润育商平台",
   "usingComponents": {
-    "paytohelp": "/pages/templates/paytohelp/paytohelp"
+
   }
 }

@@ -10,25 +10,25 @@ Page({
    * 页面的初始数据
    */
   data: {
-    qusIndex: 0,
-    qusArr: [],
-    qusKeys: [],
+    vipQusIndex: 0,
+    vipQusArr: [],
+    vipQusKeys: [],
     duration: 30,
     amount: 50,
   },
-  bindQusPickerChange(e) {
+  binVipQusPickerChange(e) {
     this.setData({
-      qusIndex: e.detail.value
+      vipQusIndex: e.detail.value
     })
   },
-  bindHelpSubmitTap() {
+  bindVipHelpSubmitTap() {
     let data = this.data
-    if (!data.qusArr.length)
+    if (!data.vipQusArr.length)
       return
 
     let params = obj2uri({
       userId: app.globalData.userId || wx.getStorageSync('userId'),
-      subjectIds: data.qusKeys[data.qusIndex],
+      subjectIds: data.vipQusKeys[data.vipQusIndex],
       isFree: 2,
       callObject: 'all',
     })
@@ -47,12 +47,12 @@ Page({
         if (res.code == '1000') {
           let category = res.data.category
           let data = category.map((item, idx) => {
-            this.data.qusKeys.push(item.key)
+            this.data.vipQusKeys.push(item.key)
             return item.val
           })
 
           this.setData({
-            qusArr: data,
+            vipQusArr: data,
             duration: res.data.duration,
             amount: res.data.amount,
           })

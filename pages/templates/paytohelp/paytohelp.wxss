@@ -1,12 +1,20 @@
 /* pages/templates/paytohelp/paytohelp.wxss */
 .pay-to-help {
   position: fixed;
-  right: 40rpx;
-  bottom: 60rpx;
+  right: 20rpx;
+  bottom: 50rpx;
   z-index: 9999;
+  text-align: center;
+  border-radius: 10rpx;
+  background-color: rgba(255, 255, 255, .6);
 }
 
 .pay-to-help-btn {
-  width: 60rpx;
-  height: 60rpx;
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.pay-to-help-text {
+  font-size: 24rpx;
+  color: #ED1C24;
 }

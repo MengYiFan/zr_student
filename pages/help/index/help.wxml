@@ -1,46 +1,82 @@
 <!--pages/help/help.wxml-->
 <view class="container">
   <view class="help-container">
-    <!-- 问题类别 -->
-    <view class="select-cell">
-      <text class="select-cell-title">问题类别</text>
-      <picker 
-        class="select-cell-picker"
-        bindchange="bindQusPickerChange" value="{{qusIndex}}" range="{{qusArr}}">
-        <view class="picker">
-          {{qusArr[qusIndex]}}
-        </view>
-      </picker>
+    <view class="tabs">
+      <view bindtap="tabsHandl" data-type="general"
+        class="tabs-item {{currentTabName == 'general' ? 'tabs-current' : ''}}">
+        <image src="../../../images/other/general.png"></image>
+        <text>普通求助</text>
+      </view>
+      <view bindtap="tabsHandl" data-type="vip"
+        class="tabs-item {{currentTabName == 'vip' ? 'tabs-current' : ''}}">
+        <image src="../../../images/other/vip.png"></image>
+        <text>热点咨询</text>
+      </view>
     </view>
-    <!-- 小孩年龄 -->
-    <view class="select-cell">
-      <text class="select-cell-title">小孩年龄</text>
-      <picker 
-        class="select-cell-picker"
-        bindchange="bindAgePickerChange" value="{{ageIndex}}" range="{{ageArr}}">
-        <view class="picker">
-          {{ageArr[ageIndex]}}
-        </view>
-      </picker>
-    </view>
-    <view class="select-cell">
-      <text class="select-cell-title">性别</text>
-      <radio-group class="radio-group" bindchange="radioChange">
-        <view class="radio-cell" wx:for="{{sexList}}" wx:key="{{index}}">
-          <radio 
-          id="{{'radio-' + index}}" class="radio-el" 
-          value="{{index}}" checked="{{sexIndex === index}}"/>
-          <label class="redio-label" for="{{'radio-' + index}}">
-            <image 
-              class="redio-image" 
-              src="{{sexIndex == index ? item.iconCheckedSrc : item.iconSrc}}">
-              </image>
-          </label>
-        </view>
-      </radio-group>
-    </view>
-    <button
+    <!-- 普通求助 -->
+    <view class="general-help" wx:if="{{currentTabName == 'general'}}">
+      <!-- 问题类别 -->
+      <view class="select-cell">
+        <text class="select-cell-title">问题类别</text>
+        <picker 
+          class="select-cell-picker"
+          bindchange="bindQusPickerChange" value="{{qusIndex}}" range="{{qusArr}}">
+          <view class="picker">
+            {{qusArr[qusIndex]}}
+          </view>
+        </picker>
+      </view>
+      <!-- 小孩年龄 -->
+      <view class="select-cell">
+        <text class="select-cell-title">小孩年龄</text>
+        <picker 
+          class="select-cell-picker"
+          bindchange="bindAgePickerChange" value="{{ageIndex}}" range="{{ageArr}}">
+          <view class="picker">
+            {{ageArr[ageIndex]}}
+          </view>
+        </picker>
+      </view>
+      <view class="select-cell">
+        <text class="select-cell-title">性别</text>
+        <radio-group class="radio-group" bindchange="radioChange">
+          <view class="radio-cell" wx:for="{{sexList}}" wx:key="{{index}}">
+            <radio 
+            id="{{'radio-' + index}}" class="radio-el" 
+            value="{{index}}" checked="{{sexIndex === index}}"/>
+            <label class="redio-label" for="{{'radio-' + index}}">
+              <image 
+                class="redio-image" 
+                src="{{sexIndex == index ? item.iconCheckedSrc : item.iconSrc}}">
+                </image>
+              <text class="redio-label-text">{{item.name}}</text>
+            </label>
+          </view>
+        </radio-group>
+      </view>
+      <button
       bindtap="bindHelpSubmitTap" 
       class="help-btn">马上连线育商师</button>
+    </view>
+    <!-- VIP -->
+    <view class="vip-help" wx:else>
+      <!-- <image class="pay-help-icon" 
+         src="../../../images/other/vip.png"></image> -->
+      <view class="select-cell">
+        <text class="select-cell-title">问题类别</text>
+        <picker 
+          class="select-cell-picker"
+          bindchange="binVipQusPickerChange" value="{{vipQusIndexqusIndex}}" range="{{vipQusArr}}">
+          <view class="picker">
+            {{vipQusArr[vipQusIndex]}}
+          </view>
+        </picker>
+      </view>
+      <view class="pay-help-intro">
+        <icon type="info" size="12" color="#ED1C24"/>
+        {{duration}}天内同一个问题类别收费{{amount}}元
+      </view>
+      <button bindtap="bindVipHelpSubmitTap" class="pay-help-btn">付费求助</button>
+    </view>
   </view>
 </view>
