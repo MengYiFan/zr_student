@@ -180,7 +180,7 @@ Page({
   playerStatechange(e) {
     try {
       console.log('live-player code:', e.detail.code)
-      if (e.detail.code == -2302 || e.detail.code == -2301) {
+      if (e.detail.code == -2301) {
         console.log('尝试连接live')
         let teachLive = this.data.teachLive
         this.setData({
@@ -192,8 +192,8 @@ Page({
           })
         }, 5000)
       }
-    } catch (e) {
-      console.log('playerStatechange error', e)
+    } catch (error) {
+      console.log('playerStatechange error', error)
     }
   },
   playerError(e) {
@@ -202,7 +202,7 @@ Page({
   pusherStatechange(e) {
     try {
       console.log('live-pusher code:', e.detail && e.detail.code || 'null')
-      if (e.detail.code < 0) {
+      if (e.detail.code == -1307) {
         console.log('尝试推流pusher', e.detail.code)
         let userPusher = this.data.userPusher
         this.setData({
@@ -214,8 +214,8 @@ Page({
           })
         }, 5000)
       }
-    } catch (e) {
-      console.log('尝试推流pusher err', e)
+    } catch (error) {
+      console.log('尝试推流pusher err', error)
     }
   },
   // V2 讯轮接听状态
