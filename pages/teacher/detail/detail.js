@@ -1,4 +1,3 @@
-// pages/teacher/detail/detail.js
 import { bindVideoItemTap } from '../../templates/video/video'
 import { bindCourseTap, catchCourseSubscribeTap } from '../../templates/course/course'
 import { getTeacherDetail, getTeacherOnline, assignTeacher } from '../../../utils/api'

@@ -9,10 +9,12 @@
     <view class="teacher-info">
       <view class="teacher-info-left">  
         <image
-          src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=260872131,1933723430&fm=27&gp=0.jpg" 
+          src="{{'https://app.shangnarxue.com/edq/' + teacherData.userAccount.userPortraitUrl}}" 
           class="teacher-cover"></image>
         <view class="teacher-intro">
-          <text class="teacher-name text-overflow">{{teacherData.userRealname || '展润老师'}}</text>
+          <text class="teacher-name text-overflow">
+            {{teacherData.userAccount.userNickname || '展润老师'}}
+          </text>
           <view class="teacher-other">
             <block wx:if="{{teacherData.userGender == 'M'}}">
               <image class="teacher-sex" src="../../../images/other/man.png"></image>

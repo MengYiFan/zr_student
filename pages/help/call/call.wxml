@@ -7,11 +7,17 @@
         class="call-live-player"
         src="{{teachLive}}" 
         mode="RTC" autoplay 
+        min-cache="0.1"
+        max-cache="0.3"
+        debug="{{true}}"
         bindstatechange="playerStatechange" 
         binderror="playerError" />
       <!-- 发 pusherStatechange -->
        <live-pusher 
+        audio-quality="high"
         id="rtcpusher"
+        enable-camera="{{true}}"
+        debug="{{true}}"
         url="{{userPusher}}" 
         mode="RTC" autopush
         enable-camera="{{controler.enableCamera}}"
