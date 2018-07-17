@@ -23,7 +23,7 @@ Page({
     //
     controler: {
       muted: false,
-      enableCamera: false
+      enableCamera: true
     },
     subjectIds: null,
     connectionFlag: false,
@@ -66,6 +66,7 @@ Page({
   CYCLE: 5,
   caseId: null,
   isSuccessCall: false,
+  isIMLoginFailFlag: false,
   teacherUserId: null,
   roomId: null,
   startTime: 0,
@@ -135,9 +136,11 @@ Page({
         success: (res) => {
           if (res.code == '1000') {
             if (!this.data.canHangupFlag) {
-              wx.switchTab({
-                url: '../../../pages/help/index/help'
-              })
+              if (!this.isIMLoginFailFlag) {
+                wx.switchTab({
+                  url: '../../../pages/help/index/help'
+                })
+              }
             } else {// 接通成功的话需要退出房间
               exitRtcroom({
                 method: 'get',
@@ -157,9 +160,11 @@ Page({
                     })
                     setTimeout(function () {
                       wx.hideLoading()
-                      wx.switchTab({
-                        url: '../../../pages/help/index/help'
-                      })
+                      if (!this.isIMLoginFailFlag) {
+                        wx.switchTab({
+                          url: '../../../pages/help/index/help'
+                        })
+                      }
                     }, 2000)
                   }
                 }
@@ -280,6 +285,7 @@ Page({
           } else {
             this.callOneHandle()
           }
+          this.isSuccessCall = true
         } else {
           this.isSuccessCall = false
         }
@@ -487,6 +493,7 @@ Page({
             this.isSuccessCall = true
           } else {
             this.errorHandle(res.code, res.msg)
+            this.isSuccessCall = false
           }
         }
       })
@@ -498,6 +505,17 @@ Page({
       MAX_TRY_LOGIN_IM--
     } else {
       console.error('IM 尝试登录三次均失败')
+      this.isIMLoginFailFlag = true
+      wx.showToast({
+        title: '需要先授权基础信息才能操作...',
+        icon: 'none',
+        duration: 2000
+      })
+      setTimeout(() => {
+        wx.redirectTo({
+          url: `../../../pages/wx/authorize/authorize`,
+        })
+      }, 1000)
     }
   },
   loginIM(data, failFn) {
@@ -563,7 +581,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
