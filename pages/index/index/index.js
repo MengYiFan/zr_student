@@ -35,11 +35,7 @@ Page({
       flag: true,
       data: []
     },
-    imgUrls: [
-      'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
-    ],
+    imgUrls: [],
     funcList: [],
     funcList2: [
       [{ subjectName: '学习方法', iconUrl: '../../../images/func-icons/learning.png' },
@@ -57,6 +53,13 @@ Page({
       direction: 'row',
       data: []
     }
+  },
+  bindBannerTap(e) {
+    let url = e.currentTarget.dataset.url
+    
+    url && wx.navigateTo({
+      url: `../../../pages/course/webview/webview?url=${e.currentTarget.dataset.url}`,
+    })
   },
   bindFuncItemTap(e) {
     let dataset = e.currentTarget.dataset
@@ -100,8 +103,15 @@ Page({
       method: 'GET',
       success: res => {
         if (res.code == '1000') {
+          let imgUrls = res.data.map(item => {
+            if (-1 == item.key.search(/^(http|https):\/\//gi)) {
+              item.key = `https://app.shangnarxue.com/edq/${item.key}`
+            }
+            return item
+          })
+
           this.setData({
-            imgUrls: res.data
+            imgUrls: imgUrls
           })
         }
       }

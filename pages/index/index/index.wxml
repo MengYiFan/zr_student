@@ -13,8 +13,11 @@
     duration="{{swiper.duration}}" current="{{swiper.current}}"
     circular="{{swiper.circular}}" previous-margin="38rpx" next-margin="38rpx">
     <block wx:for="{{imgUrls}}" wx:key="{{index}}">
-       <swiper-item class="swiper-item">
-        <image src="{{item.val}}" class="slide-image" />
+       <swiper-item 
+        class="swiper-item"
+        data-url="{{item.val}}" 
+        bindtap="bindBannerTap">
+        <image src="{{item.key}}" class="slide-image" />
       </swiper-item> 
     </block>
   </swiper> 
