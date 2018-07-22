@@ -16,7 +16,6 @@
        <live-pusher 
         audio-quality="high"
         id="rtcpusher"
-        enable-camera="{{true}}"
         debug="{{true}}"
         url="{{userPusher}}" 
         mode="RTC" autopush
