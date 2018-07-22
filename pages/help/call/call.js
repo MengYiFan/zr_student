@@ -180,8 +180,9 @@ Page({
   playerStatechange(e) {
     try {
       console.log('live-player code:', e.detail.code)
-      if (e.detail.code == -2301) {
-        console.log('尝试连接live')
+      let statusCode = e.detail.code
+      if (statusCode == -2301 || statusCode == -2302 || statusCode == 3005) {
+        console.log('尝试连接live_', statusCode)
         let teachLive = this.data.teachLive
         this.setData({
           teachLive: ''
@@ -190,7 +191,7 @@ Page({
           this.setData({
             teachLive: teachLive
           })
-        }, 5000)
+        }, 100)
       }
     } catch (error) {
       console.log('playerStatechange error', error)
@@ -212,7 +213,7 @@ Page({
           this.setData({
             userPusher: userPusher
           })
-        }, 5000)
+        }, 100)
       }
     } catch (error) {
       console.log('尝试推流pusher err', error)
