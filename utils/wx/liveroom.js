@@ -7,7 +7,7 @@ var webimhandler = require('webim_handler.js');
 var tls = require('tls.js');
 var encrypt = require('encrypt.js');
 
-var serverDomain = '',		// 后台域名
+var serverDomain = 'https://lvb.qcloud.com',		// 后台域名
 	heart = '',				// 判断心跳变量
 	requestSeq = 0,			// 请求id
 	requestTask = [],		// 请求task

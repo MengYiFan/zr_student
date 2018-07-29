@@ -4,24 +4,35 @@
     <view class="call-live">
       <!-- 收  playerStatechange -->
       <live-player 
+        id="video-livePlayer"
         class="call-live-player"
+        wx:if="{{teachLive}}"
         src="{{teachLive}}" 
         mode="RTC" autoplay 
-        min-cache="0.1"
-        max-cache="0.3"
-        debug="{{true}}"
+        debug="{{playerConf.debug}}"
+        muted="{{playerConf.muted}}"
+        background-mute="{{playerConf.backgroundMute}}"
+        orientation="{{playerConf.orientation}}"
+        object-fit="{{playerConf.objectFit}}"
         bindstatechange="playerStatechange" 
         binderror="playerError" />
       <!-- 发 pusherStatechange -->
        <live-pusher 
-        audio-quality="high"
-        id="rtcpusher"
-        debug="{{true}}"
+        id="camera-push"
+        class="camera-push"
+        debug="{{controler.debug}}"
+        wx:if="{{userPusher}}"
         url="{{userPusher}}" 
-        mode="RTC" autopush
+        mode="{{controler.mode}}"
         enable-camera="{{controler.enableCamera}}"
         muted="{{controler.muted}}"
+        orientation="{{controler.orientation}}"
+        beauty="{{controler.beauty}}"
+        whiteness="{{controler.whiteness}}"
+        background-mute="{{controler.backgroundMute}}"
         bindstatechange="pusherStatechange"
+        hidden="{{controler.hide}}"
+        waiting-image="https://mc.qcloudimg.com/static/img/daeed8616ac5df256c0591c22a65c4d3/pause_publish.jpg"
         binderror="playerError" /> 
     </view>
     <view class="call-list">
@@ -33,6 +44,7 @@
           class="call-teacher-status {{nick ? '' : 'call-teacher-status-connection'}}">{{callTeacherName || '正在连接...'}}</text> 
       </view>
       <view class="cell-func-list">
+      <!-- bindCellMutedTap -->
         <view
           bindtap="bindCellMutedTap"
           class="cell-func-item">

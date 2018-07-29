@@ -20,7 +20,8 @@
     "pages/binding/index/binding",
     "pages/wx/authorize/authorize",
     "pages/templates/paytohelp/paytohelp",
-    "pages/help/pay/pay"
+    "pages/help/pay/pay",
+    "pages/help/demo/demo"
   ],
   "window": {
     "backgroundTextStyle": "light",

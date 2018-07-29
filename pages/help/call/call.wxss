@@ -13,6 +13,15 @@
   animation: show 0.8s linear 0s 1 forwards;
 }
 
+.call-live-player,
+.camera-push {
+  width: 100vw;
+  height: 250rpx;
+  position: absolute;
+  left: 9999rpx;
+  top: 9999rpx;
+}
+
 @keyframes show {
   100% {
     opacity: 1;
@@ -21,11 +30,7 @@
 
 .call-live {
   position: absolute;
-}
-
-.call-live-player {
-  width: 0;
-  height: 0;
+  z-index: 9999;
 }
 
 .call-teacher-info {

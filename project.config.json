@@ -1,14 +1,14 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.9.0",
+	"libVersion": "1.9.90",
 	"appid": "wx4457569bdefb422f",
 	"projectname": "%E5%B1%95%E6%B6%A6%E5%B0%8F%E7%A8%8B%E5%BA%8F(%E5%AE%B6%E9%95%BF%E7%AB%AF)",
 	"svr": "",
@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 17,
 			"list": [
 				{
 					"id": 0,
@@ -135,6 +135,11 @@
 					"name": "paytohelp",
 					"pathName": "pages/help/pay/pay",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "demo",
+					"pathName": "pages/help/demo/demo"
 				}
 			]
 		}
