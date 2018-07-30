@@ -9,6 +9,7 @@
         class="camera-push"
         autopush
         mode="RTC"
+        enable-camera="{{false}}"
         url="{{userPusher}}" 
         aspect="{{controler.aspect}}"
         min-bitrate="{{controler.minBitrate}}"

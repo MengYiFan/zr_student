@@ -31,8 +31,8 @@ Page({
       whiteness: 3.0,
       debug: false,
       hide: false,
-      minBitrate: 200,
-      maxBitrate: 400,
+      minBitrate: 100,
+      maxBitrate: 200,
       aspect: '3:4'
     },
     //
@@ -467,6 +467,7 @@ Page({
             teachLive: data.teacherPlayer,
             roomId: data.roomId
           })
+          wx.vibrateLong()
           this.data.videoContext.play()
           this.isSuccessCall = true
         } else {
@@ -575,6 +576,7 @@ Page({
             callTeacherName: msgArr[5],
             callTeacherCover: msgArr[6]
           })
+          wx.vibrateLong()
           that.data.videoContext.play()
         } else {
           this.roomId = msgArr[1]
