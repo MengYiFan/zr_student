@@ -2,38 +2,42 @@
 <view class="container">
   <view class="call-container">
     <view class="call-live">
-      <!-- 收  playerStatechange -->
-      <live-player 
-        id="video-livePlayer"
-        class="call-live-player"
-        wx:if="{{teachLive}}"
-        src="{{teachLive}}" 
-        mode="RTC" autoplay 
-        debug="{{playerConf.debug}}"
-        muted="{{playerConf.muted}}"
-        background-mute="{{playerConf.backgroundMute}}"
-        orientation="{{playerConf.orientation}}"
-        object-fit="{{playerConf.objectFit}}"
-        bindstatechange="playerStatechange" 
-        binderror="playerError" />
       <!-- 发 pusherStatechange -->
        <live-pusher 
+        wx:if="{{userPusher}}"
         id="camera-push"
         class="camera-push"
-        debug="{{controler.debug}}"
-        wx:if="{{userPusher}}"
+        autopush
+        mode="RTC"
         url="{{userPusher}}" 
-        mode="{{controler.mode}}"
-        enable-camera="{{controler.enableCamera}}"
-        muted="{{controler.muted}}"
-        orientation="{{controler.orientation}}"
+        aspect="{{controler.aspect}}"
+        min-bitrate="{{controler.minBitrate}}"
+        max-bitrate="{{controler.maxBitrate}}"
+        audio-quality="high"
         beauty="{{controler.beauty}}"
-        whiteness="{{controler.whiteness}}"
-        background-mute="{{controler.backgroundMute}}"
-        bindstatechange="pusherStatechange"
-        hidden="{{controler.hide}}"
+        muted="{{controler.muted}}"
         waiting-image="https://mc.qcloudimg.com/static/img/daeed8616ac5df256c0591c22a65c4d3/pause_publish.jpg"
-        binderror="playerError" /> 
+        background-mute="{{true}}"
+        debug="{{controler.debug}}"
+        bindstatechange="pusherStatechange"
+        binderror="playerError">
+        </live-pusher> 
+        <!-- 收  playerStatechange -->
+        <live-player 
+          id="video-livePlayer"
+          class="call-live-player"
+          autoplay
+          mode="RTC" 
+          wx:if="{{teachLive}}"
+          object-fit="{{playerConf.objectFit}}"
+          min-cache="0.1"
+          max-cache="0.3"
+          src="{{teachLive}}" 
+          debug="{{playerConf.debug}}"
+          background-mute="{{true}}"
+          bindstatechange="playerStatechange"
+          muted="{{playerConf.muted}}">
+          </live-player>
     </view>
     <view class="call-list">
       <view class="call-teacher-info">
