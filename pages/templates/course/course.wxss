@@ -46,8 +46,8 @@
   position: absolute;
   left: 0;
   bottom: 4rpx;
-  height: 28rpx;
-  line-height: 28rpx;
+  height: 32rpx;
+  line-height: 32rpx;
   display: flex;
 }
 

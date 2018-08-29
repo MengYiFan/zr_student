@@ -17,11 +17,11 @@ export const bindCourseTap = (context, e) => {
   }
     
   if (!courseid) {
-    wx.showToast({
-      title: '服务器繁忙',
-      icon: 'none',
-      duration: 2000
-    })
+    // wx.showToast({
+    //   title: '服务器繁忙',
+    //   icon: 'none',
+    //   duration: 2000
+    // })
     return
   }
   wx.navigateTo({
