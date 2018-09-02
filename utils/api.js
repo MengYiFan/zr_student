@@ -104,6 +104,8 @@ export const getTeacherOnline = (params) => wxRequest(params, C.IS_ONLINE)
 // 连线这个老师
 export const assignTeacher = (params) => wxRequest(params, C.HELP_ASSIGN)
 export const assignLink = (params) => wxRequest(params, C.ASSIGN_LINK)
+// 老师专栏文章列表
+export const getTeacherContentList = (params) => wxRequest(params, C.TEACHER_CONTENT_LIST)
 
 //  v2
 export const callAll = (params) => wxRequest(params, C.CALL_ALL)
@@ -143,6 +145,8 @@ export const getCourseDetail = (params) => wxRequest(params, C.COURSE_DETAIL)
 // 获得直播地址
 export const getVedioLive = (params) => wxRequest(params, C.VEDIO_LIVE)
 
+// 评论
+export const setViewState = (params) => wxRequest(params, C.VIWE_STATE)
 export const setVedioRank = (params) => wxRequest(params, C.VEDIO_RANK)
 export const setContentBank = (params) => wxRequest(params, C.CONTENT_BANK)
 export const setCourseBank = (params) => wxRequest(params, C.COURSE_BANK)
@@ -176,9 +180,6 @@ export const bindUser = (params) => wxRequest(params, C.BIND_USER)
 // 家长我的课程列表
 export const getCourseList = (params) => wxRequest(params, C.COURSE_LIST)
 
-
-// 老师专栏文章列表
-export const getTeacherContentList = (params) => wxRequest(params, C.TEACHER_CONTENT_LIST)
 // 用户订单列表
 export const getOrderList = (params) => wxRequest(params, C.ORDER_LIST)
 

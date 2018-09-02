@@ -36,6 +36,8 @@
               data-vedioname="{{item.vedioName}}"
               data-vedioMediaUrl="{{item.vedioMediaUrl}}"
               data-type="vedio"
+              data-dataKey="{{dataKey}}"
+              data-index="{{index}}"
               data-grade="{{!item.userGrade}}"
               catchtap="catchCourseEvaluateTap">
               <text

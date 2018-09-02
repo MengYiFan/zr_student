@@ -21,7 +21,8 @@
     "pages/wx/authorize/authorize",
     "pages/templates/paytohelp/paytohelp",
     "pages/help/pay/pay",
-    "pages/help/demo/demo"
+    "pages/help/demo/demo",
+    "pages/teacher/content/content"
   ],
   "window": {
     "backgroundTextStyle": "light",

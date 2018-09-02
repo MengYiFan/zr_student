@@ -1,0 +1,3 @@
+/* pages/teacher/content/content.wxss */
+@import "../../templates/course/course.wxss";
+@import "../../templates/empty/empty.wxss";

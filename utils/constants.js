@@ -21,6 +21,7 @@ export const IS_ONLINE = API_URI + '/consult/isonline'
 export const HELP_ASSIGN = API_URI + '/consult/assign'
 export const ASSIGN_LINK = API_URI + '/assign/link'
 export const TEACHER_COLUMN_SUBSCRIBE = API_URI + '/column/columnSubscribe'
+export const TEACHER_CONTENT_LIST = API_URI + '/column/teacherContentList'
 
 // help
 export const CATEGORY_AGE = API_URI + '/consult/category/age'
@@ -46,6 +47,7 @@ export const HANGUP_APPLY = API_URI + '/consult/hangup/apply'
 export const VEDIO_LIVE = API_URI +  '/vedio/getLivePlayUrl'
 
 // 评分
+export const VIWE_STATE = API_URI + '/column/parent/contentViewed'
 export const VEDIO_RANK = API_URI + '/vedio/parent/vedioRank'
 export const CONTENT_BANK = API_URI + '/column/parent/contentRank'
 export const COURSE_BANK = API_URI + '/course/parent/courseRank'
@@ -86,10 +88,8 @@ export const ORDER_DETAIL = API_URI + '/order/orderDetail'
 export const PHONE_VALIDATION_CODE = API_URI + '/none/sendcode'
 export const BIND_USER = API_URI + '/user/login/bindingUser'
 
-
 // !!!@@@
 export const COURSE_LIST = API_URI + '/course/parent/myCourseList'
 
-export const TEACHER_CONTENT_LIST = API_URI + '/teacher/column/teacherContentList'
 
 export const ORDER_LIST = API_URI + '/order/orderList'

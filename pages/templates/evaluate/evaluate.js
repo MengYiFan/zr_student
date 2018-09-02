@@ -24,7 +24,6 @@ export const bindSubmitScoreTap = (context, data) => {
 
   if (context.data.evaluate.score == 0) return
   
-  console.log(dataset)
   switch (dataset.type) {
     case 'vedio': {
       if(!dataset.grade) {
@@ -48,6 +47,7 @@ export const bindSubmitScoreTap = (context, data) => {
             context.setData({
               ['evaluate.switch']: false
             })
+            context.data.evaluate.cb && context.data.evaluate.cb()
           }
         }
       })
@@ -72,6 +72,7 @@ export const bindSubmitScoreTap = (context, data) => {
             context.setData({
               ['evaluate.switch']: false
             })
+            context.data.evaluate.cb && context.data.evaluate.cb()
           }
         }
       })
@@ -95,6 +96,7 @@ export const bindSubmitScoreTap = (context, data) => {
             context.setData({
               ['evaluate.switch']: false
             })
+            context.data.evaluate.cb && context.data.evaluate.cb()
           }
         }
       })

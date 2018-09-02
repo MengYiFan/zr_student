@@ -13,27 +13,32 @@ Page({
   data: {
     videoList: {
       flag: false,
-      data: []
+      data: [],
+      dataKey: 'videoList' // 我的订阅
     },
     evaluate: {
       score: 0,
       switch: false,
+      dataset: null,
       dataset: null
     },
     contentList: {
       rankState: true,
       direction: 'row',
-      data: []
+      data: [],
+      dataKey: 'contentList' // 我的订阅
     },
     courseList: {
       rankState: true,
       direction: 'column',
-      data: []
+      data: [],
+      dataKey: 'courseList' // 我的课程
     },
     subscribeList: {
       rankState: true,
       direction: 'column',
-      data: []
+      data: [],
+      dataKey: 'subscribeList' // 我的预约
     }
   },
   // 评分星星点击函数
@@ -46,12 +51,23 @@ Page({
   },
   // 唤起点评
   catchCourseEvaluateTap(e) {
-    console.log(e)
-    catchCourseEvaluateTap(this, e)
+    let cb = null,
+        datakey = e.currentTarget.dataset.datakey
+
+    if (datakey == 'contentList') {
+      cb = this.getMyContentListFn
+    } else if (datakey == 'courseList') {
+      cb = this.getMyCourseListFn
+    } else if (datakey == 'subscribeList') {
+      cb = this.getSubscribeListFn
+    } else if (datakey == 'videoList') {
+      cb = this.getMyVedioListFn
+    }
+    
+    catchCourseEvaluateTap(this, e, cb)
   },
   // 提交点评
   bindSubmitScoreTap(e) {
-    console.log(e)
     bindSubmitScoreTap(this, {
       userId: app.globalData.userId || wx.getStorageSync('userId')
     })
@@ -63,25 +79,8 @@ Page({
   bindVideoItemTap(e) {
     bindVideoItemTap(this, e)
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    // 我的课程
+  // 我的课程
+  getMyCourseListFn() {
     getMyCourseList({
       data: {
         "userId": app.globalData.userId || wx.getStorageSync('userId'),
@@ -103,23 +102,9 @@ Page({
         }
       }
     })
-    // 我的预约
-    getMyCourseList({
-      data: {
-        "userId": app.globalData.userId || wx.getStorageSync('userId'),
-        "courseType": 0
-      },
-      success: (res) => {
-        if (res.code == '1000') {
-          let data = res.data
-          console.log('我的预约: ', data)
-          this.setData({
-            ['subscribeList.data']: data
-          })
-        }
-      }
-    })
-    // 我的订阅
+  },
+  // 我的订阅
+  getMyContentListFn() { 
     getMyContentList({
       data: {
         "userId": app.globalData.userId || wx.getStorageSync('userId')
@@ -134,7 +119,9 @@ Page({
         }
       }
     })
-    // 我的视频列表
+  },
+  // 我的视频列表
+  getMyVedioListFn() {
     getMyVedioList({
       data: {
         "userId": app.globalData.userId,
@@ -150,6 +137,47 @@ Page({
         }
       }
     })
+  },
+  // 我的预约
+  getSubscribeListFn() {
+    getMyCourseList({
+      data: {
+        "userId": app.globalData.userId || wx.getStorageSync('userId'),
+        "courseType": 0
+      },
+      success: (res) => {
+        if (res.code == '1000') {
+          let data = res.data
+          console.log('我的预约: ', data)
+          this.setData({
+            ['subscribeList.data']: data
+          })
+        }
+      }
+    })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+  
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    this.getMyCourseListFn()
+    this.getMyContentListFn()
+    this.getSubscribeListFn()
+    this.getMyVedioListFn()
   },
 
   /**

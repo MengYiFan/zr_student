@@ -18,7 +18,8 @@ Page({
       rankState: false,
       subscribeState: true,
       direction: 'row',
-      data: []
+      data: [],
+      showType: 'list'
     },
     teacherId: null,
     online: false,
@@ -118,7 +119,7 @@ Page({
     // 获得老师详情
     getTeacherDetail({
       data: {
-        'userId': app.globalData.userId,
+        'userId': app.globalData.userId || wx.getStorageSync('userId'),
         'teacherId': teacherId
       },
       success: (res) => {

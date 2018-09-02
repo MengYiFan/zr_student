@@ -32,7 +32,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 17,
+			"current": 18,
 			"list": [
 				{
 					"id": 0,
@@ -62,7 +62,7 @@
 					"id": 4,
 					"name": "teacherDetail",
 					"pathName": "pages/teacher/detail/detail",
-					"query": "teacherId=2423&userId=2387"
+					"query": "teacherId=2459&userId=2454"
 				},
 				{
 					"id": 5,
@@ -139,7 +139,14 @@
 				{
 					"id": -1,
 					"name": "demo",
-					"pathName": "pages/help/demo/demo"
+					"pathName": "pages/help/demo/demo",
+					"query": ""
+				},
+				{
+					"id": 18,
+					"name": "teacher content",
+					"pathName": "pages/teacher/content/content",
+					"query": "teacherId=2459&userId=2454&columnId=17&teachername=mish"
 				}
 			]
 		}

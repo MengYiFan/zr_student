@@ -6,6 +6,7 @@
       wx:key="{{index}}"
       bindtap="bindCourseTap" 
       wx:for-index="index"
+      data-showType="{{showType}}"
       data-courseOfferId="{{item.courseOfferId}}"
       data-courseId="{{item.courseId}}"
       data-columnId="{{item.columnId}}"
@@ -25,6 +26,7 @@
               catchtap="catchCourseSubscribeTap" 
               data-type="subscribe"
               data-index="{{index}}"
+              data-columnContentId="{{item.columnContentId}}"
               data-columnId="{{item.columnId}}">
               订阅
             </span>
@@ -41,9 +43,14 @@
               wx:if="{{item.userGrade}}">
               {{item.userGrade}}星
             </span>
+            <span wx:elif="{{!item.contentViewTime}}">
+              未读
+            </span>
             <span 
               catchtap="catchCourseEvaluateTap" 
               data-type="content"
+              data-dataKey="{{dataKey}}"
+              data-index="{{index}}"
               data-columnId="{{item.columnId}}"
               data-columnContentId="{{item.columnContentId}}"
               wx:else>
@@ -55,7 +62,11 @@
           {{item.courseName || item.columnContentTitle || item.columnName || '标题'}}</view>
         <view class="content-detail-name text-overflow">
           <block wx:if="{{item.columnIntroduction}}">{{item.columnIntroduction}}</block>
-          <block wx:else>{{item.teacherName || item.teacherNickname || '老师名称'}}</block> 
+          <block wx:else>
+            <block wx-if="{{!hideTeacher}}">
+              {{item.teacherName || item.teacherNickname || ''}}
+            </block>
+          </block> 
         </view>
         <view class="content-detail-other">
           <view class="content-detail-icon">
@@ -70,7 +81,7 @@
               src="../../../images/other/tag.png" 
               class="content-detail-icon-image"></image>
             <block wx:if="{{item.columnSubjectArea}}">{{item.columnSubjectArea}}</block>
-            <block wx:else>{{item.subjectIds || item.columnName || '标签'}}</block>
+            <block wx:else>{{item.subjectIds || item.columnName || '无'}}</block>
           </view>
         </view>
       </view>
@@ -83,9 +94,11 @@
       wx:key="{{index}}"
       data-courseId="{{item.courseId}}"
       bindtap="bindCourseTap"  
+      data-showType="{{showType}}"
       data-courseOfferId="{{item.courseOfferId}}"
       data-courseId="{{item.courseId}}"
       data-columnId="{{item.columnId}}"
+      data-columnContentId="{{item.columnContentId}}"
       data-columnContentUrl="{{item.columnContentUrl}}"
       data-teacherId="{{item.teacherId}}"
       data-mish="mishssdad"
@@ -104,6 +117,8 @@
             <span
               catchtap="catchCourseEvaluateTap" 
               data-type="course"
+              data-index="{{index}}"
+              data-dataKey="{{dataKey}}"
               data-courseId="{{item.courseId}}"
               wx:if="{{item.courseSigninState == 1 && !item.courseOfferCustomerGrade}}">
               待评价
@@ -115,7 +130,8 @@
           </view>
         </block>
         <view class="content-detail-title text-overflow">{{item.courseName || '标题名字'}}</view>
-        <view class="content-detail-name text-overflow">{{item.teacherName || '老师名字'}}</view>
+        <view wx-if="{{!hideTeacher}}"
+              class="content-detail-name text-overflow">{{item.teacherName || ''}}</view>
         <view class="content-detail-icon">
           <image 
             src="../../../images/other/tag.png" mode="widthFix"  
