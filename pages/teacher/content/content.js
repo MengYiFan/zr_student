@@ -1,4 +1,5 @@
 // pages/teacher/content/content.js
+import { obj2uri } from '../../../utils/common'
 import { getTeacherContentList } from '../../../utils/api'
 import { bindCourseTap, catchCourseSubscribeTap } from '../../templates/course/course'
 
@@ -18,6 +19,7 @@ Page({
       hideTeacher: true
     }
   },
+  options: null,
 
   // 课程item点击处理
   bindCourseTap(e) {
@@ -35,6 +37,7 @@ Page({
   onLoad: function (options) {
     let self = this
 
+    self.options = options
     if (options.teachername) {
       wx.setNavigationBarTitle({
         title: `${options.teachername} 的专栏文章`,
@@ -117,6 +120,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    return {
+      title: '润育商平台，您身边的教育好伴侣',
+      path: `pages/teacher/content/content?${obj2uri(this.options)}`
+    }
   }
 })
