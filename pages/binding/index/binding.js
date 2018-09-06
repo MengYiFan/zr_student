@@ -54,6 +54,7 @@ Page({
   redirect: '',
   type: '',
   params: '',
+  canGetCode: true,
   // 显示和隐藏 密码 开关
   catchPasswordTypeSwitchTap() {
     let passwordInputSwitch = this.data.passwordInputSwitch
@@ -172,13 +173,20 @@ Page({
       return
     }
 
-    if (!this.data.canSendCode)
+    if (!this.data.canSendCode
+        || !this.canGetCode)
       return
 
+    this.canGetCode = false
     // 获得短信验证码
     phoneValidationCode({
       method: 'get',
       query: '/' + this.data.inputPhoneValue,
+      complete: res => {
+        setTimeout(() => {
+          this.canGetCode = true
+        }, 1200)
+      },
       success: res => {
         if (res.code == '1000') {
           this.setData({
@@ -211,6 +219,12 @@ Page({
               })
             }
           }, 1000)
+        } else {
+          wx.showToast({
+            title: res.data,
+            icon: 'none',
+            duration: 2000
+          })
         }
       }
     }, this.data.inputPhoneValue)
@@ -243,7 +257,7 @@ Page({
         ['inputFlag.phone']: -1
       })
     } else {
-      // console.log('xxx')
+
     }
   },
   // 生成随机数
@@ -285,7 +299,6 @@ Page({
         },
         success: (res) => {
           if (res.code == '1000') {
-            console.log(res.data)
             wx.setStorageSync('userMobile', res.data.userMobile)
             
             if (that.type == 'tab') {
@@ -310,7 +323,6 @@ Page({
   },
   // 获得用户信息
   getUserInfo: function (e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
