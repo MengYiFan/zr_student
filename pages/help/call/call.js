@@ -95,6 +95,7 @@ Page({
   continueHeartBeat: true,
   teachLive: '',
   userPusher: '',
+  authHangupFlag: false,
   // 挂断
   bindCallHangupTap(e, caseId, type) {
     if (type != 'passivity' || !type) {// 主动发起
@@ -116,12 +117,12 @@ Page({
           this.isHangupFlag = true
         },
         success: res => {
-          if (res.code == '1000') {
+          if (res.code == '1000' && !this.authHangupFlag) {
             wx.switchTab({
               url: '../../../pages/help/index/help'
             })
           } else {
-            if (!this.isSuccessCall) {
+            if (!this.isSuccessCall && !this.authHangupFlag) {
               wx.switchTab({
                 url: '../../../pages/help/index/help'
               })
@@ -129,7 +130,7 @@ Page({
             }
             wx.showToast({
               icon: 'none',
-              title: '退出房间失败..'
+              title: '退出房间ERR..'
             })
             setTimeout(function () {
               wx.hideLoading()
@@ -158,7 +159,7 @@ Page({
         success: (res) => {
           if (res.code == '1000') {
             if (!this.data.canHangupFlag) {
-              if (!this.isIMLoginFailFlag) {
+              if (!this.isIMLoginFailFlag && !this.authHangupFlag) {
                 wx.switchTab({
                   url: '../../../pages/help/index/help'
                 })
@@ -182,7 +183,7 @@ Page({
                     })
                     setTimeout(function () {
                       wx.hideLoading()
-                      if (!this.isIMLoginFailFlag) {
+                      if (!this.isIMLoginFailFlag && !this.authHangupFlag) {
                         wx.switchTab({
                           url: '../../../pages/help/index/help'
                         })
@@ -538,16 +539,18 @@ Page({
     } else {
       console.error('IM 尝试登录三次均失败')
       this.isIMLoginFailFlag = true
-      wx.showToast({
-        title: '需要先授权基础信息才能操作...',
-        icon: 'none',
-        duration: 2000
+      
+      this.authHangupFlag = true
+      wx.showModal({
+        title: '提示',
+        content: '需要先授权基础信息才能操作...',
+        showCancel: false,
+        success(res) {
+          wx.redirectTo({
+            url: `../../../pages/wx/authorize/authorize`,
+          })
+        }
       })
-      setTimeout(() => {
-        wx.redirectTo({
-          url: `../../../pages/wx/authorize/authorize`,
-        })
-      }, 1000)
     }
   },
   loginIM(data, failFn) {
@@ -614,7 +617,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {    
+  onReady: function () {  
     this.setData({
       cameraContext: wx.createLivePusherContext('camera-push'),
       videoContext: wx.createLivePlayerContext("video-livePlayer")

@@ -7,6 +7,7 @@ export const bindCourseTap = (context, e) => {
       courseid = dataset.courseid,
       columnid = dataset.columnid,
       columnContentId = dataset.columncontentid,
+      contentTitle = dataset.contenttitle || '查看详情',
       courseofferid = dataset.courseofferid,
       columncontenturl = dataset.columncontenturl,
       showType = dataset.showtype
@@ -27,7 +28,7 @@ export const bindCourseTap = (context, e) => {
       success(res) {
         if (res.code == '1000') {
           wx.navigateTo({
-            url: '../../../pages/course/webview/webview?url=' + columncontenturl,
+            url: `../../../pages/course/webview/webview?url=${columncontenturl}&title=${contentTitle}`,
           })
         } else {
           wx.showToast({

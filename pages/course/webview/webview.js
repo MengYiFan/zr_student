@@ -16,6 +16,12 @@ Page({
     this.setData({
       webViewUrl
     })
+
+    if (options.title) {
+      wx.setNavigationBarTitle({
+        title: options.title.trim(),
+      })
+    }
   },
 
   /**

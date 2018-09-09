@@ -21,22 +21,18 @@ Page({
       success: function (res) {
         console.log(res)
         app.globalData.code = res.code || null
-        if (wx.getStorageSync('userInfo')) {
-          app.globalData.userInfo = wx.getStorageSync('userInfo')
-          typeof cb == "function" && cb()
-        } else {
-          wx.getUserInfo({
-            success: function (res) {
-              app.globalData.userInfo = res.userInfo
-              wx.setStorageSync('userInfo', res.userInfo)
-              typeof cb == "function" && cb()
-            },
-            // 如果用户拒绝授权
-            fail: function (res) {
-              this.getUserInfoHandle()
-            }
-          })
-        }
+        
+        wx.getUserInfo({
+          success: function (res) {
+            app.globalData.userInfo = res.userInfo
+            wx.setStorageSync('userInfo', res.userInfo)
+            typeof cb == "function" && cb()
+          },
+          // 如果用户拒绝授权
+          fail: function (res) {
+            this.getUserInfoHandle()
+          }
+        })
       }
     })
   },
@@ -102,6 +98,8 @@ Page({
     if (!this.redirectUrl || this.redirectUrl == 'pages/wx/authorize/authorize') {
       this.redirectUrl = 'pages/index/index/index'
     }
+
+    wx.removeStorage('userInfo')
   },
   getUserInfoHandle() {
     var that = this
