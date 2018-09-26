@@ -35,6 +35,7 @@ Page({
     canPlayVideo: true
   },
   navBarTitle: '观看视频',
+  vediomediaurlquery: null,
   options: null,
   // 视频试看完了
   bindVideoEnded(e) {
@@ -180,8 +181,10 @@ Page({
    */
   onLoad: function (options) {
     options.vediomediaurl = decodeURIComponent(options.vediomediaurl)
-    let vediomediaurlquery = wx.getStorageSync('vediomediaurlquery')
+
+    let vediomediaurlquery = (options.vediomediaurlquery || wx.getStorageSync('vediomediaurlquery')).replace(/\$/gi, '=').replace(/\./gi, '&')
     wx.removeStorageSync('vediomediaurlquery')
+    
     if (-1 != vediomediaurlquery.search('exper=0')) {
       this.setData({
         payStatus: true
