@@ -2,6 +2,7 @@
 import { bindVideoItemTap } from '../../templates/video/video'
 import { bindCourseTap } from '../../templates/course/course'
 import { getListContent, getListVedio, searchContent, searchVedio } from '../../../utils/api'
+import { obj2uri } from '../../../utils/common'
 
 var app = getApp()
 
@@ -24,6 +25,7 @@ Page({
       hiddenBtn: true,
       data: []
     },
+    tabName: 'article', // article || video
     options: null
   },
   // 课程跳转
@@ -88,6 +90,11 @@ Page({
           })
         }
       }
+    })
+  },
+  bindTabsTap(e) {
+    this.setData({
+      tabName: e.currentTarget.dataset.name
     })
   },
   /**
@@ -173,6 +180,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    return {
+      title: '搜索',
+      path: `/pages/course/list/list?${obj2uri(this.data.options)}`
+    }
   }
 })

@@ -77,7 +77,7 @@
           class="teacher-item"
           bindtap="bindTeacherDetailTap">
           <image
-            src="{{item.userPortraitUrl || tempImg[8 - idx]}}" 
+            src="{{item.userPo213}}" 
             class="teacher-item-image"></image>
           <view class="teacher-item-name text-overflow">{{item.userNickname}}</view>
         </view>

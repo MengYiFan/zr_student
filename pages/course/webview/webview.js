@@ -1,4 +1,6 @@
 // pages/course/webview/webview.js
+import { obj2uri } from '../../../utils/common'
+
 Page({
 
   /**
@@ -7,17 +9,20 @@ Page({
   data: {
     webViewUrl: ''
   },
-
+  options: null,
+  navBarTitle: '文章详情',
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.options = options
     let webViewUrl = options.url
     this.setData({
       webViewUrl
     })
 
     if (options.title) {
+      this.navBarTitle = options.title.trim()
       wx.setNavigationBarTitle({
         title: options.title.trim(),
       })
@@ -70,6 +75,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    return {
+      title: this.navBarTitle,
+      path: `pages/course/webview/webview?${obj2uri(this.options)}`
+    }
   }
 })

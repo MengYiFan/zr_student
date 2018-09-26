@@ -3,6 +3,7 @@ import { bindVideoItemTap } from '../../templates/video/video'
 import { payData, bindPayClose, bindDiscountsSwitch, bindDiscountsChange, bindPaySubmitTap } from '../../templates/pay/pay'
 import { getVedioLive, getVideoList, recordVedio, payVedioInit } from '../../../utils/api'
 import { formatTimestamp } from '../../../utils/util'
+import { obj2uri } from '../../../utils/common'
 
 var app = getApp()
 
@@ -33,6 +34,7 @@ Page({
     videoContext: '',
     canPlayVideo: true
   },
+  navBarTitle: '观看视频',
   options: null,
   // 视频试看完了
   bindVideoEnded(e) {
@@ -200,7 +202,7 @@ Page({
       success: (res) => {
         if (res.code == '1000') {
           let data = res.data
-          console.log('推荐视频列表: ', data)
+
           this.setData({
             ['videoList.data']: data
           })
@@ -213,8 +215,10 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    let title = '[' + this.options.teachernickname + '] ' + this.options.vedioname
+    this.navBarTitle = title
     wx.setNavigationBarTitle({
-      title: '[' + this.options.teachernickname + '] ' + this.options.vedioname
+      title: title
     })
   },
 
@@ -259,8 +263,8 @@ Page({
   onShareAppMessage: function () {
     let options = this.data.options
     return {
-      title: '【原创】我是视频的title · 润教育城',
-      path: `pages/video/play/play?vedioid=${options.vedioId}&money=${options.money}`
+      title: this.navBarTitle || '观看视频',
+      path: `pages/video/play/play?${obj2uri(options)}`
     }
   }
 })

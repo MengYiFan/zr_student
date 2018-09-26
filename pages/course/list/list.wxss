@@ -59,8 +59,34 @@
   top: 13rpx;
 }
 
+.tabs {
+  position: fixed;
+  top: 80rpx;
+  left: 0;
+  background-color: #F6F7F8;
+  width: calc(100% - 40rpx);
+  height: 100rpx;
+  margin: 0 20rpx;
+  display: flex;
+  z-index: 9999;
+}
+
+.content-title {
+  flex: 1 1 auto;
+  height: 100rpx;
+  padding: 20rpx 30rpx;
+  box-sizing: border-box;
+  border-bottom: 4rpx solid transparent;
+  margin-bottom: 40rpx;
+  text-align: center;
+}
+
+.content-title.activite {
+  border-bottom-color: #ed1c24;
+}
+
 .search-result {
-  margin: 108rpx 0 40rpx;
+  margin: 220rpx 0 40rpx;
 }
 
 .search-result-video {

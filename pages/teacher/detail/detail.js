@@ -1,6 +1,7 @@
 import { bindVideoItemTap } from '../../templates/video/video'
 import { bindCourseTap, catchCourseSubscribeTap } from '../../templates/course/course'
 import { getTeacherDetail, getTeacherOnline, assignTeacher } from '../../../utils/api'
+import { obj2uri } from '../../../utils/common'
 
 var app = getApp()
 
@@ -25,6 +26,8 @@ Page({
     online: false,
     assignBtnFlag: true
   },
+  options: null,
+  userRealname: '',
   teacherTypeCode: null,
   isFree: 1,
   // 视频点击函数
@@ -94,6 +97,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.options = options
     let teacherId = options.teacherId
     this.setData({
       teacherId
@@ -111,11 +115,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let teacherId = this.data.teacherId
-    console.log({
-      'userId': app.globalData.userId,
-      'teacherId': teacherId
-    })
+    let teacherId = this.options.teacherId
     // 获得老师详情
     getTeacherDetail({
       data: {
@@ -134,6 +134,7 @@ Page({
           })
           this.teacherTypeCode = data.teacherTypeCode || 'N'
           this.isFree = this.teacherTypeCode == 'N' ? 1 : 2
+          this.userRealname = data.userRealname
           wx.setNavigationBarTitle({
             title: `${data.userRealname} 详情`
           })
@@ -191,14 +192,8 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '给家长的一封信',
-      path: '/pages/teacher/detail/detail?teacherid=' + this.data.teacherId,
-      success: function (res) {
-        // 转发成功
-      },
-      fail: function (res) {
-        // 转发失败
-      }
+      title: `${this.userRealname || '老师'} 详情`,
+      path: `pages/teacher/detail/detail?${obj2uri(options)}`
     }
   }
 })

@@ -26,27 +26,31 @@
     </view>
     <!-- 搜索结果 -->
     <view class="search-result">
-      <view class="search-result-course">
-        <view class="content-title">
+      <view class="tabs">
+        <view class="content-title {{tabName === 'article' ? 'activite' : ''}}" bindtap="bindTabsTap" data-name="article">
           <image
             src="../../../images/other/course.png" 
             class="content-title-image"></image>
           <text class="content-title-text">文章</text>
         </view>
-        <!-- 暂无 -->
-        <template wx:if="{{!searchResult.data.length}}" is="empty"></template>
-        <template is="course" data="{{...searchResult}}"/>
-      </view>
-      <view class="search-result-video">
-        <view class="content-title">
+        <view class="content-title {{tabName === 'video' ? 'activite' : ''}}" bindtap="bindTabsTap" data-name="video">
           <image
             src="../../../images/other/video.png" 
             class="content-title-image"></image>
           <text class="content-title-text">视频</text>
         </view>
-          <!-- 暂无 -->
-          <template wx:if="{{!videoList.data.length}}" is="empty"></template>
-          <template is="video" data="{{...videoList}}"/>
+      </view>
+      <view class="search-result-course" 
+            wx:if="{{tabName == 'article'}}">
+        <!-- 暂无 -->
+        <template wx:if="{{!searchResult.data.length}}" is="empty"></template>
+        <template is="course" data="{{...searchResult}}"/>
+      </view>
+      <view class="search-result-video" 
+            wx:if="{{tabName == 'video'}}">
+        <!-- 暂无 -->
+        <template wx:if="{{!videoList.data.length}}" is="empty"></template>
+        <template is="video" data="{{...videoList}}"/>
       </view>
     </view>
   </view>

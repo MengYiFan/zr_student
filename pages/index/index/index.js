@@ -9,18 +9,6 @@ var app = getApp()
 
 Page({
   data: {
-    tempImg: [
-      '../../../images/temp/1.jpeg',
-      '../../../images/temp/2.jpeg',
-      '../../../images/temp/3.jpeg',
-      '../../../images/temp/4.jpeg',
-      '../../../images/temp/5.jpeg',
-      '../../../images/temp/6.jpeg',
-      '../../../images/temp/7.jpeg',
-      '../../../images/temp/8.jpeg',
-      '../../../images/temp/9.jpeg',
-      '../../../images/temp/10.jpeg'
-    ],
     isScroll: true,
     pay: {},
     swiper: {

@@ -62,7 +62,6 @@ Page({
         options = this.options,
         currentTime = +new Date()
       
-    console.log(this.tapTime)
     if (currentTime - this.tapTime > 1000) {
       this.tapTime = +new Date()
       console.log(this.tapTime)
@@ -166,7 +165,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('options@', options)
     this.options = options
     this.setData({
       sourceId: options.courseofferid
@@ -286,6 +284,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    return {
+      title: '直播',
+      path: `pages/video/live/live?${obj2uri(this.options)}`
+    }
   }
 })
