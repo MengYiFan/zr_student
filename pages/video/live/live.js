@@ -1,5 +1,5 @@
 // pages/video/live/live.js
-import { getVedioLive, rewardMe } from '../../../utils/api'
+import { getVedioLive, isOrderUnpaid, rewardMe } from '../../../utils/api'
 import { getRandomColor } from '../../../utils/common'
 import { init, setListener, sendRoomTextMsg } from '../../../utils/wx/rtcroom'
 
@@ -55,51 +55,78 @@ Page({
   },
   // 点击打赏事件
   bindRewardTapHandle(e) {
-    let dataset = e.target.dataset,
-        desc = dataset.desc,
-        price = dataset.price,
-        id = dataset.id,
-        options = this.options,
-        currentTime = +new Date()
-      
+    let currentTime = +new Date()
     if (currentTime - this.tapTime > 1000) {
       this.tapTime = +new Date()
-      console.log(this.tapTime)
-      rewardMe({
+      isOrderUnpaid({
         data: {
-          userId: app.globalData.userId || wx.getStorageSync('userId'),
-          teacherId: options.teacherUserId,
-          teacherName: options.teacherName,
-          orderItemObjectId: id,
-          orderItemDesc: desc,
-          orderItemPrice: price
+          userId: app.globalData.userId || wx.getStorageSync('userId')
         },
         success: res => {
-          if (res.code == '1000') {
+          if (res.code == 1000) {
+            this.rewardMeHandle(e)
+          } else if (res.code == 1001) {
             wx.showToast({
-              mask: true,
-              title: res.msg,
+              title: res.data,
               icon: 'none',
-              duration: 5000
+              duration: 3000
             })
           } else {
             wx.showToast({
-              title: '打赏失败',
+              title: '服务器繁忙..',
               icon: 'none',
-              duration: 5000
+              duration: 3000
             })
           }
         }
       })
     }
   },
+  rewardMeHandle(e) {
+    let dataset = e.target.dataset,
+      desc = dataset.desc,
+      price = dataset.price,
+      id = dataset.id,
+      options = this.options
+
+    rewardMe({
+      data: {
+        userId: app.globalData.userId || wx.getStorageSync('userId'),
+        teacherId: options.teacherUserId,
+        teacherName: options.teacherName,
+        orderItemObjectId: id,
+        orderItemDesc: desc,
+        orderItemPrice: price
+      },
+      success: res => {
+        if (res.code == '1000') {
+          wx.showModal({
+            title: '提示',
+            content: res.data || '钱包余额不足，请您先充值。',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                wx.redirectTo({
+                  url: '../../../pages/self/bill/bill'
+                })
+              }
+            }
+          })
+        } else {
+          wx.showToast({
+            title: '打赏失败',
+            icon: 'none',
+            duration: 5000
+          })
+        }
+      }
+    })
+  },
   // 展示打赏列表
   showRewardListSwitchHandle(e) {
-    console.log(this.data.showRewardListFlag, '@@')
     this.setData({
       showRewardListFlag: !this.data.showRewardListFlag
     })
-    console.log(this.data.showRewardListFlag, '@@')
   },
   // 状态码
   playerStatechange(e) {

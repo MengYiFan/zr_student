@@ -169,6 +169,7 @@ export const walletPayInt = (params) => wxRequest(params, C.WALLET_PAY_INIT)
 
 export const payVedioInit = (params) => wxRequest(params, C.PAY_VEDIO_INIT)
 
+export const isOrderUnpaid = (params) => wxRequest(params, C.ORDER_UNPAID)
 export const rewardMe = (params) => wxRequest(params, C.REWARD)
 
 // 验证码

@@ -79,6 +79,7 @@ export const PAY_CLOSE = API_URI + '/payment/tradeClose'
 
 export const WALLET_PAY_INIT = API_URI + '/user/createRechargeWalletOrder'
 
+export const ORDER_UNPAID = API_URI + '/order/orderUnpaid'
 export const REWARD = API_URI + '/course/parent/courseTips'
 //
 export const PAY_VEDIO_INIT = API_URI + '/vedio/createVedioOrder'
