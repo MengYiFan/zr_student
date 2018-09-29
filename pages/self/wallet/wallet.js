@@ -16,7 +16,7 @@ Page({
     conf: null,
     data: {},
     pay: {},
-    payNumberList: [0.01, 50, 100]
+    payNumberList: [1, 50, 100]
   },
   options: {},
 
