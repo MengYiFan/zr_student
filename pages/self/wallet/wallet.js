@@ -1,5 +1,5 @@
 // pages/self/wallet/wallet.js
-import { loyaltyConf } from '../../../conf/index'
+import { walletTxnConf, walletTraceConf } from '../../../conf/index'
 import { getWalletLoyaltyInfo, walletPayInt } from '../../../utils/api'
 import { payData, bindPayClose, bindDiscountsSwitch, bindDiscountsChange, bindPaySubmitTap } from '../../templates/pay/pay'
 
@@ -12,7 +12,6 @@ Page({
    */
   data: {
     walletRecordList: null,
-    pointTotal: 0,
     conf: null,
     data: {},
     pay: {},
@@ -32,7 +31,8 @@ Page({
    */
   onReady: function () {
     this.setData({
-      conf: loyaltyConf
+      walletTxnConf,
+      walletTraceConf
     })
   },
   /**
@@ -46,18 +46,15 @@ Page({
       },
       success: (res) => {
         if (res.code == '1000') {
-          console.log(res.data)
-          let walletRecordList = res.data.walletRecordList,
-            pointTotal = 0
+          let walletRecordList = res.data.walletRecordList
           // 积分时间格式转换
           for (var [index, item] of walletRecordList.entries()) {
             let time = new Date(item.loyaltyTxnTime)
             walletRecordList[index].date = time.toLocaleString()
-            pointTotal += item.loyaltyPoint
           }
+
           this.setData({
             walletRecordList,
-            pointTotal,
             data: res.data
           })
         }

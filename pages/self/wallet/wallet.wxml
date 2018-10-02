@@ -17,10 +17,14 @@
     <block wx:for="{{walletRecordList}}" wx:key="{{index}}">
       <view class="wallet-detail-item">
         <view class="wallet-detail-item-left">
-          {{conf[item.loyaltyTraceType] || item.loyaltyTraceType}}
-          <label class="wallet-detail-item-time">{{item.date}}</label>
+          {{walletTxnConf[item.walletTxnType] || item.walletTxnType}}
+          <label class="wallet-detail-item-time">
+            {{item.walletTxnTime}}
+          </label>
         </view>
-        <view class="wallet-detail-item-right">+{{item.loyaltyPoint}}</view>
+        <view class="wallet-detail-item-right">
+          {{item.walletTxnAmount}} 元
+        </view>
       </view>
     </block>
   </scroll-view>
