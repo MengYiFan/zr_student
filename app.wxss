@@ -24,7 +24,7 @@ body, page {
   height: 100%;
 }
 
-//
+/* CONTENT STYLE */
 .content {
   margin-top: 20rpx;
   padding: 30rpx 20rpx; 
@@ -181,4 +181,19 @@ page {
 
 .common-btn-disabled {
   background-color: #ffd6d8;
+}
+
+picker {
+  position: relative;
+}
+
+picker::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 20rpx;
+  transform: translateY(-50%);
+  border-left: 10rpx solid transparent;
+  border-right: 10rpx solid transparent;
+  border-top: 20rpx solid rgba(180, 180, 180, .8);
 }
