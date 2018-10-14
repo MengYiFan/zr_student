@@ -107,3 +107,10 @@ export const getRandomColor = () => {
   }
   return '#' + rgb.join('')
 }
+
+export const getImageUrl = (str) => {
+  if (-1 == str.search(/^(http|https):\/\//gi)) {
+    str = `https://app.shangnarxue.com/edq/${str}`
+  }
+  return str
+}

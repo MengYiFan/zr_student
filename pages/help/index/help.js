@@ -111,7 +111,7 @@ Page({
             this.data.ageKeys.push(item.key)
             return item.val
           })
-          console.log(data, this.data.ageKeys)
+
           this.setData({
             ageArr: data
           })
@@ -127,7 +127,7 @@ Page({
             this.data.qusKeys.push(item.key)
             return item.val
           })
-          console.log(data, this.data.qusKeys)
+
           this.setData({
             qusArr: data
           })

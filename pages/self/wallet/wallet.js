@@ -16,7 +16,10 @@ Page({
     conf: null,
     data: {},
     pay: {},
-    payNumberList: [1, 50, 100]
+    payNumberList: {
+      values: [],
+      options: []
+    }
   },
   options: {},
 
@@ -35,18 +38,14 @@ Page({
       conf: loyaltyConf
     })
   },
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    // 积分
+  getWalletLoyaltyInfoFn() {
+    // 钱包数据
     getWalletLoyaltyInfo({
       data: {
         "userId": app.globalData.userId || wx.getStorageSync('userId')
       },
       success: (res) => {
         if (res.code == '1000') {
-          console.log(res.data)
           let walletRecordList = res.data.walletRecordList,
             pointTotal = 0
           // 积分时间格式转换
@@ -55,27 +54,43 @@ Page({
             walletRecordList[index].date = time.toLocaleString()
             pointTotal += item.loyaltyPoint
           }
+
+          let payNumberList = { values: [], options: [] }
+          Object.keys(res.data.chargeMoneyList).forEach(key => {
+            payNumberList.values.push(key)
+            payNumberList.options.push(res.data.chargeMoneyList[key])
+          })
+
           this.setData({
             walletRecordList,
             pointTotal,
-            data: res.data
+            data: res.data,
+            payNumberList
           })
         }
       }
     })
   },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    this.getWalletLoyaltyInfoFn()
+  },
   bindPickerChange: function (e) {
-    this.topUpHandle(this.data.payNumberList[e.detail.value])
+    let v = e.detail.value, payNumberList = this.data.payNumberList
+    this.topUpHandle(payNumberList.options[v], payNumberList.values[v])
   },
   // 关闭支付窗口
   bindPayClose() {
     bindPayClose(this)
   },
-  topUpHandle(money) {
+  topUpHandle(money, value) {
     let that = this
     walletPayInt({
       data: {
-        rechargeBalance: 50,
+        // rechargeBalance: money,
+        rechargeOption: value,
         userId: app.globalData.userId || wx.getStorageSync('userId')
       },
       success(res) {

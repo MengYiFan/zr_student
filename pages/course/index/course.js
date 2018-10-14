@@ -3,6 +3,7 @@ import { bindVideoItemTap } from '../../templates/video/video'
 import { bindStartScoreTap, bindEvaluateClose, bindSubmitScoreTap } from '../../templates/evaluate/evaluate'
 import { catchCourseEvaluateTap, bindCourseTap } from '../../templates/course/course'
 import { getMyContentList, getMyCourseList, getMyVedioList } from '../../../utils/api'
+import { getImageUrl } from '../../../utils/common'
 
 var app = getApp()
 
@@ -114,7 +115,11 @@ Page({
           let data = res.data
           console.log('我的订阅: ', data)
           this.setData({
-            ['contentList.data']: data
+            ['contentList.data']: data.map(item => {
+              return Object.assign({}, item, {
+                columnContentImgUrl: getImageUrl(item.columnContentImgUrl)
+              })
+            })
           })
         }
       }

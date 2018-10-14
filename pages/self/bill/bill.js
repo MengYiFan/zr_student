@@ -94,7 +94,7 @@ Page({
   },
   // 关闭支付窗口
   bindPayClose() {
-    bindPayClose(this)
+    bindPayClose(this, this.getOrderListHandle())
   },
   bindPaySubmitTap(e) {
     bindPaySubmitTap(this, e, 'billPay')
@@ -115,11 +115,7 @@ Page({
   onReady: function () {
 
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+  getOrderListHandle() {
     // 积分
     getOrderList({
       data: {
@@ -140,6 +136,12 @@ Page({
         }
       }
     })
+  },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    this.getOrderListHandle()
   },
 
   /**

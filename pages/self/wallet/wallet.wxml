@@ -26,7 +26,7 @@
   </scroll-view>
   <picker bindchange="bindPickerChange" 
           value="{{index}}" 
-          range="{{payNumberList}}">
+          range="{{payNumberList.options}}">
     <view class="picker top-up">
       充值
     </view>

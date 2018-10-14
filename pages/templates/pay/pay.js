@@ -37,10 +37,11 @@ export const payData = {
 /*
  * 关闭支付窗口
  */
-export const bindPayClose = (context) => {
+export const bindPayClose = (context, cb) => {
   context.setData({
     ['pay.switch']: false
   })
+  cb && cb()
 }
 
 /*

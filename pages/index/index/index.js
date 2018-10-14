@@ -1,5 +1,5 @@
 //index.js
-import { chunkArr } from '../../../utils/common'
+import { chunkArr, getImageUrl } from '../../../utils/common'
 import { bindVideoItemTap } from '../../templates/video/video'
 import { bindCourseTap } from '../../templates/course/course'
 import { payData, bindPayClose, bindDiscountsSwitch, bindDiscountsChange } from '../../templates/pay/pay'
@@ -92,9 +92,8 @@ Page({
       success: res => {
         if (res.code == '1000') {
           let imgUrls = res.data.map(item => {
-            if (-1 == item.key.search(/^(http|https):\/\//gi)) {
-              item.key = `https://app.shangnarxue.com/edq/${item.key}`
-            }
+            item.key = getImageUrl(item.key)
+            
             return item
           })
 

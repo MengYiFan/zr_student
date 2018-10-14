@@ -17,7 +17,7 @@
       data-type="row"
       class="content-detail weui-flex">
       <image
-        src="{{'https://app.shangnarxue.com/edq/' + item.columnContentImgUrl}}" 
+        src="{{item.columnContentImgUrl}}" 
         class="content-detail-image"></image>
       <view class="content-detail-info">
         <view class="content-datail-state">

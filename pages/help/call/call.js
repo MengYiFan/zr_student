@@ -95,9 +95,17 @@ Page({
   continueHeartBeat: true,
   teachLive: '',
   userPusher: '',
+  liveStatus: false,
+  pusherStatus: false,
   authHangupFlag: false,
   // 挂断
   bindCallHangupTap(e, caseId, type) {
+    if (!this.data.canHangupFlag) {
+      wx.redirectTo({
+        url: '../../../pages/help/index/help'
+      })
+      return
+    }
     if (type != 'passivity' || !type) {// 主动发起
       let data = this.data,
         seconds = this.startTime ? (+new Date() - this.startTime) / 1000 : 0,
@@ -212,7 +220,18 @@ Page({
     try {
       console.info('live-player code:', e.detail.code)
       console.info('teachLive:', this.teachLive)
+
       let statusCode = e.detail.code
+      if (statusCode == 2002) {
+        this.liveStatus = true
+        if (this.pusherStatus) {
+          this.setData({
+            canHangupFlag: true
+          })
+          this.startTime = +new Date()
+        }
+      }
+
       // if (statusCode == -2301 || statusCode == -2302) {
       //   console.log('尝试拉流live: ', statusCode)
       //   this.setData({
@@ -233,12 +252,23 @@ Page({
   },
   pusherStatechange(e) {
     console.info('live-pusher code:', e.detail.code)
+    
     if (!this.userPusher) {
       this.userPusher = this.data.userPusher
     }
+
     try {
       console.info('live-pusher code:', e.detail && e.detail.code || 'null')
       console.info('pusher: ', this.data.userPusher)
+      if (e.detail.code == 1002) {
+        this.pusherStatus = true
+        if (this.liveStatus) {
+          this.setData({
+            canHangupFlag: true
+          })
+          this.startTime = +new Date()
+        }
+      }
       // if (e.detail.code == -1307) {
       //   console.log('尝试推流pusher', e.detail.code)
       //   this.setData({
@@ -460,7 +490,7 @@ Page({
         if (res.code == '1000') {
           let data = res.data
           this.caseId = data.caseId
-          this.startTime = +(new Date())
+          // this.startTime = +(new Date())
           this.setData({
             callTeacherName: data.teacherNick,
             callTeacherCover: data.teacherAvatar,
@@ -490,7 +520,7 @@ Page({
         success: res => {
           if (res.code == '1000') {
             this.caseId = res.data.caseId
-            this.startTime = +(new Date())
+            // this.startTime = +(new Date())
             this.roomId = res.data.roomId
 
             this.isSuccessCall = true
@@ -520,7 +550,7 @@ Page({
         success: res => {
           if (res.code == '1000') {
             this.caseId = res.data.caseId
-            this.startTime = +(new Date())
+            // this.startTime = +(new Date())
             this.roomId = res.data.roomId
 
             this.isSuccessCall = true
@@ -577,7 +607,8 @@ Page({
           that.setData({
             teachLive: msgArr[4],
             callTeacherName: msgArr[5],
-            callTeacherCover: msgArr[6]
+            callTeacherCover: msgArr[6],
+            canHangupFlag: true
           })
           wx.vibrateLong()
           that.data.videoContext.play()
