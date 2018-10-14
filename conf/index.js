@@ -12,8 +12,13 @@ export const loyaltyConf = {
   'teacher_recommended': '老师推荐'
 }
 
-export const walletConf = {
-  WR: '钱包充值',
-  WC: '钱包消费',
-  OT: '其他'
+export const walletTraceConf = {
+  WR: 'Wechat Re-change',
+  WC: 'Wallet Consume',
+  OT: 'Other'
+}
+
+export const walletTxnConf = {
+  1: '钱包充值',
+  2: '钱包支付'
 }

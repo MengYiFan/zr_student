@@ -33,7 +33,8 @@
       <view 
       wx:if="{{orderDetail[item.orderId] && showOrderDetail[item.orderId]}}" 
       class="order-detail">
-        <view class="order-detail-teacher-name">
+        <view class="order-detail-teacher-name" 
+              wx:if="{{item.orderTypeCode == 'C'}}">
           课程老师：{{orderDetail[item.orderId].orderItemList[0].teacherName}}
         </view>
         <view class="order-detail-desc">
