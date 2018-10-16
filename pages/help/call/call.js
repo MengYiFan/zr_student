@@ -98,6 +98,7 @@ Page({
   liveStatus: false,
   pusherStatus: false,
   authHangupFlag: false,
+  timeoutFlag: null,
   // 挂断
   bindCallHangupTap(e, caseId, type) {
     if (!this.data.canHangupFlag) {
@@ -228,6 +229,7 @@ Page({
           this.setData({
             canHangupFlag: true
           })
+          clearTimeout(this.timeoutFlag)
           this.startTime = +new Date()
         }
       }
@@ -266,6 +268,7 @@ Page({
           this.setData({
             canHangupFlag: true
           })
+          clearTimeout(this.timeoutFlag)
           this.startTime = +new Date()
         }
       }
@@ -587,6 +590,21 @@ Page({
     let that = this
     init({
       success: res => {
+        // im登录成功后，看求助链接
+        this.timeoutFlag = setTimeout(() => {
+          wx.showToast({
+            icon: 'none', 
+            duration: 300,
+            mask: true,
+            title: '暂无老师接听，请稍后重试。'
+          })
+          setTimeout(() => {
+            wx.hideToast()
+            wx.redirectTo({
+              url: '../../../pages/help/index/help'
+            })
+          }, 500)
+        }, 1000 * 60)
         if (this.options.callObject == 'all') {
           // v3
           this.getPusherHandle('all')
