@@ -99,7 +99,7 @@ Page({
       this.redirectUrl = 'pages/index/index/index'
     }
 
-    wx.removeStorage('userInfo')
+    wx.removeStorageSync('userInfo')
   },
   getUserInfoHandle() {
     var that = this
