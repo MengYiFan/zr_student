@@ -54,7 +54,13 @@
                 src="../../../images/other/times.png"  
                 class="content-detail-icon-image"></image>
               <label class="video-item-times">{{item.vedioViewCount + '次' || '最新发布'}}</label>
-              <label class="video-item-money">{{item.vedioPrice ? '¥' + item.vedioPrice : '免费'}}</label>
+              <label class="video-item-money">
+                {{
+                  item.vedioPrice && item.vedioPrice != '0' 
+                  ? '¥' + item.vedioPrice 
+                  : '免费'
+                }}
+              </label>
             </view>
           </view>
       </block>

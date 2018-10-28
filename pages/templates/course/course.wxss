@@ -55,13 +55,13 @@
   display: inline-block;
   color: #dcdcdc;
   font-size: 24rpx;
-  max-width: 244rpx;
+  max-width: 278rpx;
   overflow: hidden;
   white-space: nowrap;
 }
 
 .content-detail-icon {
-  margin-right: 74rpx;
+  margin-right: 50rpx;
 }
 
 .content-detail-icon:last-child {

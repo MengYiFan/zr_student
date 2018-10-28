@@ -75,7 +75,7 @@
               src="../../../images/other/times.png" 
               class="content-detail-icon-image"></image>
             <block wx:if="{{item.columnSetupTime}}">{{item.columnSetupTime}}</block>
-            <block wx:else> {{item.startTime || item.contentViewTime || item.columnSetupTime || '暂无'}}</block> 
+            <block wx:else> {{item.startTime || item.contentViewTime || item.columnSetupTime || item.contentPublishTime || '暂无'}}</block> 
           </view>
           <view class="content-detail-icon">
             <image 
