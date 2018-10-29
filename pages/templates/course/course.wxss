@@ -28,7 +28,7 @@
 .content-detail-title {
   height: 30rpx;
   line-height: 30rpx;
-  margin-bottom: 30rpx;
+  margin-bottom: 20rpx;
   font-size: 30rpx;
   color: #000;
   font-weight: 400;
@@ -61,7 +61,7 @@
 }
 
 .content-detail-icon {
-  margin-right: 50rpx;
+  margin-right: 30rpx;
 }
 
 .content-detail-icon:last-child {
