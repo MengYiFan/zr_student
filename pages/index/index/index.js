@@ -83,8 +83,10 @@ Page({
       url: '../../../pages/teacher/detail/detail?teacherId=' + teacherId
     })
   },
-  onLoad: function() {
-
+  onLoad: function(options) {
+    if (options.mobile) {
+      wx.setStorageSync('recommended_mobile_phone', options.mobile)
+    }
   },
   onShow: function() {
     getBanner({

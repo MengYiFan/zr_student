@@ -4,17 +4,19 @@ import { obj2uri } from './utils/common'
 
 App({
   onLaunch: function (e) {
-    // 当前访问链接保存
+    // 保存当前访问链接，用于授权成功后重定向
     this.globalData.currentUri = e.path + '?' + obj2uri(e.query)
+    // 用户id
     if (wx.getStorageSync('userId')) {
       this.globalData.userId = wx.getStorageSync('userId')
-    }
-    this.getUserInfo(this.getUserLocation)
+    } else {
+      // 推荐人电话号码
+      if (e.query.mobile) {
+        wx.setStorageSync('recommended_mobile_phone', e.query.mobile)
+      }
 
-    //调用API从本地缓存中获取数据
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+      this.getUserInfo(this.getUserLocation)
+    }
   },
   // 获得用户信息
   getUserInfo(cb) {
@@ -31,7 +33,13 @@ App({
       }
       typeof cb == "function" && cb(that.globalData.userInfo)
     } else {
-      console.log('wx.login')
+      console.log('wx authorize')
+      let redirectUrl = this.globalData.currentUri.split('?')[0]
+      wx.redirectTo({
+        url: `../../../pages/wx/authorize/authorize?redirect=${redirectUrl}`,
+      })
+      return
+      // 已弃用，更改了授权实现，从新页面获得
       // 调用登录接口
       wx.login({
         success: function (res) {
@@ -70,16 +78,26 @@ App({
           latitude, longitude
         }
 
+        let data = {
+          thirdPartyKey: that.globalData.code,
+          longitude, latitude,
+          userType: 1,
+          userNickname: userInfo.nickName,
+          userPortraitUrl: userInfo.avatarUrl,
+          userMobile: ''
+        }
+
+        // 推荐人手机号码
+        if (wx.getStorageSync('recommended_mobile_phone')) {
+          data = Object.assign({}, data, {
+            mobile: wx.getStorageSync('recommended_mobile_phone')
+          })
+          wx.removeStorageSync('recommended_mobile_phone')
+        }
+
         userLogin({
           authorization: true,
-          data: {
-            thirdPartyKey: that.globalData.code,
-            longitude, latitude,
-            userType: 1,
-            userNickname: userInfo.nickName,
-            userPortraitUrl: userInfo.avatarUrl,
-            userMobile: ''
-          },
+          data,
           success: res => {
             if (res.code == '1000') {
               that.globalData.userId = res.data.userId

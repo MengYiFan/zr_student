@@ -28,7 +28,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 18,
 			"list": [
 				{
 					"id": 0,
@@ -133,16 +133,16 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "demo",
-					"pathName": "pages/help/demo/demo",
-					"query": ""
-				},
-				{
 					"id": 18,
 					"name": "teacher content",
 					"pathName": "pages/teacher/content/content",
 					"query": "teacherId=2459&userId=2454&columnId=17&teachername=mish"
+				},
+				{
+					"id": 18,
+					"name": "home",
+					"pathName": "pages/index/index/index",
+					"query": "mobile=15889964300"
 				}
 			]
 		}

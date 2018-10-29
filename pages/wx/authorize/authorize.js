@@ -53,16 +53,26 @@ Page({
           latitude, longitude
         }
 
+        let data = {
+          thirdPartyKey: app.globalData.code,
+          longitude, latitude,
+          userType: 1,
+          userNickname: userInfo.nickName,
+          userPortraitUrl: userInfo.avatarUrl,
+          userMobile: ''
+        }
+
+        // 推荐人手机号码
+        if (wx.getStorageSync('recommended_mobile_phone')) {
+          data = Object.assign({}, data, {
+            mobile: wx.getStorageSync('recommended_mobile_phone')
+          })
+          wx.removeStorageSync('recommended_mobile_phone')
+        }
+
         userLogin({
           authorization: true,
-          data: {
-            thirdPartyKey: app.globalData.code,
-            longitude, latitude,
-            userType: 1,
-            userNickname: userInfo.nickName,
-            userPortraitUrl: userInfo.avatarUrl,
-            userMobile: ''
-          },
+          data,
           success: res => {
             if (res.code == '1000') {
               app.globalData.userId = res.data.userId
